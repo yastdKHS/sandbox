@@ -1,0 +1,32 @@
+' このファイルは「ThisWorkbook」（ブックそのもの）のコードモジュールです。
+' 標準モジュールではないため、vba/build/modBuildTool.bas によって
+' 既存の ThisWorkbook コンポーネントへ挿入されます（単純な .bas インポート対象外）。
+' 手作業でブックを組み立てる場合は、VBEの「ThisWorkbook」をダブルクリックして
+' 以下の内容をそのまま貼り付けてください。
+Option Explicit
+
+' ブックを開いたときに実行される。
+' データ保存領域（シート・テーブル）の存在確認のみを行い、画面部品の再構築は
+' 行わない（毎回再構築すると開くたびに画面がちらつくため）。
+' 画面部品が壊れた場合は、Alt+F8 から mod_UI.SetupAllSheets を手動実行することで
+' 修復できる（保守マニュアル参照）。
+Private Sub Workbook_Open()
+    On Error GoTo ErrHandler
+
+    mod_Database.EnsureSchema
+    mod_UI.NavigateTo mod_Common.SH_HOME
+    mod_Logging.WriteLog "INFO", "ThisWorkbook", "Workbook_Open", mod_Common.APP_NAME & " を起動しました。バージョン " & mod_Common.APP_VERSION
+    Exit Sub
+
+ErrHandler:
+    MsgBox mod_Common.APP_NAME & " の起動処理でエラーが発生しました。" & vbCrLf & _
+           "ファイルを再度開き直しても解消しない場合は、管理者マニュアルの" & vbCrLf & _
+           "「トラブルシューティング」を参照してください。" & vbCrLf & vbCrLf & Err.Description, _
+           vbCritical, mod_Common.APP_NAME
+End Sub
+
+Private Sub Workbook_BeforeClose(Cancel As Boolean)
+    On Error Resume Next
+    mod_Logging.WriteLog "INFO", "ThisWorkbook", "Workbook_BeforeClose", mod_Common.APP_NAME & " を終了します。"
+    On Error GoTo 0
+End Sub
