@@ -1,0 +1,10 @@
+# VBAソース(.bas)とThisWorkbook.txtはShift-JIS(CP932)固定・CRLF固定で保存している。
+# これは、日本語版WindowsのVBE（Excelマクロエディタ）が.basファイルの
+# インポート時にUTF-8ではなくシステムのANSIコードページ（CP932）で
+# 読み込むため（UTF-8のまま渡すと日本語コメント・文字列が文字化けし、
+# コンパイルエラーになる）。
+#
+# gitによる改行コード変換・文字コード推測を一切行わせず、コミットした
+# バイト列をそのまま保持させるため、対象ファイルを明示的に除外する。
+vba/**/*.bas -text -diff
+vba/ThisWorkbook.txt -text -diff

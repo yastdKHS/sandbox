@@ -2,40 +2,40 @@ Attribute VB_Name = "mod_Common"
 Option Explicit
 '==============================================================================
 ' mod_Common
-' ç›®çš„ : ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å…¨ä½“ã§å…±æœ‰ã™ã‚‹å®šæ•°ãƒ»æ±ç”¨ãƒ˜ãƒ«ãƒ‘ãƒ¼é–¢æ•°ã‚’é›†ç´„ã™ã‚‹ã€‚
-'        ã‚·ãƒ¼ãƒˆåï¼ãƒ†ãƒ¼ãƒ–ãƒ«åï¼åˆ—åã‚’ã“ã“ã«ä¸€å…ƒç®¡ç†ã™ã‚‹ã“ã¨ã§ã€
-'        ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆå¤‰æ›´ã‚„ä»•æ§˜å¤‰æ›´ãŒç™ºç”Ÿã—ã¦ã‚‚ä¿®æ­£ç®‡æ‰€ã‚’æœ€å°é™ã«ã™ã‚‹ã€‚
-' æ³¨æ„ : ä»–ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¯åŸå‰‡ã¨ã—ã¦ã‚·ãƒ¼ãƒˆåãƒ»ãƒ†ãƒ¼ãƒ–ãƒ«åã‚’ç›´æ¥æ–‡å­—åˆ—ã§
-'        è¨˜è¿°ã›ãšã€å¿…ãšæœ¬ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®å®šæ•°ã‚’å‚ç…§ã™ã‚‹ã“ã¨ã€‚
+' –Ú“I : ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‘S‘Ì‚Å‹¤—L‚·‚é’è”E”Ä—pƒwƒ‹ƒp[ŠÖ”‚ğW–ñ‚·‚éB
+'        ƒV[ƒg–¼^ƒe[ƒuƒ‹–¼^—ñ–¼‚ğ‚±‚±‚ÉˆêŒ³ŠÇ—‚·‚é‚±‚Æ‚ÅA
+'        ƒŒƒCƒAƒEƒg•ÏX‚âd—l•ÏX‚ª”­¶‚µ‚Ä‚àC³‰ÓŠ‚ğÅ¬ŒÀ‚É‚·‚éB
+' ’ˆÓ : ‘¼ƒ‚ƒWƒ…[ƒ‹‚ÍŒ´‘¥‚Æ‚µ‚ÄƒV[ƒg–¼Eƒe[ƒuƒ‹–¼‚ğ’¼Ú•¶š—ñ‚Å
+'        ‹Lq‚¹‚¸A•K‚¸–{ƒ‚ƒWƒ…[ƒ‹‚Ì’è”‚ğQÆ‚·‚é‚±‚ÆB
 '==============================================================================
 
 '------------------------------------------------------------------
-' ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åŸºæœ¬æƒ…å ±
+' ƒAƒvƒŠƒP[ƒVƒ‡ƒ“Šî–{î•ñ
 '------------------------------------------------------------------
-Public Const APP_NAME As String = "è©•ä¾¡ãƒ‡ãƒ¼ã‚¿åˆ†æãƒ„ãƒ¼ãƒ«"
+Public Const APP_NAME As String = "•]‰¿ƒf[ƒ^•ªÍƒc[ƒ‹"
 Public Const APP_VERSION As String = "1.0.0"
 
 '------------------------------------------------------------------
-' ç”»é¢ï¼ˆå¯è¦–ã‚·ãƒ¼ãƒˆï¼‰å
+' ‰æ–Êi‰Â‹ƒV[ƒgj–¼
 '------------------------------------------------------------------
-Public Const SH_HOME As String = "ãƒ›ãƒ¼ãƒ "
-Public Const SH_IMPORT As String = "ãƒ‡ãƒ¼ã‚¿å–è¾¼"
-Public Const SH_ANALYSIS As String = "åˆ†æ"
-Public Const SH_SETTINGS As String = "è¨­å®š"
-Public Const SH_DATABASE As String = "ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹"
-Public Const SH_LOG As String = "ãƒ­ã‚°"
+Public Const SH_HOME As String = "ƒz[ƒ€"
+Public Const SH_IMPORT As String = "ƒf[ƒ^æ"
+Public Const SH_ANALYSIS As String = "•ªÍ"
+Public Const SH_SETTINGS As String = "İ’è"
+Public Const SH_DATABASE As String = "ƒf[ƒ^ƒx[ƒX"
+Public Const SH_LOG As String = "ƒƒO"
 
 '------------------------------------------------------------------
-' ãƒ‡ãƒ¼ã‚¿ä¿æŒã‚·ãƒ¼ãƒˆåï¼ˆéè¡¨ç¤ºï¼šxlSheetVeryHiddenï¼‰
+' ƒf[ƒ^•ÛƒV[ƒg–¼i”ñ•\¦FxlSheetVeryHiddenj
 '------------------------------------------------------------------
-Public Const SH_D_SCORES As String = "D_Scores"       ' è©•ä¾¡ç‚¹æ•°ï¼ˆç¸¦æŒã¡ï¼‰
-Public Const SH_D_TEMPLATES As String = "D_Templates" ' åˆ—ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
+Public Const SH_D_SCORES As String = "D_Scores"       ' •]‰¿“_”ic‚¿j
+Public Const SH_D_TEMPLATES As String = "D_Templates" ' —ñƒ}ƒbƒsƒ“ƒOƒeƒ“ƒvƒŒ[ƒg
 
 '------------------------------------------------------------------
-' ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆListObjectï¼‰å
-' T_Items / T_Settings ã¯ã€Œè¨­å®šã€ã‚·ãƒ¼ãƒˆã€T_Log ã¯ã€Œãƒ­ã‚°ã€ã‚·ãƒ¼ãƒˆã€
-' T_Summary ã¯ã€Œãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã€ã‚·ãƒ¼ãƒˆä¸Šã«é…ç½®ã—ã€å¯è¦–ã‚·ãƒ¼ãƒˆè‡ªä½“ã‚’
-' è¨˜æ†¶é ˜åŸŸã¨ã—ã¦åˆ©ç”¨ã™ã‚‹ï¼ˆåˆ¥é€”ã‚³ãƒ”ãƒ¼ã‚’æŒãŸãªã„ã“ã¨ã§å®¹é‡å¢—åŠ ã‚’æŠ‘åˆ¶ï¼‰ã€‚
+' ƒe[ƒuƒ‹iListObjectj–¼
+' T_Items / T_Settings ‚Íuİ’èvƒV[ƒgAT_Log ‚ÍuƒƒOvƒV[ƒgA
+' T_Summary ‚Íuƒf[ƒ^ƒx[ƒXvƒV[ƒgã‚É”z’u‚µA‰Â‹ƒV[ƒg©‘Ì‚ğ
+' ‹L‰¯—Ìˆæ‚Æ‚µ‚Ä—˜—p‚·‚éi•Ê“rƒRƒs[‚ğ‚½‚È‚¢‚±‚Æ‚Å—e—Ê‘‰Á‚ğ—}§jB
 '------------------------------------------------------------------
 Public Const TBL_SCORES As String = "T_Scores"
 Public Const TBL_ITEMS As String = "T_Items"
@@ -45,51 +45,51 @@ Public Const TBL_SETTINGS As String = "T_Settings"
 Public Const TBL_TEMPLATES As String = "T_Templates"
 
 '------------------------------------------------------------------
-' T_Scores åˆ—åï¼ˆç¸¦æŒã¡ï¼š1è¡Œ = 1å­¦ç”Ÿ Ã— 1è©•ä¾¡é …ç›®ï¼‰
+' T_Scores —ñ–¼ic‚¿F1s = 1Šw¶ ~ 1•]‰¿€–Új
 '------------------------------------------------------------------
-Public Const COL_YEAR As String = "å¹´åº¦"
-Public Const COL_CLASSCODE As String = "ã‚¯ãƒ©ã‚¹ã‚³ãƒ¼ãƒ‰"
-Public Const COL_STUDENTNO As String = "å­¦ç”Ÿç•ªå·"
-Public Const COL_NAME As String = "æ°å"
-Public Const COL_ITEMCODE As String = "é …ç›®ã‚³ãƒ¼ãƒ‰"
-Public Const COL_SCORE As String = "ç‚¹æ•°"
+Public Const COL_YEAR As String = "”N“x"
+Public Const COL_CLASSCODE As String = "ƒNƒ‰ƒXƒR[ƒh"
+Public Const COL_STUDENTNO As String = "Šw¶”Ô†"
+Public Const COL_NAME As String = "–¼"
+Public Const COL_ITEMCODE As String = "€–ÚƒR[ƒh"
+Public Const COL_SCORE As String = "“_”"
 
 '------------------------------------------------------------------
-' T_Items åˆ—åï¼ˆè©•ä¾¡é …ç›®ãƒã‚¹ã‚¿ï¼‰
+' T_Items —ñ–¼i•]‰¿€–Úƒ}ƒXƒ^j
 '------------------------------------------------------------------
-Public Const COL_ITEM_CODE As String = "é …ç›®ã‚³ãƒ¼ãƒ‰"
-Public Const COL_ITEM_DISPNAME As String = "è¡¨ç¤ºå"
-Public Const COL_ITEM_WEIGHT As String = "é‡ã¿(%)"
-Public Const COL_ITEM_ORDER As String = "è¡¨ç¤ºé †"
-Public Const COL_ITEM_ACTIVE As String = "æœ‰åŠ¹"
+Public Const COL_ITEM_CODE As String = "€–ÚƒR[ƒh"
+Public Const COL_ITEM_DISPNAME As String = "•\¦–¼"
+Public Const COL_ITEM_WEIGHT As String = "d‚İ(%)"
+Public Const COL_ITEM_ORDER As String = "•\¦‡"
+Public Const COL_ITEM_ACTIVE As String = "—LŒø"
 
 '------------------------------------------------------------------
-' T_Summary åˆ—åï¼ˆå­¦ç”Ÿã”ã¨ã®ç·åˆè©•ä¾¡ã‚­ãƒ£ãƒƒã‚·ãƒ¥ï¼‰
+' T_Summary —ñ–¼iŠw¶‚²‚Æ‚Ì‘‡•]‰¿ƒLƒƒƒbƒVƒ…j
 '------------------------------------------------------------------
-Public Const COL_SUM_YEAR As String = "å¹´åº¦"
-Public Const COL_SUM_CLASSCODE As String = "ã‚¯ãƒ©ã‚¹ã‚³ãƒ¼ãƒ‰"
-Public Const COL_SUM_STUDENTNO As String = "å­¦ç”Ÿç•ªå·"
-Public Const COL_SUM_NAME As String = "æ°å"
-Public Const COL_SUM_TOTAL As String = "ç·åˆè©•ä¾¡"
-Public Const COL_SUM_UPDATED As String = "æ›´æ–°æ—¥æ™‚"
+Public Const COL_SUM_YEAR As String = "”N“x"
+Public Const COL_SUM_CLASSCODE As String = "ƒNƒ‰ƒXƒR[ƒh"
+Public Const COL_SUM_STUDENTNO As String = "Šw¶”Ô†"
+Public Const COL_SUM_NAME As String = "–¼"
+Public Const COL_SUM_TOTAL As String = "‘‡•]‰¿"
+Public Const COL_SUM_UPDATED As String = "XV“ú"
 
 '------------------------------------------------------------------
-' T_Log åˆ—å
+' T_Log —ñ–¼
 '------------------------------------------------------------------
-Public Const COL_LOG_DATETIME As String = "æ—¥æ™‚"
-Public Const COL_LOG_LEVEL As String = "ç¨®åˆ¥"
-Public Const COL_LOG_MODULE As String = "ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«"
-Public Const COL_LOG_PROC As String = "å‡¦ç†"
-Public Const COL_LOG_MESSAGE As String = "ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸"
-Public Const COL_LOG_DETAIL As String = "è©³ç´°"
+Public Const COL_LOG_DATETIME As String = "“ú"
+Public Const COL_LOG_LEVEL As String = "í•Ê"
+Public Const COL_LOG_MODULE As String = "ƒ‚ƒWƒ…[ƒ‹"
+Public Const COL_LOG_PROC As String = "ˆ—"
+Public Const COL_LOG_MESSAGE As String = "ƒƒbƒZ[ƒW"
+Public Const COL_LOG_DETAIL As String = "Ú×"
 
 '------------------------------------------------------------------
-' T_Settings åˆ—åï¼ˆã‚­ãƒ¼ãƒ»ãƒãƒªãƒ¥ãƒ¼å½¢å¼ã®è¨­å®šå€¤ï¼‰
+' T_Settings —ñ–¼iƒL[EƒoƒŠƒ…[Œ`®‚Ìİ’è’lj
 '------------------------------------------------------------------
-Public Const COL_SET_KEY As String = "è¨­å®šã‚­ãƒ¼"
-Public Const COL_SET_VALUE As String = "è¨­å®šå€¤"
+Public Const COL_SET_KEY As String = "İ’èƒL["
+Public Const COL_SET_VALUE As String = "İ’è’l"
 
-' æ—¢å®šè¨­å®šã‚­ãƒ¼
+' Šù’èİ’èƒL[
 Public Const SETKEY_HIST_BIN_MODE As String = "HIST_BIN_MODE"     ' "COUNT" or "WIDTH"
 Public Const SETKEY_HIST_BIN_COUNT As String = "HIST_BIN_COUNT"
 Public Const SETKEY_HIST_BIN_WIDTH As String = "HIST_BIN_WIDTH"
@@ -98,41 +98,41 @@ Public Const SETKEY_OVERLAY_YEARS As String = "GRAPH_OVERLAY_YEARS"
 Public Const SETKEY_LOG_MAX_ROWS As String = "LOG_MAX_ROWS"
 
 '------------------------------------------------------------------
-' T_Templates åˆ—åï¼ˆãƒ‡ãƒ¼ã‚¿å–è¾¼ã®åˆ—ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆï¼‰
+' T_Templates —ñ–¼iƒf[ƒ^æ‚Ì—ñƒ}ƒbƒsƒ“ƒOƒeƒ“ƒvƒŒ[ƒgj
 '------------------------------------------------------------------
-Public Const COL_TPL_NAME As String = "ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆå"
-Public Const COL_TPL_SHEETPATTERN As String = "ç·åˆæˆç¸¾ã‚·ãƒ¼ãƒˆåãƒ‘ã‚¿ãƒ¼ãƒ³"
-Public Const COL_TPL_MAPPING As String = "ãƒãƒƒãƒ”ãƒ³ã‚°"
-Public Const COL_TPL_SAVEDAT As String = "ä¿å­˜æ—¥æ™‚"
+Public Const COL_TPL_NAME As String = "ƒeƒ“ƒvƒŒ[ƒg–¼"
+Public Const COL_TPL_SHEETPATTERN As String = "‘‡¬ÑƒV[ƒg–¼ƒpƒ^[ƒ“"
+Public Const COL_TPL_MAPPING As String = "ƒ}ƒbƒsƒ“ƒO"
+Public Const COL_TPL_SAVEDAT As String = "•Û‘¶“ú"
 
 '------------------------------------------------------------------
-' ç”»é¢ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆå®šæ•° - ã€Œãƒ‡ãƒ¼ã‚¿å–è¾¼ã€ã‚·ãƒ¼ãƒˆ
-' mod_UIï¼ˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ç”Ÿæˆï¼‰ã¨ mod_Importï¼ˆå€¤ã®èª­ã¿æ›¸ãï¼‰ãŒå…±é€šã§å‚ç…§ã™ã‚‹ã€‚
-' ã‚»ãƒ«ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹å ´åˆã¯ã€ã“ã®å®šæ•°ã®ã¿ã‚’ä¿®æ­£ã™ã‚Œã°ã‚ˆã„ã€‚
+' ‰æ–ÊƒŒƒCƒAƒEƒg’è” - uƒf[ƒ^ævƒV[ƒg
+' mod_UIiƒRƒ“ƒgƒ[ƒ‹¶¬j‚Æ mod_Importi’l‚Ì“Ç‚İ‘‚«j‚ª‹¤’Ê‚ÅQÆ‚·‚éB
+' ƒZƒ‹ˆÊ’u‚ğ•ÏX‚·‚éê‡‚ÍA‚±‚Ì’è”‚Ì‚İ‚ğC³‚·‚ê‚Î‚æ‚¢B
 '------------------------------------------------------------------
 Public Const IMP_CELL_TITLE As String = "B2"
 Public Const IMP_CELL_STATUS As String = "B3"
 Public Const IMP_RANGE_BTN_SELECTFILE As String = "B5:C5"
 Public Const IMP_BTN_SELECTFILE As String = "btnImpSelectFile"
-Public Const IMP_CELL_FILEPATH As String = "D5"          ' çµåˆ D5:H5
+Public Const IMP_CELL_FILEPATH As String = "D5"          ' Œ‹‡ D5:H5
 Public Const IMP_RANGE_LISTBOX_SHEETS As String = "B8:E14"
 Public Const IMP_LISTBOX_SHEETS As String = "lstImpSheets"
-Public Const IMP_CELL_YEAR_MANUAL As String = "G9"        ' çµåˆ G9:H9
-Public Const IMP_CELL_CLASS_MANUAL As String = "G11"      ' çµåˆ G11:H11
+Public Const IMP_CELL_YEAR_MANUAL As String = "G9"        ' Œ‹‡ G9:H9
+Public Const IMP_CELL_CLASS_MANUAL As String = "G11"      ' Œ‹‡ G11:H11
 Public Const IMP_RANGE_BTN_CONFIRMSHEET As String = "B15:C15"
 Public Const IMP_BTN_CONFIRMSHEET As String = "btnImpConfirmSheet"
 Public Const IMP_CELL_MAPPING_HINT As String = "B17"
 Public Const IMP_MAPPING_HEADER_ROW As Long = 19
 Public Const IMP_MAPPING_START_ROW As Long = 20
-Public Const IMP_MAPPING_MAX_ROWS As Long = 30      ' å…ƒãƒ‡ãƒ¼ã‚¿ã®åˆ—æ•°ä¸Šé™ï¼ˆè¶…ãˆã‚‹å ´åˆã¯ã“ã®å€¤ã‚’å¢—ã‚„ã™ï¼‰
-Public Const IMP_MAPPING_COL_HEADER As Long = 2      ' Båˆ—ï¼šå…ƒã®è¦‹å‡ºã—
-Public Const IMP_MAPPING_COL_SAMPLE As Long = 3      ' Cåˆ—ï¼šã‚µãƒ³ãƒ—ãƒ«å€¤
-Public Const IMP_MAPPING_COL_TARGET As Long = 4      ' Dåˆ—ï¼šãƒãƒƒãƒ”ãƒ³ã‚°å…ˆï¼ˆãƒ‰ãƒ­ãƒƒãƒ—ãƒ€ã‚¦ãƒ³ï¼‰
+Public Const IMP_MAPPING_MAX_ROWS As Long = 30      ' Œ³ƒf[ƒ^‚Ì—ñ”ãŒÀi’´‚¦‚éê‡‚Í‚±‚Ì’l‚ğ‘‚â‚·j
+Public Const IMP_MAPPING_COL_HEADER As Long = 2      ' B—ñFŒ³‚ÌŒ©o‚µ
+Public Const IMP_MAPPING_COL_SAMPLE As Long = 3      ' C—ñFƒTƒ“ƒvƒ‹’l
+Public Const IMP_MAPPING_COL_TARGET As Long = 4      ' D—ñFƒ}ƒbƒsƒ“ƒOæiƒhƒƒbƒvƒ_ƒEƒ“j
 Public Const IMP_RANGE_BTN_PROCEED_CONFIRM As String = "B51:C51"
 Public Const IMP_BTN_PROCEED_CONFIRM As String = "btnImpProceedConfirm"
 Public Const IMP_RANGE_BTN_SAVETEMPLATE As String = "E51:G51"
 Public Const IMP_BTN_SAVETEMPLATE As String = "btnImpSaveTemplate"
-Public Const IMP_CELL_CONFIRM_SUMMARY As String = "B53"   ' çµåˆ B53:H58 ç›¸å½“ï¼ˆè¤‡æ•°è¡Œãƒ†ã‚­ã‚¹ãƒˆï¼‰
+Public Const IMP_CELL_CONFIRM_SUMMARY As String = "B53"   ' Œ‹‡ B53:H58 ‘Š“–i•¡”sƒeƒLƒXƒgj
 Public Const IMP_CONFIRM_SUMMARY_ROWS As Long = 6
 Public Const IMP_RANGE_CHK_OVERWRITE As String = "B60:D60"
 Public Const IMP_CHK_OVERWRITE As String = "chkImpOverwrite"
@@ -140,18 +140,18 @@ Public Const IMP_RANGE_BTN_COMMIT As String = "B62:C62"
 Public Const IMP_BTN_COMMIT As String = "btnImpCommit"
 Public Const IMP_RANGE_BTN_CANCEL As String = "E62:F62"
 Public Const IMP_BTN_CANCEL As String = "btnImpCancel"
-Public Const IMP_MAPPING_HELPER_COL As Long = 20     ' Tåˆ—ï¼šãƒãƒƒãƒ”ãƒ³ã‚°é¸æŠè‚¢ã®ãƒ˜ãƒ«ãƒ‘ãƒ¼é ˜åŸŸï¼ˆéè¡¨ç¤ºåˆ—ï¼‰
+Public Const IMP_MAPPING_HELPER_COL As Long = 20     ' T—ñFƒ}ƒbƒsƒ“ƒO‘I‘ğˆ‚Ìƒwƒ‹ƒp[—Ìˆæi”ñ•\¦—ñj
 
-' ãƒãƒƒãƒ”ãƒ³ã‚°å…ˆã®å›ºå®šé¸æŠè‚¢ï¼ˆå­¦ç”Ÿå±æ€§ï¼‰ã€‚è©•ä¾¡é …ç›®ã¯ã“ã“ã«å‹•çš„è¿½åŠ ã•ã‚Œã‚‹ã€‚
-Public Const MAP_TARGET_IGNORE As String = "ï¼ˆå–ã‚Šè¾¼ã¾ãªã„ï¼‰"
-Public Const MAP_TARGET_YEAR As String = "å¹´åº¦"
-Public Const MAP_TARGET_CLASSCODE As String = "ã‚¯ãƒ©ã‚¹ã‚³ãƒ¼ãƒ‰"
-Public Const MAP_TARGET_STUDENTNO As String = "å­¦ç”Ÿç•ªå·"
-Public Const MAP_TARGET_NAME As String = "æ°å"
-Public Const MAP_TARGET_NEWITEM_PREFIX As String = "æ–°è¦è©•ä¾¡é …ç›®ï¼š"
+' ƒ}ƒbƒsƒ“ƒOæ‚ÌŒÅ’è‘I‘ğˆiŠw¶‘®«jB•]‰¿€–Ú‚Í‚±‚±‚É“®“I’Ç‰Á‚³‚ê‚éB
+Public Const MAP_TARGET_IGNORE As String = "iæ‚è‚Ü‚È‚¢j"
+Public Const MAP_TARGET_YEAR As String = "”N“x"
+Public Const MAP_TARGET_CLASSCODE As String = "ƒNƒ‰ƒXƒR[ƒh"
+Public Const MAP_TARGET_STUDENTNO As String = "Šw¶”Ô†"
+Public Const MAP_TARGET_NAME As String = "–¼"
+Public Const MAP_TARGET_NEWITEM_PREFIX As String = "V‹K•]‰¿€–ÚF"
 
 '------------------------------------------------------------------
-' ç”»é¢ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆå®šæ•° - ã€Œåˆ†æã€ã‚·ãƒ¼ãƒˆ
+' ‰æ–ÊƒŒƒCƒAƒEƒg’è” - u•ªÍvƒV[ƒg
 '------------------------------------------------------------------
 Public Const ANL_CELL_TITLE As String = "B2"
 Public Const ANL_RANGE_LISTBOX_YEARS As String = "B5:C12"
@@ -182,25 +182,25 @@ Public Const ANL_STATS_START As String = "B50"
 Public Const ANL_STUDENTLIST_TITLE As String = "E49"
 Public Const ANL_STUDENTLIST_HEADER_ROW As Long = 50
 Public Const ANL_STUDENTLIST_START_ROW As Long = 51
-Public Const ANL_STUDENTLIST_COL As Long = 5   ' Eåˆ—
-Public Const ANL_STUDENTLIST_MAX_ROWS As Long = 260  ' ç´„200åã‚¯ãƒ©ã‚¹ã‚’æƒ³å®šã—ãŸè¡¨ç¤ºä¸Šé™
+Public Const ANL_STUDENTLIST_COL As Long = 5   ' E—ñ
+Public Const ANL_STUDENTLIST_MAX_ROWS As Long = 260  ' –ñ200–¼ƒNƒ‰ƒX‚ğ‘z’è‚µ‚½•\¦ãŒÀ
 
 '------------------------------------------------------------------
-' ç”»é¢ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆå®šæ•° - ã€Œè¨­å®šã€ã‚·ãƒ¼ãƒˆ
+' ‰æ–ÊƒŒƒCƒAƒEƒg’è” - uİ’èvƒV[ƒg
 '------------------------------------------------------------------
-' T_Items ãƒ†ãƒ¼ãƒ–ãƒ«ã¯ B4 èµ·ç‚¹ï¼ˆEnsureTableItemsï¼‰ã€‚é …ç›®æ•°å¢—åŠ ã«å‚™ãˆã€
-' å³å´ã®åˆ¶å¾¡ç¾¤ã¯ååˆ†ãªä½™ç™½ã‚’ç©ºã‘ãŸ Iåˆ—ä»¥é™ã«é…ç½®ã™ã‚‹ã€‚
+' T_Items ƒe[ƒuƒ‹‚Í B4 ‹N“_iEnsureTableItemsjB€–Ú”‘‰Á‚É”õ‚¦A
+' ‰E‘¤‚Ì§ŒäŒQ‚Í\•ª‚È—]”’‚ğ‹ó‚¯‚½ I—ñˆÈ~‚É”z’u‚·‚éB
 Public Const SET_RANGE_BTN_APPLY As String = "B30:D30"
 Public Const SET_BTN_APPLY As String = "btnSetApply"
-' T_Settings ãƒ†ãƒ¼ãƒ–ãƒ«ã¯ I4 èµ·ç‚¹ï¼ˆEnsureTableSettingsï¼‰ã€‚
+' T_Settings ƒe[ƒuƒ‹‚Í I4 ‹N“_iEnsureTableSettingsjB
 Public Const SET_RANGE_LISTBOX_TEMPLATES As String = "I13:J20"
 Public Const SET_LISTBOX_TEMPLATES As String = "lstSetTemplates"
 Public Const SET_RANGE_BTN_DELETETEMPLATE As String = "I22:J22"
 Public Const SET_BTN_DELETETEMPLATE As String = "btnSetDeleteTemplate"
 
 '------------------------------------------------------------------
-' ç”»é¢ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆå®šæ•° - ã€Œãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã€ã‚·ãƒ¼ãƒˆ
-' T_Summary ãƒ†ãƒ¼ãƒ–ãƒ«ã¯ B4 èµ·ç‚¹ï¼ˆEnsureTableSummaryï¼‰ã€‚
+' ‰æ–ÊƒŒƒCƒAƒEƒg’è” - uƒf[ƒ^ƒx[ƒXvƒV[ƒg
+' T_Summary ƒe[ƒuƒ‹‚Í B4 ‹N“_iEnsureTableSummaryjB
 '------------------------------------------------------------------
 Public Const DB_CELL_DELETE_YEAR_LABEL As String = "I4"
 Public Const DB_CELL_DELETE_YEAR As String = "J4"
@@ -212,14 +212,14 @@ Public Const DB_RANGE_BTN_REFRESH As String = "I8:J8"
 Public Const DB_BTN_REFRESH As String = "btnDbRefresh"
 
 '------------------------------------------------------------------
-' ç”»é¢ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆå®šæ•° - ã€Œãƒ­ã‚°ã€ã‚·ãƒ¼ãƒˆ
-' T_Log ãƒ†ãƒ¼ãƒ–ãƒ«ã¯ B4 èµ·ç‚¹ï¼ˆEnsureTableLogï¼‰ã€‚
+' ‰æ–ÊƒŒƒCƒAƒEƒg’è” - uƒƒOvƒV[ƒg
+' T_Log ƒe[ƒuƒ‹‚Í B4 ‹N“_iEnsureTableLogjB
 '------------------------------------------------------------------
 Public Const LOG_RANGE_BTN_CLEAR As String = "I4:J4"
 Public Const LOG_BTN_CLEAR As String = "btnLogClear"
 
 '------------------------------------------------------------------
-' ç”»é¢ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆå®šæ•° - ã€Œãƒ›ãƒ¼ãƒ ã€ã‚·ãƒ¼ãƒˆ
+' ‰æ–ÊƒŒƒCƒAƒEƒg’è” - uƒz[ƒ€vƒV[ƒg
 '------------------------------------------------------------------
 Public Const HOME_RANGE_BTN_IMPORT As String = "B5:D6"
 Public Const HOME_BTN_IMPORT As String = "btnHomeImport"
@@ -231,10 +231,10 @@ Public Const HOME_RANGE_BTN_DATABASE As String = "B14:D15"
 Public Const HOME_BTN_DATABASE As String = "btnHomeDatabase"
 Public Const HOME_RANGE_BTN_LOG As String = "B17:D18"
 Public Const HOME_BTN_LOG As String = "btnHomeLog"
-Public Const HOME_CELL_SUMMARY As String = "F5"   ' çµåˆ F5:J10 ç›¸å½“
+Public Const HOME_CELL_SUMMARY As String = "F5"   ' Œ‹‡ F5:J10 ‘Š“–
 
 '------------------------------------------------------------------
-' ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒ¼ï¼ˆå…¨ç”»é¢å…±é€šãƒ»1è¡Œç›®ã«é…ç½®ã€‚2è¡Œç›®ãŒã‚¿ã‚¤ãƒˆãƒ«è¡Œï¼‰
+' ƒiƒrƒQ[ƒVƒ‡ƒ“ƒo[i‘S‰æ–Ê‹¤’ÊE1s–Ú‚É”z’uB2s–Ú‚ªƒ^ƒCƒgƒ‹sj
 '------------------------------------------------------------------
 Public Const NAV_RANGE_HOME As String = "B1:C1"
 Public Const NAV_BTN_HOME As String = "btnNavHome"
@@ -250,10 +250,10 @@ Public Const NAV_RANGE_LOG As String = "L1:M1"
 Public Const NAV_BTN_LOG As String = "btnNavLog"
 
 '==============================================================================
-' æ±ç”¨ãƒ˜ãƒ«ãƒ‘ãƒ¼é–¢æ•°
+' ”Ä—pƒwƒ‹ƒp[ŠÖ”
 '==============================================================================
 
-' æŒ‡å®šåã®ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆã‚’å®‰å…¨ã«å–å¾—ã™ã‚‹ã€‚å­˜åœ¨ã—ãªã„å ´åˆã¯ Nothing ã‚’è¿”ã™ã€‚
+' w’è–¼‚Ìƒ[ƒNƒV[ƒg‚ğˆÀ‘S‚Éæ“¾‚·‚éB‘¶İ‚µ‚È‚¢ê‡‚Í Nothing ‚ğ•Ô‚·B
 Public Function GetSheetSafe(ByVal sheetName As String) As Worksheet
     Dim ws As Worksheet
     On Error Resume Next
@@ -262,7 +262,7 @@ Public Function GetSheetSafe(ByVal sheetName As String) As Worksheet
     Set GetSheetSafe = ws
 End Function
 
-' æŒ‡å®šã‚·ãƒ¼ãƒˆä¸Šã®æŒ‡å®šãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆListObjectï¼‰ã‚’å–å¾—ã™ã‚‹ã€‚å­˜åœ¨ã—ãªã„å ´åˆã¯ Nothingã€‚
+' w’èƒV[ƒgã‚Ìw’èƒe[ƒuƒ‹iListObjectj‚ğæ“¾‚·‚éB‘¶İ‚µ‚È‚¢ê‡‚Í NothingB
 Public Function GetTableSafe(ByVal sheetName As String, ByVal tableName As String) As ListObject
     Dim ws As Worksheet
     Set ws = GetSheetSafe(sheetName)
@@ -272,7 +272,7 @@ Public Function GetTableSafe(ByVal sheetName As String, ByVal tableName As Strin
     On Error GoTo 0
 End Function
 
-' ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒ‡ãƒ¼ã‚¿è¡Œæ•°ï¼ˆè¦‹å‡ºã—ã‚’é™¤ãï¼‰ã‚’è¿”ã™ã€‚
+' ƒe[ƒuƒ‹‚Ìƒf[ƒ^s”iŒ©o‚µ‚ğœ‚­j‚ğ•Ô‚·B
 Public Function TableRowCount(ByVal tbl As ListObject) As Long
     If tbl Is Nothing Then Exit Function
     If tbl.ListRows.Count = 0 Then Exit Function
@@ -280,10 +280,10 @@ Public Function TableRowCount(ByVal tbl As ListObject) As Long
     TableRowCount = tbl.ListRows.Count
 End Function
 
-' æ–‡å­—åˆ—æ¯”è¼ƒç”¨ã®æ­£è¦åŒ–å‡¦ç†ã€‚
-' ãƒ»å‰å¾Œç©ºç™½ã®é™¤å»
-' ãƒ»å…¨è§’è‹±æ•°è¨˜å·ã‚’åŠè§’ã«å¤‰æ›ï¼ˆå…ƒãƒ‡ãƒ¼ã‚¿ã®ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆæºã‚Œã‚’å¸åã™ã‚‹ï¼‰
-' ãƒ»å¤§æ–‡å­—å°æ–‡å­—ã‚’ç„¡è¦–ã§ãã‚‹ã‚ˆã†å°æ–‡å­—åŒ–
+' •¶š—ñ”äŠr—p‚Ì³‹K‰»ˆ—B
+' E‘OŒã‹ó”’‚Ìœ‹
+' E‘SŠp‰p”‹L†‚ğ”¼Šp‚É•ÏŠ·iŒ³ƒf[ƒ^‚ÌƒŒƒCƒAƒEƒg—h‚ê‚ğ‹zû‚·‚éj
+' E‘å•¶š¬•¶š‚ğ–³‹‚Å‚«‚é‚æ‚¤¬•¶š‰»
 Public Function NormalizeText(ByVal s As Variant) As String
     Dim t As String
     If IsError(s) Then
@@ -292,13 +292,13 @@ Public Function NormalizeText(ByVal s As Variant) As String
     End If
     t = CStr(s)
     t = Trim$(t)
-    t = StrConv(t, vbNarrow)   ' å…¨è§’â†’åŠè§’ï¼ˆè‹±æ•°è¨˜å·ãƒ»ã‚«ãƒŠï¼‰
+    t = StrConv(t, vbNarrow)   ' ‘SŠp¨”¼Špi‰p”‹L†EƒJƒij
     t = LCase$(t)
     NormalizeText = t
 End Function
 
-' 2ã¤ã®è¦‹å‡ºã—æ–‡å­—åˆ—ãŒã©ã®ç¨‹åº¦é¡ä¼¼ã—ã¦ã„ã‚‹ã‹ã‚’ç°¡æ˜“åˆ¤å®šã™ã‚‹ã€‚
-' å®Œå…¨ä¸€è‡´ = 100ã€æ­£è¦åŒ–å¾Œä¸€è‡´ = 90ã€éƒ¨åˆ†ä¸€è‡´ = 60ã€ä¸ä¸€è‡´ = 0
+' 2‚Â‚ÌŒ©o‚µ•¶š—ñ‚ª‚Ç‚Ì’ö“x—Ş—‚µ‚Ä‚¢‚é‚©‚ğŠÈˆÕ”»’è‚·‚éB
+' Š®‘Sˆê’v = 100A³‹K‰»Œãˆê’v = 90A•”•ªˆê’v = 60A•sˆê’v = 0
 Public Function HeaderSimilarity(ByVal headerText As Variant, ByVal candidateWord As String) As Long
     Dim a As String, b As String
     a = NormalizeText(headerText)
@@ -313,12 +313,12 @@ Public Function HeaderSimilarity(ByVal headerText As Variant, ByVal candidateWor
     End If
 End Function
 
-' æŒ‡å®šåˆ—ã®æœ€çµ‚è¡Œç•ªå·ã‚’è¿”ã™ï¼ˆè¦‹å‡ºã—è¡Œã‚’å«ã‚ãŸå®Ÿéš›ã®è¡Œç•ªå·ï¼‰ã€‚
+' w’è—ñ‚ÌÅIs”Ô†‚ğ•Ô‚·iŒ©o‚µs‚ğŠÜ‚ß‚½ÀÛ‚Ìs”Ô†jB
 Public Function LastRowInColumn(ByVal ws As Worksheet, ByVal col As Long) As Long
     LastRowInColumn = ws.Cells(ws.Rows.Count, col).End(xlUp).Row
 End Function
 
-' ã‚¯ãƒ©ã‚¹ã‚³ãƒ¼ãƒ‰ã‚’4æ¡ã‚¼ãƒ­åŸ‹ã‚ã®æ–‡å­—åˆ—ã¨ã—ã¦æ•´å½¢ã™ã‚‹ã€‚
+' ƒNƒ‰ƒXƒR[ƒh‚ğ4Œ…ƒ[ƒ–„‚ß‚Ì•¶š—ñ‚Æ‚µ‚Ä®Œ`‚·‚éB
 Public Function FormatClassCode(ByVal v As Variant) As String
     Dim s As String
     s = Trim$(CStr(v))
@@ -333,13 +333,13 @@ Public Function FormatClassCode(ByVal v As Variant) As String
     End If
 End Function
 
-' ç¾åœ¨æ™‚åˆ»ã‚’ "yyyy/mm/dd hh:nn:ss" å½¢å¼ã§è¿”ã™ï¼ˆãƒ­ã‚°ãƒ»æ›´æ–°æ—¥æ™‚è¨˜éŒ²ç”¨ï¼‰ã€‚
+' Œ»İ‚ğ "yyyy/mm/dd hh:nn:ss" Œ`®‚Å•Ô‚·iƒƒOEXV“ú‹L˜^—pjB
 Public Function NowText() As String
     NowText = Format$(Now, "yyyy/mm/dd hh:nn:ss")
 End Function
 
-' é›†è¨ˆã‚­ãƒ¼ï¼ˆå¹´åº¦+ã‚¯ãƒ©ã‚¹ã‚³ãƒ¼ãƒ‰+å­¦ç”Ÿç•ªå·+é …ç›®ã‚³ãƒ¼ãƒ‰ç­‰ï¼‰ã‚’ç”Ÿæˆã™ã‚‹ã€‚
-' Collection ã®ã‚­ãƒ¼ã¨ã—ã¦ä½¿ç”¨ã—ã€é‡è¤‡åˆ¤å®šã‚’é«˜é€ŸåŒ–ã™ã‚‹ãŸã‚ã«ç”¨ã„ã‚‹ã€‚
+' WŒvƒL[i”N“x+ƒNƒ‰ƒXƒR[ƒh+Šw¶”Ô†+€–ÚƒR[ƒh“™j‚ğ¶¬‚·‚éB
+' Collection ‚ÌƒL[‚Æ‚µ‚Äg—p‚µAd•¡”»’è‚ğ‚‘¬‰»‚·‚é‚½‚ß‚É—p‚¢‚éB
 Public Function MakeKey(ParamArray parts() As Variant) As String
     Dim i As Long
     Dim s As String
@@ -349,7 +349,7 @@ Public Function MakeKey(ParamArray parts() As Variant) As String
     MakeKey = s
 End Function
 
-' Collection ã«æŒ‡å®šã‚­ãƒ¼ãŒå­˜åœ¨ã™ã‚‹ã‹ã‚’åˆ¤å®šã™ã‚‹ï¼ˆå­˜åœ¨ç¢ºèªå°‚ç”¨ã®è»½é‡é–¢æ•°ï¼‰ã€‚
+' Collection ‚Éw’èƒL[‚ª‘¶İ‚·‚é‚©‚ğ”»’è‚·‚éi‘¶İŠm”Fê—p‚ÌŒy—ÊŠÖ”jB
 Public Function CollectionHasKey(ByVal col As Collection, ByVal key As String) As Boolean
     Dim v As Variant
     On Error Resume Next
@@ -358,8 +358,8 @@ Public Function CollectionHasKey(ByVal col As Collection, ByVal key As String) A
     On Error GoTo 0
 End Function
 
-' å…±é€šã‚¨ãƒ©ãƒ¼ãƒãƒ³ãƒ‰ãƒ©ã€‚ã‚¨ãƒ©ãƒ¼å†…å®¹ã‚’ãƒ­ã‚°ã¸è¨˜éŒ²ã—ã€å¿…è¦ã«å¿œã˜ã¦åˆ©ç”¨è€…ã¸é€šçŸ¥ã™ã‚‹ã€‚
-' å„ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ã¯ On Error GoTo ErrHandler ã®å¾Œã€ä»¥ä¸‹ã®ã‚ˆã†ã«å‘¼ã³å‡ºã™ã€‚
+' ‹¤’ÊƒGƒ‰[ƒnƒ“ƒhƒ‰BƒGƒ‰[“à—e‚ğƒƒO‚Ö‹L˜^‚µA•K—v‚É‰‚¶‚Ä—˜—pÒ‚Ö’Ê’m‚·‚éB
+' ŠeƒvƒƒV[ƒWƒƒ‚Í On Error GoTo ErrHandler ‚ÌŒãAˆÈ‰º‚Ì‚æ‚¤‚ÉŒÄ‚Ño‚·B
 '   ErrHandler:
 '       mod_Common.HandleError "mod_Xxx", "ProcName"
 Public Sub HandleError(ByVal moduleName As String, ByVal procName As String, _
@@ -370,19 +370,19 @@ Public Sub HandleError(ByVal moduleName As String, ByVal procName As String, _
     detail = "ErrNo=" & Err.Number
     mod_Logging.WriteLog "ERROR", moduleName, procName, msg, detail
     If showMessage Then
-        MsgBox APP_NAME & " ã§ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚" & vbCrLf & _
-               "å‡¦ç†: " & moduleName & "." & procName & vbCrLf & _
-               "å†…å®¹: " & msg, vbExclamation, APP_NAME
+        MsgBox APP_NAME & " ‚ÅƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B" & vbCrLf & _
+               "ˆ—: " & moduleName & "." & procName & vbCrLf & _
+               "“à—e: " & msg, vbExclamation, APP_NAME
     End If
 End Sub
 
-' ç”»é¢æ›´æ–°ãƒ»è­¦å‘Šè¡¨ç¤ºãƒ»ã‚¤ãƒ™ãƒ³ãƒˆã‚’ä¸€æ™‚åœæ­¢ã™ã‚‹ï¼ˆé‡ã„å‡¦ç†ã®å‰å¾Œã§ä½¿ç”¨ï¼‰ã€‚
+' ‰æ–ÊXVEŒx•\¦EƒCƒxƒ“ƒg‚ğˆê’â~‚·‚éid‚¢ˆ—‚Ì‘OŒã‚Åg—pjB
 Public Sub BeginBusy()
     Application.ScreenUpdating = False
     Application.DisplayAlerts = False
     Application.EnableEvents = False
     Application.Cursor = xlWait
-    Application.StatusBar = APP_NAME & " å‡¦ç†ä¸­..."
+    Application.StatusBar = APP_NAME & " ˆ—’†..."
 End Sub
 
 Public Sub EndBusy()

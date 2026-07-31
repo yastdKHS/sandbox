@@ -2,25 +2,25 @@ Attribute VB_Name = "mod_Graph"
 Option Explicit
 '==============================================================================
 ' mod_Graph
-' ÁõÆÁöÑ : „ÄåÂàÜÊûê„Äç„Ç∑„Éº„Éà‰∏ä„ÅÆ3Á®ÆÈ°û„ÅÆ„Ç∞„É©„ÉïÔºà„Éí„Çπ„Éà„Ç∞„É©„É†ÔºèÁ¥ØÁ©çÂàÜÂ∏ÉÊõ≤Á∑öÔºèÁÆ±„Å≤„ÅíÂõ≥Ôºâ
-'        „ÅÆÂÜÖÂÆπ„ÇíÊõ¥Êñ∞„Åô„Çã„ÄÇ„Ç∞„É©„Éï„Ç™„Éñ„Ç∏„Çß„ÇØ„ÉàËá™‰Ωì„ÅØ mod_UI „ÅåÂàùÊúüÊßãÁØâÊôÇ„Å´
-'        ‰ΩúÊàêÊ∏à„Åø„Åß„ÅÇ„Çã„Åì„Å®„ÇíÂâçÊèê„Å®„Åó„ÄÅÊú¨„É¢„Ç∏„É•„Éº„É´„ÅØ„Éá„Éº„ÇøÔºàÁ≥ªÂàóÔºâ„ÅÆ
-'        Â∑Æ„ÅóÊõø„Åà„ÅÆ„Åø„ÇíË°å„ÅÜÔºàË≤¨ÂãôÂàÜÈõ¢ÔºöÊßãÁØâ=mod_UI„ÄÅÂÜÖÂÆπÊõ¥Êñ∞=mod_GraphÔºâ„ÄÇ
+' ñ⁄ìI : Åuï™êÕÅvÉVÅ[Égè„ÇÃ3éÌóﬁÇÃÉOÉâÉtÅiÉqÉXÉgÉOÉâÉÄÅ^ó›êœï™ïzã»ê¸Å^î†Ç–Ç∞ê}Åj
+'        ÇÃì‡óeÇçXêVÇ∑ÇÈÅBÉOÉâÉtÉIÉuÉWÉFÉNÉgé©ëÃÇÕ mod_UI Ç™èâä˙ç\ízéûÇ…
+'        çÏê¨çœÇ›Ç≈Ç†ÇÈÇ±Ç∆ÇëOíÒÇ∆ÇµÅAñ{ÉÇÉWÉÖÅ[ÉãÇÕÉfÅ[É^ÅiånóÒÅjÇÃ
+'        ç∑Çµë÷Ç¶ÇÃÇ›ÇçsÇ§Åiê”ñ±ï™ó£ÅFç\íz=mod_UIÅAì‡óeçXêV=mod_GraphÅjÅB
 '
-' Á≥ªÂàó„Éá„Éº„Çø„ÅØ Range „ÇíÁµåÁî±„Åõ„Åö„ÄÅÈÖçÂàó„ÇíÁõ¥Êé• Series.Values / .XValues „Å∏
-' ‰ª£ÂÖ•„Åô„Çã„ÄÇ„Åì„Çå„Å´„Çà„ÇäË£úÂä©„Çª„É´È†òÂüü„ÇíÊåÅ„Å§ÂøÖË¶Å„Åå„Å™„Åè„ÄÅ‰øùÂÆàÂØæË±°„ÅåÊ∏õ„Çã„ÄÇ
+' ånóÒÉfÅ[É^ÇÕ Range ÇåoóRÇπÇ∏ÅAîzóÒÇíºê⁄ Series.Values / .XValues Ç÷
+' ë„ì¸Ç∑ÇÈÅBÇ±ÇÍÇ…ÇÊÇËï‚èïÉZÉãóÃàÊÇéùÇ¬ïKóvÇ™Ç»Ç≠ÅAï€éÁëŒè€Ç™å∏ÇÈÅB
 '==============================================================================
 
-Private Const NORMAL_CURVE_POINTS As Long = 60   ' Ê≠£Ë¶èÂàÜÂ∏ÉÊõ≤Á∑ö„ÅÆÊèèÁîªÁÇπÊï∞
+Private Const NORMAL_CURVE_POINTS As Long = 60   ' ê≥ãKï™ïzã»ê¸ÇÃï`âÊì_êî
 
 '==============================================================================
-' ‚ë† „Éí„Çπ„Éà„Ç∞„É©„É†
+' á@ ÉqÉXÉgÉOÉâÉÄ
 '==============================================================================
-' yearLabels(i) / yearArrays(i) „ÅØÂØæ„Å´„Å™„Å£„ÅüÂπ¥Â∫¶„É©„Éô„É´„Å®ÁÇπÊï∞ÈÖçÂàóÔºàBuildScoresGroupedByYear„ÅÆÂá∫ÂäõÔºâ„ÄÇ
-' overlayYears = True „ÅÆÂ†¥Âêà„ÄÅÂÖ±ÈÄö„ÅÆ„Éì„É≥Â¢ÉÁïå„ÇíÁî®„ÅÑ„Å¶Âπ¥Â∫¶Âà•„Å´Ë§áÊï∞Á≥ªÂàó„ÅßÈáçÁï≥Ë°®Á§∫„Åô„Çã„ÄÇ
-' overlayYears = False „ÅÆÂ†¥Âêà„ÄÅÂÖ®Âπ¥Â∫¶„ÅÆ„Éá„Éº„Çø„Çí1Êú¨„ÅÆ„Éí„Çπ„Éà„Ç∞„É©„É†„Å´„Åæ„Å®„ÇÅ„Å¶Ë°®Á§∫„Åô„Çã„ÄÇ
-' showNormal = True „ÅÆÂ†¥Âêà„ÄÅÁ≥ªÂàó„Åå1Êú¨„ÅÆ„Å®„Åç„ÅÆ„ÅøÁêÜË´ñÊ≠£Ë¶èÂàÜÂ∏ÉÊõ≤Á∑ö„ÇíÈáçÁï≥„Åô„Çã
-' ÔºàË§áÊï∞Á≥ªÂàóÈáçÁï≥ÊôÇ„ÅØË¶ñË™çÊÄß„ÇíÂÑ™ÂÖà„ÅóÊõ≤Á∑ö„ÅØË°®Á§∫„Åó„Å™„ÅÑÔºâ„ÄÇ
+' yearLabels(i) / yearArrays(i) ÇÕëŒÇ…Ç»Ç¡ÇΩîNìxÉâÉxÉãÇ∆ì_êîîzóÒÅiBuildScoresGroupedByYearÇÃèoóÕÅjÅB
+' overlayYears = True ÇÃèÍçáÅAã§í ÇÃÉrÉìã´äEÇópÇ¢ÇƒîNìxï Ç…ï°êîånóÒÇ≈èdèÙï\é¶Ç∑ÇÈÅB
+' overlayYears = False ÇÃèÍçáÅAëSîNìxÇÃÉfÅ[É^Ç1ñ{ÇÃÉqÉXÉgÉOÉâÉÄÇ…Ç‹Ç∆ÇﬂÇƒï\é¶Ç∑ÇÈÅB
+' showNormal = True ÇÃèÍçáÅAånóÒÇ™1ñ{ÇÃÇ∆Ç´ÇÃÇ›óùò_ê≥ãKï™ïzã»ê¸ÇèdèÙÇ∑ÇÈ
+' Åiï°êîånóÒèdèÙéûÇÕéãîFê´ÇóDêÊÇµã»ê¸ÇÕï\é¶ÇµÇ»Ç¢ÅjÅB
 Public Sub UpdateHistogramChart(ByVal yearLabels As Collection, ByVal yearArrays As Collection, _
                                  ByVal overlayYears As Boolean, ByVal binMode As String, _
                                  ByVal binCount As Long, ByVal binWidth As Double, _
@@ -30,7 +30,7 @@ Public Sub UpdateHistogramChart(ByVal yearLabels As Collection, ByVal yearArrays
     If cht Is Nothing Then Exit Sub
     ClearChart cht
     cht.HasTitle = True
-    cht.ChartTitle.Text = "„Éí„Çπ„Éà„Ç∞„É©„É†Ôºö" & itemLabel
+    cht.ChartTitle.Text = "ÉqÉXÉgÉOÉâÉÄÅF" & itemLabel
 
     Dim combined() As Double
     combined = CombineAll(yearArrays)
@@ -52,7 +52,7 @@ Public Sub UpdateHistogramChart(ByVal yearLabels As Collection, ByVal yearArrays
             Dim arr() As Double
             arr = yearArrays(i)
             counts = mod_Statistics.CountIntoBins(arr, edges)
-            AddColumnSeries cht, CStr(yearLabels(i)) & "Âπ¥", categories, LongArrToDouble(counts)
+            AddColumnSeries cht, CStr(yearLabels(i)) & "îN", categories, LongArrToDouble(counts)
             seriesCount = seriesCount + 1
         Next i
     Else
@@ -67,7 +67,7 @@ Public Sub UpdateHistogramChart(ByVal yearLabels As Collection, ByVal yearArrays
     End If
 End Sub
 
-' Ê≠£Ë¶èÂàÜÂ∏É„ÅÆÁêÜË´ñÊõ≤Á∑ö„Çí„ÄÅ„Éí„Çπ„Éà„Ç∞„É©„É†„Å®Âêå„Åò„Éì„É≥ÂπÖ„Å´„Åä„Åë„ÇãÊúüÂæÖÂ∫¶Êï∞„Å´ÊèõÁÆó„Åó„Å¶ÈáçÁï≥„Åô„Çã„ÄÇ
+' ê≥ãKï™ïzÇÃóùò_ã»ê¸ÇÅAÉqÉXÉgÉOÉâÉÄÇ∆ìØÇ∂ÉrÉìïùÇ…Ç®ÇØÇÈä˙ë“ìxêîÇ…ä∑éZÇµÇƒèdèÙÇ∑ÇÈÅB
 Private Sub AddNormalCurveOverlay(ByVal cht As Chart, ByRef arr() As Double, ByRef edges() As Double)
     Dim m As Double, sd As Double, n As Long, w As Double
     m = mod_Statistics.Mean(arr)
@@ -93,7 +93,7 @@ Private Sub AddNormalCurveOverlay(ByVal cht As Chart, ByRef arr() As Double, ByR
 
     Dim sc As Series
     Set sc = cht.SeriesCollection.NewSeries
-    sc.Name = "Ê≠£Ë¶èÂàÜÂ∏ÉÔºàÁêÜË´ñÂÄ§Ôºâ"
+    sc.Name = "ê≥ãKï™ïzÅióùò_ílÅj"
     sc.Values = ys
     sc.XValues = xs
     sc.ChartType = xlXYScatterSmoothNoMarkers
@@ -103,7 +103,7 @@ Private Sub AddNormalCurveOverlay(ByVal cht As Chart, ByRef arr() As Double, ByR
 End Sub
 
 '==============================================================================
-' ‚ë° Á¥ØÁ©çÂàÜÂ∏ÉÊõ≤Á∑ö
+' áA ó›êœï™ïzã»ê¸
 '==============================================================================
 Public Sub UpdateCumulativeChart(ByVal yearLabels As Collection, ByVal yearArrays As Collection, _
                                   ByVal overlayYears As Boolean, ByVal itemLabel As String)
@@ -112,7 +112,7 @@ Public Sub UpdateCumulativeChart(ByVal yearLabels As Collection, ByVal yearArray
     If cht Is Nothing Then Exit Sub
     ClearChart cht
     cht.HasTitle = True
-    cht.ChartTitle.Text = "Á¥ØÁ©çÂàÜÂ∏ÉÊõ≤Á∑öÔºö" & itemLabel
+    cht.ChartTitle.Text = "ó›êœï™ïzã»ê¸ÅF" & itemLabel
     cht.ChartType = xlXYScatterLines
 
     If overlayYears Then
@@ -120,7 +120,7 @@ Public Sub UpdateCumulativeChart(ByVal yearLabels As Collection, ByVal yearArray
         For i = 1 To yearLabels.Count
             Dim arr() As Double
             arr = yearArrays(i)
-            AddCumulativeSeries cht, CStr(yearLabels(i)) & "Âπ¥", arr
+            AddCumulativeSeries cht, CStr(yearLabels(i)) & "îN", arr
         Next i
     Else
         Dim combined() As Double
@@ -143,7 +143,7 @@ Private Sub AddCumulativeSeries(ByVal cht As Chart, ByVal seriesName As String, 
 End Sub
 
 '==============================================================================
-' ‚ë¢ ÁÆ±„Å≤„ÅíÂõ≥ÔºàExcel 2016‰ª•Èôç„ÅÆÊ®ôÊ∫ñ„ÉÅ„É£„Éº„ÉàÁ®ÆÈ°û xlBoxwhisker „Çí‰ΩøÁî®Ôºâ
+' áB î†Ç–Ç∞ê}ÅiExcel 2016à»ç~ÇÃïWèÄÉ`ÉÉÅ[ÉgéÌóﬁ xlBoxwhisker ÇégópÅj
 '==============================================================================
 Public Sub UpdateBoxPlotChart(ByVal yearLabels As Collection, ByVal yearArrays As Collection, _
                                ByVal overlayYears As Boolean, ByVal itemLabel As String)
@@ -152,7 +152,7 @@ Public Sub UpdateBoxPlotChart(ByVal yearLabels As Collection, ByVal yearArrays A
     If cht Is Nothing Then Exit Sub
     ClearChart cht
     cht.HasTitle = True
-    cht.ChartTitle.Text = "ÁÆ±„Å≤„ÅíÂõ≥Ôºö" & itemLabel
+    cht.ChartTitle.Text = "î†Ç–Ç∞ê}ÅF" & itemLabel
 
     On Error Resume Next
     cht.ChartType = xlBoxwhisker
@@ -166,7 +166,7 @@ Public Sub UpdateBoxPlotChart(ByVal yearLabels As Collection, ByVal yearArrays A
             If mod_Statistics.ArrLen(arr) > 0 Then
                 Dim sc As Series
                 Set sc = cht.SeriesCollection.NewSeries
-                sc.Name = CStr(yearLabels(i)) & "Âπ¥"
+                sc.Name = CStr(yearLabels(i)) & "îN"
                 sc.Values = arr
             End If
         Next i
@@ -183,7 +183,7 @@ Public Sub UpdateBoxPlotChart(ByVal yearLabels As Collection, ByVal yearArrays A
 End Sub
 
 '==============================================================================
-' Ë£úÂä©
+' ï‚èï
 '==============================================================================
 
 Private Function GetChart(ByVal chartObjName As String) As Chart

@@ -2,13 +2,13 @@ Attribute VB_Name = "mod_Analysis"
 Option Explicit
 '==============================================================================
 ' mod_Analysis
-' ç›®çš„ : ã€Œåˆ†æã€ç”»é¢ã®ä¸­å¿ƒçš„ãªå‡¦ç†ã‚’æ‹…å½“ã™ã‚‹ã€‚
-'        åˆ©ç”¨è€…ãŒé¸æŠã—ãŸå¹´åº¦ãƒ»ã‚¯ãƒ©ã‚¹ã‚³ãƒ¼ãƒ‰ãƒ»è©•ä¾¡é …ç›®ã«åŸºã¥ã T_Scores ã‹ã‚‰
-'        è©²å½“ãƒ‡ãƒ¼ã‚¿ã‚’æŠ½å‡ºã—ã€mod_Statistics ã§çµ±è¨ˆé‡ã‚’è¨ˆç®—ã€mod_Graph ã§
-'        ã‚°ãƒ©ãƒ•ã‚’æ›´æ–°ã—ã€mod_UI ã¸è¡¨ç¤ºç”¨ãƒ‡ãƒ¼ã‚¿ã‚’æ¸¡ã™ï¼ˆå¸ä»¤å¡”ã®å½¹å‰²ï¼‰ã€‚
+' –Ú“I : u•ªÍv‰æ–Ê‚Ì’†S“I‚Èˆ—‚ğ’S“–‚·‚éB
+'        —˜—pÒ‚ª‘I‘ğ‚µ‚½”N“xEƒNƒ‰ƒXƒR[ƒhE•]‰¿€–Ú‚ÉŠî‚Ã‚« T_Scores ‚©‚ç
+'        ŠY“–ƒf[ƒ^‚ğ’Šo‚µAmod_Statistics ‚Å“Œv—Ê‚ğŒvZAmod_Graph ‚Å
+'        ƒOƒ‰ƒt‚ğXV‚µAmod_UI ‚Ö•\¦—pƒf[ƒ^‚ğ“n‚·ii—ß“ƒ‚Ì–ğŠ„jB
 '==============================================================================
 
-' ã€Œåˆ†æå®Ÿè¡Œã€ãƒœã‚¿ãƒ³ã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚¨ãƒ³ãƒˆãƒªãƒã‚¤ãƒ³ãƒˆã€‚
+' u•ªÍÀsvƒ{ƒ^ƒ“‚©‚çŒÄ‚Ño‚³‚ê‚éƒGƒ“ƒgƒŠƒ|ƒCƒ“ƒgB
 Public Sub RunAnalysis()
     On Error GoTo ErrHandler
 
@@ -21,7 +21,7 @@ Public Sub RunAnalysis()
     itemDisp = mod_UI.GetFormListBoxSelection(ws, mod_Common.ANL_LISTBOX_ITEM)
 
     If years.Count = 0 Or classes.Count = 0 Or Len(itemDisp) = 0 Then
-        MsgBox "å¹´åº¦ãƒ»ã‚¯ãƒ©ã‚¹ã‚³ãƒ¼ãƒ‰ãƒ»è©•ä¾¡é …ç›®ã‚’ãã‚Œãã‚Œ1ã¤ä»¥ä¸Šé¸æŠã—ã¦ãã ã•ã„ã€‚", vbExclamation, mod_Common.APP_NAME
+        MsgBox "”N“xEƒNƒ‰ƒXƒR[ƒhE•]‰¿€–Ú‚ğ‚»‚ê‚¼‚ê1‚ÂˆÈã‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, mod_Common.APP_NAME
         Exit Sub
     End If
 
@@ -35,24 +35,24 @@ Public Sub RunAnalysis()
 
     If mod_Statistics.ArrLen(flat) = 0 Then
         mod_Common.EndBusy
-        MsgBox "é¸æŠã—ãŸæ¡ä»¶ã«è©²å½“ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚Šã¾ã›ã‚“ã€‚", vbExclamation, mod_Common.APP_NAME
+        MsgBox "‘I‘ğ‚µ‚½ğŒ‚ÉŠY“–‚·‚éƒf[ƒ^‚ª‚ ‚è‚Ü‚¹‚ñB", vbExclamation, mod_Common.APP_NAME
         Exit Sub
     End If
 
     Dim yearLabels As Collection, yearArrays As Collection
     BuildScoresGroupedByYear years, classes, itemCode, yearLabels, yearArrays
 
-    ' çµ±è¨ˆé‡ã®è¨ˆç®—ã¨è¡¨ç¤º
+    ' “Œv—Ê‚ÌŒvZ‚Æ•\¦
     Dim statLabels() As String, statValues() As Variant
     BuildStatsTable flat, statLabels, statValues
     mod_UI.RenderStatsTable statLabels, statValues
 
-    ' å€‹äººåˆ¥ä¸€è¦§ï¼ˆåå·®å€¤ä»˜ãï¼‰ã®è¨ˆç®—ã¨è¡¨ç¤º
+    ' ŒÂl•Êˆê——i•Î·’l•t‚«j‚ÌŒvZ‚Æ•\¦
     Dim studentNos() As String, studentNames() As String, scoreVals() As Double, devVals() As Double
     BuildStudentDetailList years, classes, itemCode, studentNos, studentNames, scoreVals, devVals
     mod_UI.RenderStudentDetailList studentNos, studentNames, scoreVals, devVals
 
-    ' ã‚°ãƒ©ãƒ•ã®æ›´æ–°
+    ' ƒOƒ‰ƒt‚ÌXV
     Dim binMode As String, binCount As Long, binWidth As Double
     Dim showNormal As Boolean, overlayYears As Boolean
     mod_UI.GetAnalysisGraphOptions binMode, binCount, binWidth, showNormal, overlayYears
@@ -64,8 +64,8 @@ Public Sub RunAnalysis()
     mod_Common.EndBusy
 
     mod_Logging.WriteLog "INFO", "mod_Analysis", "RunAnalysis", _
-        "åˆ†æã‚’å®Ÿè¡Œã—ã¾ã—ãŸã€‚é …ç›®=" & itemDisp & " å¹´åº¦æ•°=" & years.Count & " ã‚¯ãƒ©ã‚¹æ•°=" & classes.Count & _
-        " ãƒ‡ãƒ¼ã‚¿ä»¶æ•°=" & mod_Statistics.ArrLen(flat)
+        "•ªÍ‚ğÀs‚µ‚Ü‚µ‚½B€–Ú=" & itemDisp & " ”N“x”=" & years.Count & " ƒNƒ‰ƒX”=" & classes.Count & _
+        " ƒf[ƒ^Œ”=" & mod_Statistics.ArrLen(flat)
     Exit Sub
 
 ErrHandler:
@@ -74,10 +74,10 @@ ErrHandler:
 End Sub
 
 '==============================================================================
-' ãƒ‡ãƒ¼ã‚¿æŠ½å‡º
+' ƒf[ƒ^’Šo
 '==============================================================================
 
-' é¸æŠæ¡ä»¶ï¼ˆè¤‡æ•°å¹´åº¦ãƒ»è¤‡æ•°ã‚¯ãƒ©ã‚¹ãƒ»å˜ä¸€è©•ä¾¡é …ç›®ï¼‰ã«ä¸€è‡´ã™ã‚‹ç‚¹æ•°ã‚’1æœ¬ã®é…åˆ—ã¨ã—ã¦è¿”ã™ã€‚
+' ‘I‘ğğŒi•¡””N“xE•¡”ƒNƒ‰ƒXE’Pˆê•]‰¿€–Új‚Éˆê’v‚·‚é“_”‚ğ1–{‚Ì”z—ñ‚Æ‚µ‚Ä•Ô‚·B
 Public Function BuildScoresFlat(ByVal years As Collection, ByVal classes As Collection, ByVal itemCode As String) As Double()
     Dim result() As Double
     Dim tbl As ListObject
@@ -119,9 +119,9 @@ Done:
     BuildScoresFlat = result
 End Function
 
-' å¹´åº¦ã”ã¨ã«åˆ†ã‘ãŸç‚¹æ•°é…åˆ—ç¾¤ã‚’è¿”ã™ï¼ˆé‡ç•³è¡¨ç¤ºç”¨ï¼‰ã€‚
-' yearLabels(i) ã¨ yearArrays(i) ãŒå¯¾ã«ãªã‚‹ã‚ˆã†ã€åŒã˜ä¸¦ã³é †ã®2ã¤ã® Collection ã¨ã—ã¦è¿”ã™ã€‚
-' ï¼ˆVBA ã®æ¨™æº– Collection ã¯ã‚­ãƒ¼ã®åˆ—æŒ™ãŒã§ããªã„ãŸã‚ã€ä½ç½®å¯¾å¿œã®2æœ¬ç«‹ã¦ã¨ã—ã¦ã„ã‚‹ï¼‰
+' ”N“x‚²‚Æ‚É•ª‚¯‚½“_””z—ñŒQ‚ğ•Ô‚·idô•\¦—pjB
+' yearLabels(i) ‚Æ yearArrays(i) ‚ª‘Î‚É‚È‚é‚æ‚¤A“¯‚¶•À‚Ñ‡‚Ì2‚Â‚Ì Collection ‚Æ‚µ‚Ä•Ô‚·B
+' iVBA ‚Ì•W€ Collection ‚ÍƒL[‚Ì—ñ‹“‚ª‚Å‚«‚È‚¢‚½‚ßAˆÊ’u‘Î‰‚Ì2–{—§‚Ä‚Æ‚µ‚Ä‚¢‚éj
 Public Sub BuildScoresGroupedByYear(ByVal years As Collection, ByVal classes As Collection, ByVal itemCode As String, _
                                      ByRef yearLabels As Collection, ByRef yearArrays As Collection)
     Set yearLabels = New Collection
@@ -141,7 +141,7 @@ Public Sub BuildScoresGroupedByYear(ByVal years As Collection, ByVal classes As 
     Next y
 End Sub
 
-' å€‹äººåˆ¥ä¸€è¦§ï¼ˆå­¦ç”Ÿç•ªå·ãƒ»æ°åãƒ»ç‚¹æ•°ãƒ»åå·®å€¤ï¼‰ã‚’ã€é¸æŠæ¡ä»¶å…¨ä½“ã‚’æ¯é›†å›£ã¨ã—ã¦è¨ˆç®—ã™ã‚‹ã€‚
+' ŒÂl•Êˆê——iŠw¶”Ô†E–¼E“_”E•Î·’lj‚ğA‘I‘ğğŒ‘S‘Ì‚ğ•êW’c‚Æ‚µ‚ÄŒvZ‚·‚éB
 Public Sub BuildStudentDetailList(ByVal years As Collection, ByVal classes As Collection, ByVal itemCode As String, _
                                    ByRef studentNos() As String, ByRef studentNames() As String, _
                                    ByRef scoreVals() As Double, ByRef devVals() As Double)
@@ -199,9 +199,9 @@ Public Sub BuildStudentDetailList(ByVal years As Collection, ByVal classes As Co
     Next i
 End Sub
 
-' åŸºæœ¬çµ±è¨ˆè¡¨ï¼ˆå¹³å‡ãƒ»ä¸­å¤®å€¤ãƒ»æœ€é »å€¤ãƒ»æ¨™æº–åå·®ãƒ»æœ€å¤§å€¤ãƒ»æœ€å°å€¤ãƒ»å››åˆ†ä½æ•°ãƒ»ä»¶æ•°ï¼‰ã‚’æ§‹ç¯‰ã™ã‚‹ã€‚
+' Šî–{“Œv•\i•½‹ÏE’†‰›’lEÅ•p’lE•W€•Î·EÅ‘å’lEÅ¬’lEl•ªˆÊ”EŒ”j‚ğ\’z‚·‚éB
 Public Sub BuildStatsTable(ByRef arr() As Double, ByRef labels() As String, ByRef values() As Variant)
-    labels = Split("ä»¶æ•°,å¹³å‡,ä¸­å¤®å€¤,æœ€é »å€¤,æ¨™æº–åå·®,æœ€å°å€¤,ç¬¬1å››åˆ†ä½æ•°,ç¬¬3å››åˆ†ä½æ•°,æœ€å¤§å€¤", ",")
+    labels = Split("Œ”,•½‹Ï,’†‰›’l,Å•p’l,•W€•Î·,Å¬’l,‘æ1l•ªˆÊ”,‘æ3l•ªˆÊ”,Å‘å’l", ",")
     ReDim values(LBound(labels) To UBound(labels))
 
     values(0) = mod_Statistics.ArrLen(arr)
@@ -216,7 +216,7 @@ Public Sub BuildStatsTable(ByRef arr() As Double, ByRef labels() As String, ByRe
 End Sub
 
 '==============================================================================
-' è£œåŠ©
+' •â•
 '==============================================================================
 Private Function ToLookupSet(ByVal items As Collection) As Collection
     Dim result As New Collection

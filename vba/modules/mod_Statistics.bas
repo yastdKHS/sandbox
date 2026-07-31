@@ -2,16 +2,16 @@ Attribute VB_Name = "mod_Statistics"
 Option Explicit
 '==============================================================================
 ' mod_Statistics
-' ç›®çš„ : æ•°å€¤é…åˆ—ï¼ˆDoubleå‹ã€1-basedï¼‰ã«å¯¾ã™ã‚‹çµ±è¨ˆè¨ˆç®—ã‚’æä¾›ã™ã‚‹ç´”ç²‹é–¢æ•°ç¾¤ã€‚
-'        ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã‚„å¤–éƒ¨ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«ä¾å­˜ã›ãšã€VBAã®ã¿ã§å®Ÿè£…ã™ã‚‹
-'        ï¼ˆå°†æ¥ Excel ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒå¤‰ã‚ã£ã¦ã‚‚è¨ˆç®—çµæœãŒå¤‰ã‚ã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ï¼‰ã€‚
+' –Ú“I : ”’l”z—ñiDoubleŒ^A1-basedj‚É‘Î‚·‚é“ŒvŒvZ‚ğ’ñ‹Ÿ‚·‚éƒˆŠÖ”ŒQB
+'        ƒ[ƒNƒV[ƒgŠÖ”‚âŠO•”ƒ‰ƒCƒuƒ‰ƒŠ‚ÉˆË‘¶‚¹‚¸AVBA‚Ì‚İ‚ÅÀ‘•‚·‚é
+'        i«—ˆ Excel ‚Ìƒo[ƒWƒ‡ƒ“‚ª•Ï‚í‚Á‚Ä‚àŒvZŒ‹‰Ê‚ª•Ï‚í‚ç‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ßjB
 '
-' æ¨™æº–åå·®ãƒ»åå·®å€¤ã¯ã€Œæ¯é›†å›£ï¼ˆåˆ†æå¯¾è±¡ã‚°ãƒ«ãƒ¼ãƒ—ãã®ã‚‚ã®ï¼‰ã€ã‚’å‰æã¨ã—ã€
-' æ¯æ¨™æº–åå·®ï¼ˆnã§é™¤ç®—ï¼‰ã‚’ç”¨ã„ã‚‹ã€‚ã“ã‚Œã¯å­¦æ ¡æ•™è‚²ã«ãŠã‘ã‚‹åå·®å€¤ç®—å‡ºã®
-' ä¸€èˆ¬çš„ãªæ…£ç¿’ã«åˆã‚ã›ãŸã‚‚ã®ã§ã‚ã‚‹ã€‚
+' •W€•Î·E•Î·’l‚Íu•êW’ci•ªÍ‘ÎÛƒOƒ‹[ƒv‚»‚Ì‚à‚Ìjv‚ğ‘O’ñ‚Æ‚µA
+' •ê•W€•Î·in‚ÅœZj‚ğ—p‚¢‚éB‚±‚ê‚ÍŠwZ‹³ˆç‚É‚¨‚¯‚é•Î·’lZo‚Ì
+' ˆê”Ê“I‚ÈŠµK‚É‡‚í‚¹‚½‚à‚Ì‚Å‚ ‚éB
 '==============================================================================
 
-' ---- åŸºæœ¬çµ±è¨ˆ ----
+' ---- Šî–{“Œv ----
 
 Public Function Mean(ByRef arr() As Double) As Double
     Dim n As Long
@@ -75,8 +75,8 @@ Public Function Median(ByRef arr() As Double) As Double
     End If
 End Function
 
-' æœ€é »å€¤ã€‚è¤‡æ•°å­˜åœ¨ã™ã‚‹å ´åˆã¯æœ€å°ã®å€¤ã‚’è¿”ã™ï¼ˆçµæœã‚’ä¸€æ„ã«ã™ã‚‹ãŸã‚ï¼‰ã€‚
-' åº¦æ•°åˆ†å¸ƒä¸Šã®æœ€é »å€¤ã§ã‚ã‚Šã€é€£ç¶šé‡ã®æ¨å®šãƒ¢ãƒ¼ãƒ‰ã§ã¯ãªã„ç‚¹ã«ç•™æ„ã€‚
+' Å•p’lB•¡”‘¶İ‚·‚éê‡‚ÍÅ¬‚Ì’l‚ğ•Ô‚·iŒ‹‰Ê‚ğˆêˆÓ‚É‚·‚é‚½‚ßjB
+' “x”•ª•zã‚ÌÅ•p’l‚Å‚ ‚èA˜A‘±—Ê‚Ì„’èƒ‚[ƒh‚Å‚Í‚È‚¢“_‚É—¯ˆÓB
 Public Function Mode(ByRef arr() As Double) As Double
     Dim n As Long
     n = ArrLen(arr)
@@ -108,8 +108,8 @@ Public Function Mode(ByRef arr() As Double) As Double
     Mode = bestVal
 End Function
 
-' Excel ã® QUARTILE.INC ã¨åŒã˜ç·šå½¢è£œé–“æ–¹å¼ã§åˆ†ä½ç‚¹ã‚’æ±‚ã‚ã‚‹ã€‚
-' q = 0(æœ€å°å€¤) / 1(ç¬¬1å››åˆ†ä½) / 2(ä¸­å¤®å€¤) / 3(ç¬¬3å››åˆ†ä½) / 4(æœ€å¤§å€¤)
+' Excel ‚Ì QUARTILE.INC ‚Æ“¯‚¶üŒ`•âŠÔ•û®‚Å•ªˆÊ“_‚ğ‹‚ß‚éB
+' q = 0(Å¬’l) / 1(‘æ1l•ªˆÊ) / 2(’†‰›’l) / 3(‘æ3l•ªˆÊ) / 4(Å‘å’l)
 Public Function Quartile(ByRef arr() As Double, ByVal q As Long) As Double
     Dim s() As Double
     s = SortedCopy(arr)
@@ -132,7 +132,7 @@ Public Function Quartile(ByRef arr() As Double, ByVal q As Long) As Double
     Quartile = s(LBound(s) + lo) + frac * (s(LBound(s) + hi) - s(LBound(s) + lo))
 End Function
 
-' åå·®å€¤ = 50 + 10 Ã— (x - å¹³å‡) / æ¨™æº–åå·®ã€‚æ¨™æº–åå·®ãŒ0ã®å ´åˆã¯50ã‚’è¿”ã™ã€‚
+' •Î·’l = 50 + 10 ~ (x - •½‹Ï) / •W€•Î·B•W€•Î·‚ª0‚Ìê‡‚Í50‚ğ•Ô‚·B
 Public Function DeviationScore(ByVal x As Double, ByVal meanVal As Double, ByVal sdVal As Double) As Double
     If sdVal <= 0 Then
         DeviationScore = 50
@@ -141,23 +141,23 @@ Public Function DeviationScore(ByVal x As Double, ByVal meanVal As Double, ByVal
     End If
 End Function
 
-' æ­£è¦åˆ†å¸ƒã®ç¢ºç‡å¯†åº¦é–¢æ•°ï¼ˆç†è«–åˆ†å¸ƒã®ãƒ’ã‚¹ãƒˆã‚°ãƒ©ãƒ é‡ç•³è¡¨ç¤ºã«ä½¿ç”¨ï¼‰ã€‚
+' ³‹K•ª•z‚ÌŠm—¦–§“xŠÖ”i—˜_•ª•z‚ÌƒqƒXƒgƒOƒ‰ƒ€dô•\¦‚Ég—pjB
 Public Function NormalPDF(ByVal x As Double, ByVal meanVal As Double, ByVal sdVal As Double) As Double
     If sdVal <= 0 Then Exit Function
     Const PI As Double = 3.14159265358979
     NormalPDF = (1# / (sdVal * Sqr(2 * PI))) * Exp(-((x - meanVal) ^ 2) / (2 * sdVal ^ 2))
 End Function
 
-' ---- ãƒ’ã‚¹ãƒˆã‚°ãƒ©ãƒ  ----
+' ---- ƒqƒXƒgƒOƒ‰ƒ€ ----
 
-' ãƒ“ãƒ³ã®åŒºåˆ‡ã‚Šï¼ˆå¢ƒç•Œå€¤ï¼‰ã‚’ã€æŒ‡å®šç¯„å›²(minVã€œmaxV)ã«å¯¾ã—ã¦è¨ˆç®—ã™ã‚‹ã€‚
-' mode = "COUNT" ã®ã¨ã binCount å€‹ã®ç­‰å¹…ãƒ“ãƒ³ã‚’ä½œã‚‹ã€‚
-' mode = "WIDTH" ã®ã¨ã binWidth å¹…ã§ã€ãƒ‡ãƒ¼ã‚¿ç¯„å›²ã‚’è¦†ã†ã ã‘ã®ãƒ“ãƒ³ã‚’ä½œã‚‹ã€‚
-' è¤‡æ•°å¹´åº¦ã‚’åŒä¸€ãƒ“ãƒ³å¹…ã§é‡ç•³æ¯”è¼ƒã™ã‚‹å ´åˆã¯ã€å…¨å¹´åº¦åˆç®—ã®ç¯„å›²ã‹ã‚‰
-' æ±‚ã‚ãŸå¢ƒç•Œå€¤ã‚’å„å¹´åº¦ã®ãƒ‡ãƒ¼ã‚¿ã¸å…±é€šé©ç”¨ã™ã‚‹ï¼ˆCountIntoBins ã‚’ä½¿ç”¨ï¼‰ã€‚
+' ƒrƒ“‚Ì‹æØ‚èi‹«ŠE’lj‚ğAw’è”ÍˆÍ(minV`maxV)‚É‘Î‚µ‚ÄŒvZ‚·‚éB
+' mode = "COUNT" ‚Ì‚Æ‚« binCount ŒÂ‚Ì“™•ƒrƒ“‚ğì‚éB
+' mode = "WIDTH" ‚Ì‚Æ‚« binWidth •‚ÅAƒf[ƒ^”ÍˆÍ‚ğ•¢‚¤‚¾‚¯‚Ìƒrƒ“‚ğì‚éB
+' •¡””N“x‚ğ“¯ˆêƒrƒ“•‚Ådô”äŠr‚·‚éê‡‚ÍA‘S”N“x‡Z‚Ì”ÍˆÍ‚©‚ç
+' ‹‚ß‚½‹«ŠE’l‚ğŠe”N“x‚Ìƒf[ƒ^‚Ö‹¤’Ê“K—p‚·‚éiCountIntoBins ‚ğg—pjB
 Public Function ComputeBinEdges(ByVal minV As Double, ByVal maxV As Double, _
                                  ByVal mode As String, ByVal binCount As Long, ByVal binWidth As Double) As Double()
-    If maxV = minV Then maxV = minV + 1   ' å…¨ãƒ‡ãƒ¼ã‚¿ãŒåŒä¸€å€¤ã®å ´åˆã®ç¸®é€€å¯¾å¿œ
+    If maxV = minV Then maxV = minV + 1   ' ‘Sƒf[ƒ^‚ª“¯ˆê’l‚Ìê‡‚Ìk‘Ş‘Î‰
 
     Dim nBins As Long, w As Double
     If UCase$(mode) = "WIDTH" And binWidth > 0 Then
@@ -179,7 +179,7 @@ Public Function ComputeBinEdges(ByVal minV As Double, ByVal maxV As Double, _
     ComputeBinEdges = edges
 End Function
 
-' æŒ‡å®šã•ã‚ŒãŸãƒ“ãƒ³å¢ƒç•Œå€¤ã«å¾“ã£ã¦ã€é…åˆ—ã®å€¤ã‚’å„ãƒ“ãƒ³ã¸é›†è¨ˆã™ã‚‹ã€‚
+' w’è‚³‚ê‚½ƒrƒ“‹«ŠE’l‚É]‚Á‚ÄA”z—ñ‚Ì’l‚ğŠeƒrƒ“‚ÖWŒv‚·‚éB
 Public Function CountIntoBins(ByRef arr() As Double, ByRef edges() As Double) As Long()
     Dim nBins As Long
     nBins = ArrLen(edges) - 1
@@ -208,7 +208,7 @@ Public Function CountIntoBins(ByRef arr() As Double, ByRef edges() As Double) As
     CountIntoBins = counts
 End Function
 
-' å˜ä¸€ãƒ‡ãƒ¼ã‚¿é…åˆ—ã«å¯¾ã™ã‚‹ãƒ“ãƒ³å¢ƒç•Œãƒ»åº¦æ•°ã‚’ä¸€æ‹¬è¨ˆç®—ã™ã‚‹ï¼ˆå¾“æ¥äº’æ›ã®ç°¡æ˜“ç‰ˆï¼‰ã€‚
+' ’Pˆêƒf[ƒ^”z—ñ‚É‘Î‚·‚éƒrƒ“‹«ŠEE“x”‚ğˆêŠ‡ŒvZ‚·‚éi]—ˆŒİŠ·‚ÌŠÈˆÕ”ÅjB
 Public Sub ComputeHistogram(ByRef arr() As Double, ByVal mode As String, _
                              ByVal binCount As Long, ByVal binWidth As Double, _
                              ByRef binEdges() As Double, ByRef binCounts() As Long)
@@ -217,9 +217,9 @@ Public Sub ComputeHistogram(ByRef arr() As Double, ByVal mode As String, _
     binCounts = CountIntoBins(arr, binEdges)
 End Sub
 
-' ---- ç´¯ç©åˆ†å¸ƒ ----
+' ---- —İÏ•ª•z ----
 
-' æ˜‡é †ã‚½ãƒ¼ãƒˆæ¸ˆã¿ã®å€¤ã¨ã€ãã®ç´¯ç©ç›¸å¯¾åº¦æ•°ï¼ˆ%ï¼‰ã‚’è¿”ã™ï¼ˆæŠ˜ã‚Œç·šã‚°ãƒ©ãƒ•ç”¨ï¼‰ã€‚
+' ¸‡ƒ\[ƒgÏ‚İ‚Ì’l‚ÆA‚»‚Ì—İÏ‘Š‘Î“x”i%j‚ğ•Ô‚·iÜ‚êüƒOƒ‰ƒt—pjB
 Public Sub ComputeCumulative(ByRef arr() As Double, ByRef sortedVals() As Double, ByRef cumPct() As Double)
     Dim n As Long
     n = ArrLen(arr)
@@ -232,7 +232,7 @@ Public Sub ComputeCumulative(ByRef arr() As Double, ByRef sortedVals() As Double
     Next i
 End Sub
 
-' ---- è£œåŠ© ----
+' ---- •â• ----
 
 Public Function ArrLen(ByRef arr() As Double) As Long
     On Error Resume Next
@@ -240,7 +240,7 @@ Public Function ArrLen(ByRef arr() As Double) As Long
     On Error GoTo 0
 End Function
 
-' å˜ç´”ãªæ˜‡é †ã‚¯ã‚¤ãƒƒã‚¯ã‚½ãƒ¼ãƒˆã®ã‚³ãƒ”ãƒ¼ã‚’è¿”ã™ï¼ˆå…ƒé…åˆ—ã¯å¤‰æ›´ã—ãªã„ï¼‰ã€‚
+' ’Pƒ‚È¸‡ƒNƒCƒbƒNƒ\[ƒg‚ÌƒRƒs[‚ğ•Ô‚·iŒ³”z—ñ‚Í•ÏX‚µ‚È‚¢jB
 Public Function SortedCopy(ByRef arr() As Double) As Double()
     Dim n As Long
     n = ArrLen(arr)

@@ -1,32 +1,32 @@
-' このファイルは「ThisWorkbook」（ブックそのもの）のコードモジュールです。
-' 標準モジュールではないため、vba/build/modBuildTool.bas によって
-' 既存の ThisWorkbook コンポーネントへ挿入されます（単純な .bas インポート対象外）。
-' 手作業でブックを組み立てる場合は、VBEの「ThisWorkbook」をダブルクリックして
-' 以下の内容をそのまま貼り付けてください。
+' ���̃t�@�C���́uThisWorkbook�v�i�u�b�N���̂��́j�̃R�[�h���W���[���ł��B
+' �W�����W���[���ł͂Ȃ����߁Avba/build/modBuildTool.bas �ɂ����
+' ������ ThisWorkbook �R���|�[�l���g�֑}������܂��i�P���� .bas �C���|�[�g�ΏۊO�j�B
+' ���ƂŃu�b�N��g�ݗ��Ă�ꍇ�́AVBE�́uThisWorkbook�v���_�u���N���b�N����
+' �ȉ��̓��e�����̂܂ܓ\��t���Ă��������B
 Option Explicit
 
-' ブックを開いたときに実行される。
-' データ保存領域（シート・テーブル）の存在確認のみを行い、画面部品の再構築は
-' 行わない（毎回再構築すると開くたびに画面がちらつくため）。
-' 画面部品が壊れた場合は、Alt+F8 から mod_UI.SetupAllSheets を手動実行することで
-' 修復できる（保守マニュアル参照）。
+' �u�b�N���J�����Ƃ��Ɏ��s�����B
+' �f�[�^�ۑ��̈�i�V�[�g�E�e�[�u���j�̑��݊m�F�݂̂��s���A��ʕ��i�̍č\�z��
+' �s��Ȃ��i����č\�z����ƊJ�����тɉ�ʂ���������߁j�B
+' ��ʕ��i����ꂽ�ꍇ�́AAlt+F8 ���� mod_UI.SetupAllSheets ���蓮���s���邱�Ƃ�
+' �C���ł���i�ێ�}�j���A���Q�Ɓj�B
 Private Sub Workbook_Open()
     On Error GoTo ErrHandler
 
     mod_Database.EnsureSchema
     mod_UI.NavigateTo mod_Common.SH_HOME
-    mod_Logging.WriteLog "INFO", "ThisWorkbook", "Workbook_Open", mod_Common.APP_NAME & " を起動しました。バージョン " & mod_Common.APP_VERSION
+    mod_Logging.WriteLog "INFO", "ThisWorkbook", "Workbook_Open", mod_Common.APP_NAME & " ���N�����܂����B�o�[�W���� " & mod_Common.APP_VERSION
     Exit Sub
 
 ErrHandler:
-    MsgBox mod_Common.APP_NAME & " の起動処理でエラーが発生しました。" & vbCrLf & _
-           "ファイルを再度開き直しても解消しない場合は、管理者マニュアルの" & vbCrLf & _
-           "「トラブルシューティング」を参照してください。" & vbCrLf & vbCrLf & Err.Description, _
+    MsgBox mod_Common.APP_NAME & " �̋N�������ŃG���[���������܂����B" & vbCrLf & _
+           "�t�@�C�����ēx�J�������Ă��������Ȃ��ꍇ�́A�Ǘ��҃}�j���A����" & vbCrLf & _
+           "�u�g���u���V���[�e�B���O�v���Q�Ƃ��Ă��������B" & vbCrLf & vbCrLf & Err.Description, _
            vbCritical, mod_Common.APP_NAME
 End Sub
 
 Private Sub Workbook_BeforeClose(Cancel As Boolean)
     On Error Resume Next
-    mod_Logging.WriteLog "INFO", "ThisWorkbook", "Workbook_BeforeClose", mod_Common.APP_NAME & " を終了します。"
+    mod_Logging.WriteLog "INFO", "ThisWorkbook", "Workbook_BeforeClose", mod_Common.APP_NAME & " ���I�����܂��B"
     On Error GoTo 0
 End Sub

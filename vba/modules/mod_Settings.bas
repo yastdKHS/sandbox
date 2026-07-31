@@ -2,17 +2,17 @@ Attribute VB_Name = "mod_Settings"
 Option Explicit
 '==============================================================================
 ' mod_Settings
-' ç›®çš„ : ã€Œè¨­å®šã€ã‚·ãƒ¼ãƒˆä¸Šã® T_Itemsï¼ˆè©•ä¾¡é …ç›®ãƒã‚¹ã‚¿ï¼‰ãƒ»T_Settingsï¼ˆå„ç¨®è¨­å®šå€¤ï¼‰
-'        ãƒ»T_Templatesï¼ˆåˆ—ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆï¼‰ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã‚’ä¸€å…ƒç®¡ç†ã™ã‚‹ã€‚
-'        è¡¨ç¤ºåãƒ»é‡ã¿ã¯åˆ©ç”¨è€…ãŒã€Œè¨­å®šã€ã‚·ãƒ¼ãƒˆã®ã‚»ãƒ«ã‚’ç›´æ¥ç·¨é›†ã™ã‚‹é‹ç”¨ã¨ã—ã€
-'        æœ¬ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¯ãã®èª­ã¿æ›¸ããƒ­ã‚¸ãƒƒã‚¯ã¨å†è¨ˆç®—ãƒˆãƒªã‚¬ã®ã¿ã‚’æ‹…å½“ã™ã‚‹ã€‚
+' –Ú“I : uİ’èvƒV[ƒgã‚Ì T_Itemsi•]‰¿€–Úƒ}ƒXƒ^jET_SettingsiŠeíİ’è’lj
+'        ET_Templatesi—ñƒ}ƒbƒsƒ“ƒOƒeƒ“ƒvƒŒ[ƒgj‚Ö‚ÌƒAƒNƒZƒX‚ğˆêŒ³ŠÇ—‚·‚éB
+'        •\¦–¼Ed‚İ‚Í—˜—pÒ‚ªuİ’èvƒV[ƒg‚ÌƒZƒ‹‚ğ’¼Ú•ÒW‚·‚é‰^—p‚Æ‚µA
+'        –{ƒ‚ƒWƒ…[ƒ‹‚Í‚»‚Ì“Ç‚İ‘‚«ƒƒWƒbƒN‚ÆÄŒvZƒgƒŠƒK‚Ì‚İ‚ğ’S“–‚·‚éB
 '==============================================================================
 
 '------------------------------------------------------------------
-' T_Settingsï¼ˆã‚­ãƒ¼ãƒ»ãƒãƒªãƒ¥ãƒ¼è¨­å®šï¼‰ ã‚¢ã‚¯ã‚»ã‚µ
+' T_SettingsiƒL[EƒoƒŠƒ…[İ’èj ƒAƒNƒZƒT
 '------------------------------------------------------------------
 
-' è¨­å®šå€¤ã‚’æ–‡å­—åˆ—ã¨ã—ã¦å–å¾—ã™ã‚‹ã€‚æœªè¨­å®šã®å ´åˆã¯æ—¢å®šå€¤ã‚’è¿”ã™ã€‚
+' İ’è’l‚ğ•¶š—ñ‚Æ‚µ‚Äæ“¾‚·‚éB–¢İ’è‚Ìê‡‚ÍŠù’è’l‚ğ•Ô‚·B
 Public Function GetSettingText(ByVal key As String, Optional ByVal defaultValue As String = "") As String
     Dim tbl As ListObject
     Set tbl = mod_Common.GetTableSafe(mod_Common.SH_SETTINGS, mod_Common.TBL_SETTINGS)
@@ -45,7 +45,7 @@ Public Function GetSettingBool(ByVal key As String, Optional ByVal defaultValue 
     GetSettingBool = (UCase$(s) = "TRUE")
 End Function
 
-' è¨­å®šå€¤ã‚’ä¿å­˜ã™ã‚‹ï¼ˆã‚­ãƒ¼ãŒå­˜åœ¨ã™ã‚Œã°æ›´æ–°ã€ç„¡ã‘ã‚Œã°æ–°è¦è¿½åŠ ï¼‰ã€‚
+' İ’è’l‚ğ•Û‘¶‚·‚éiƒL[‚ª‘¶İ‚·‚ê‚ÎXVA–³‚¯‚ê‚ÎV‹K’Ç‰ÁjB
 Public Sub SetSetting(ByVal key As String, ByVal value As String)
     Dim tbl As ListObject
     Set tbl = mod_Common.GetTableSafe(mod_Common.SH_SETTINGS, mod_Common.TBL_SETTINGS)
@@ -67,10 +67,10 @@ Public Sub SetSetting(ByVal key As String, ByVal value As String)
 End Sub
 
 '------------------------------------------------------------------
-' T_Itemsï¼ˆè©•ä¾¡é …ç›®ãƒã‚¹ã‚¿ï¼‰ ã‚¢ã‚¯ã‚»ã‚µ
+' T_Itemsi•]‰¿€–Úƒ}ƒXƒ^j ƒAƒNƒZƒT
 '------------------------------------------------------------------
 
-' è¡¨ç¤ºåã‹ã‚‰é …ç›®ã‚³ãƒ¼ãƒ‰ã‚’é€†å¼•ãã™ã‚‹ï¼ˆæ­£è¦åŒ–ã—ã¦æ¯”è¼ƒï¼‰ã€‚è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã°ç©ºæ–‡å­—ã€‚
+' •\¦–¼‚©‚ç€–ÚƒR[ƒh‚ğ‹tˆø‚«‚·‚éi³‹K‰»‚µ‚Ä”äŠrjBŒ©‚Â‚©‚ç‚È‚¯‚ê‚Î‹ó•¶šB
 Public Function FindItemCodeByDisplayName(ByVal dispName As String) As String
     Dim tbl As ListObject
     Set tbl = mod_Common.GetTableSafe(mod_Common.SH_SETTINGS, mod_Common.TBL_ITEMS)
@@ -86,7 +86,7 @@ Public Function FindItemCodeByDisplayName(ByVal dispName As String) As String
     Next r
 End Function
 
-' é …ç›®ã‚³ãƒ¼ãƒ‰ã‹ã‚‰ ListRow ã‚’æ¤œç´¢ã™ã‚‹ã€‚è¦‹ã¤ã‹ã‚‰ãªã„å ´åˆã¯ Nothingã€‚
+' €–ÚƒR[ƒh‚©‚ç ListRow ‚ğŒŸõ‚·‚éBŒ©‚Â‚©‚ç‚È‚¢ê‡‚Í NothingB
 Public Function FindItemRow(ByVal itemCode As String) As ListRow
     Dim tbl As ListObject
     Set tbl = mod_Common.GetTableSafe(mod_Common.SH_SETTINGS, mod_Common.TBL_ITEMS)
@@ -102,14 +102,14 @@ Public Function FindItemRow(ByVal itemCode As String) As ListRow
     Next r
 End Function
 
-' é …ç›®ã‚³ãƒ¼ãƒ‰ãŒå­˜åœ¨ã™ã‚Œã°å–å¾—ã—ã€ç„¡ã‘ã‚Œã°æ–°è¦ä½œæˆã—ã¦è¿”ã™ï¼ˆå†…éƒ¨åã¯è‡ªå‹•æ¡ç•ª ScoreNï¼‰ã€‚
-' displayNameHint : å…ƒãƒ‡ãƒ¼ã‚¿ã®è¦‹å‡ºã—æ–‡å­—åˆ—ï¼ˆæ–°è¦ä½œæˆæ™‚ã®åˆæœŸè¡¨ç¤ºåã¨ã—ã¦ä½¿ç”¨ï¼‰
+' €–ÚƒR[ƒh‚ª‘¶İ‚·‚ê‚Îæ“¾‚µA–³‚¯‚ê‚ÎV‹Kì¬‚µ‚Ä•Ô‚·i“à•”–¼‚Í©“®Ì”Ô ScoreNjB
+' displayNameHint : Œ³ƒf[ƒ^‚ÌŒ©o‚µ•¶š—ñiV‹Kì¬‚Ì‰Šú•\¦–¼‚Æ‚µ‚Äg—pj
 Public Function GetOrCreateItem(ByVal displayNameHint As String, ByVal existingItemCode As String) As String
     Dim tbl As ListObject
     Set tbl = mod_Common.GetTableSafe(mod_Common.SH_SETTINGS, mod_Common.TBL_ITEMS)
     If tbl Is Nothing Then Exit Function
 
-    ' æ—¢å­˜ã‚³ãƒ¼ãƒ‰æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯ãã®ã¾ã¾ä½¿ç”¨ï¼ˆã‚¤ãƒ³ãƒãƒ¼ãƒˆæ™‚ã®å†ãƒãƒƒãƒ”ãƒ³ã‚°ç”¨ï¼‰
+    ' Šù‘¶ƒR[ƒhw’è‚ª‚ ‚éê‡‚Í‚»‚Ì‚Ü‚Üg—piƒCƒ“ƒ|[ƒg‚ÌÄƒ}ƒbƒsƒ“ƒO—pj
     If Len(existingItemCode) > 0 Then
         If Not FindItemRow(existingItemCode) Is Nothing Then
             GetOrCreateItem = existingItemCode
@@ -117,7 +117,7 @@ Public Function GetOrCreateItem(ByVal displayNameHint As String, ByVal existingI
         End If
     End If
 
-    ' è¡¨ç¤ºåãŒæ—¢å­˜é …ç›®ã¨ä¸€è‡´ã™ã‚Œã°å†åˆ©ç”¨ã™ã‚‹ï¼ˆå¹´åº¦ã‚’ã¾ãŸã„ã åŒä¸€é …ç›®ã®çµ±åˆï¼‰
+    ' •\¦–¼‚ªŠù‘¶€–Ú‚Æˆê’v‚·‚ê‚ÎÄ—˜—p‚·‚éi”N“x‚ğ‚Ü‚½‚¢‚¾“¯ˆê€–Ú‚Ì“‡j
     Dim r As ListRow
     If Not tbl.DataBodyRange Is Nothing Then
         For Each r In tbl.ListRows
@@ -129,7 +129,7 @@ Public Function GetOrCreateItem(ByVal displayNameHint As String, ByVal existingI
         Next r
     End If
 
-    ' æ–°è¦é …ç›®ã‚³ãƒ¼ãƒ‰ã‚’æ¡ç•ªï¼ˆScoreNã€æ—¢å­˜ã®æœ€å¤§N+1ï¼‰
+    ' V‹K€–ÚƒR[ƒh‚ğÌ”ÔiScoreNAŠù‘¶‚ÌÅ‘åN+1j
     Dim nextNo As Long
     nextNo = 1
     If Not tbl.DataBodyRange Is Nothing Then
@@ -156,10 +156,10 @@ Public Function GetOrCreateItem(ByVal displayNameHint As String, ByVal existingI
     GetOrCreateItem = newCode
 
     mod_Logging.WriteLog "INFO", "mod_Settings", "GetOrCreateItem", _
-        "æ–°è¦è©•ä¾¡é …ç›®ã‚’ä½œæˆã—ã¾ã—ãŸ: " & newCode & " (" & displayNameHint & ")"
+        "V‹K•]‰¿€–Ú‚ğì¬‚µ‚Ü‚µ‚½: " & newCode & " (" & displayNameHint & ")"
 End Function
 
-' é …ç›®ã‚³ãƒ¼ãƒ‰ã«å¯¾å¿œã™ã‚‹è¡¨ç¤ºåã‚’è¿”ã™ï¼ˆæœªç™»éŒ²ãªã‚‰ã‚³ãƒ¼ãƒ‰ã‚’ãã®ã¾ã¾è¿”ã™ï¼‰ã€‚
+' €–ÚƒR[ƒh‚É‘Î‰‚·‚é•\¦–¼‚ğ•Ô‚·i–¢“o˜^‚È‚çƒR[ƒh‚ğ‚»‚Ì‚Ü‚Ü•Ô‚·jB
 Public Function GetItemDisplayName(ByVal itemCode As String) As String
     Dim r As ListRow
     Set r = FindItemRow(itemCode)
@@ -172,7 +172,7 @@ Public Function GetItemDisplayName(ByVal itemCode As String) As String
     End If
 End Function
 
-' é …ç›®ã‚³ãƒ¼ãƒ‰ã«å¯¾å¿œã™ã‚‹é‡ã¿(%)ã‚’è¿”ã™ï¼ˆæœªç™»éŒ²ã¯100ã‚’æ—¢å®šã¨ã™ã‚‹ï¼‰ã€‚
+' €–ÚƒR[ƒh‚É‘Î‰‚·‚éd‚İ(%)‚ğ•Ô‚·i–¢“o˜^‚Í100‚ğŠù’è‚Æ‚·‚éjB
 Public Function GetItemWeight(ByVal itemCode As String) As Double
     Dim r As ListRow
     Set r = FindItemRow(itemCode)
@@ -191,16 +191,16 @@ Public Function GetItemWeight(ByVal itemCode As String) As Double
     End If
 End Function
 
-' ã€Œè¨­å®šã€ã‚·ãƒ¼ãƒˆã®é‡ã¿ãƒ»è¡¨ç¤ºåãŒç·¨é›†ã•ã‚ŒãŸéš›ã«å‘¼ã³å‡ºã™ã€‚
-' ç·åˆè©•ä¾¡ï¼ˆT_Summaryï¼‰ã‚’å…¨ä»¶å†è¨ˆç®—ã—ã€ãƒ­ã‚°ã«è¨˜éŒ²ã™ã‚‹ã€‚
-' ãƒœã‚¿ãƒ³æ“ä½œã¾ãŸã¯ Worksheet_Change ã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã‚‹æƒ³å®šã€‚
+' uİ’èvƒV[ƒg‚Ìd‚İE•\¦–¼‚ª•ÒW‚³‚ê‚½Û‚ÉŒÄ‚Ño‚·B
+' ‘‡•]‰¿iT_Summaryj‚ğ‘SŒÄŒvZ‚µAƒƒO‚É‹L˜^‚·‚éB
+' ƒ{ƒ^ƒ“‘€ì‚Ü‚½‚Í Worksheet_Change ‚©‚çŒÄ‚Ño‚³‚ê‚é‘z’èB
 Public Sub ApplyItemSettingsChanged()
     On Error GoTo ErrHandler
     mod_Common.BeginBusy
-    mod_Database.RecalcSummary   ' å¼•æ•°çœç•¥æ™‚ã¯å…¨ä»¶å†è¨ˆç®—
+    mod_Database.RecalcSummary   ' ˆø”È—ª‚Í‘SŒÄŒvZ
     mod_Common.EndBusy
     mod_Logging.WriteLog "INFO", "mod_Settings", "ApplyItemSettingsChanged", _
-        "è©•ä¾¡é …ç›®ã®è¨­å®šå¤‰æ›´ã«ä¼´ã„ç·åˆè©•ä¾¡ã‚’å†è¨ˆç®—ã—ã¾ã—ãŸã€‚"
+        "•]‰¿€–Ú‚Ìİ’è•ÏX‚É”º‚¢‘‡•]‰¿‚ğÄŒvZ‚µ‚Ü‚µ‚½B"
     Exit Sub
 ErrHandler:
     mod_Common.EndBusy
@@ -208,9 +208,9 @@ ErrHandler:
 End Sub
 
 '------------------------------------------------------------------
-' T_Templatesï¼ˆåˆ—ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆï¼‰ ã‚¢ã‚¯ã‚»ã‚µ
-' ãƒãƒƒãƒ”ãƒ³ã‚°ã¯ "å…ƒè¦‹å‡ºã—1=é …ç›®ã‚³ãƒ¼ãƒ‰1;å…ƒè¦‹å‡ºã—2=é …ç›®ã‚³ãƒ¼ãƒ‰2;..." ã®
-' å˜ç´”ãªåŒºåˆ‡ã‚Šæ–‡å­—åˆ—ã¨ã—ã¦ä¿å­˜ã™ã‚‹ï¼ˆJSONç­‰ã®å¤–éƒ¨ãƒ‘ãƒ¼ã‚µã«ä¾å­˜ã—ãªã„ï¼‰ã€‚
+' T_Templatesi—ñƒ}ƒbƒsƒ“ƒOƒeƒ“ƒvƒŒ[ƒgj ƒAƒNƒZƒT
+' ƒ}ƒbƒsƒ“ƒO‚Í "Œ³Œ©o‚µ1=€–ÚƒR[ƒh1;Œ³Œ©o‚µ2=€–ÚƒR[ƒh2;..." ‚Ì
+' ’Pƒ‚È‹æØ‚è•¶š—ñ‚Æ‚µ‚Ä•Û‘¶‚·‚éiJSON“™‚ÌŠO•”ƒp[ƒT‚ÉˆË‘¶‚µ‚È‚¢jB
 '------------------------------------------------------------------
 
 Public Sub SaveTemplate(ByVal templateName As String, ByVal sheetPattern As String, ByVal mappingText As String)
@@ -235,10 +235,10 @@ Public Sub SaveTemplate(ByVal templateName As String, ByVal sheetPattern As Stri
     r.Range(1, tbl.ListColumns(mod_Common.COL_TPL_MAPPING).Index).Value = mappingText
     r.Range(1, tbl.ListColumns(mod_Common.COL_TPL_SAVEDAT).Index).Value = mod_Common.NowText()
 
-    mod_Logging.WriteLog "INFO", "mod_Settings", "SaveTemplate", "ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’ä¿å­˜ã—ã¾ã—ãŸ: " & templateName
+    mod_Logging.WriteLog "INFO", "mod_Settings", "SaveTemplate", "ƒeƒ“ƒvƒŒ[ƒg‚ğ•Û‘¶‚µ‚Ü‚µ‚½: " & templateName
 End Sub
 
-' ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆåä¸€è¦§ã‚’è¿”ã™ã€‚
+' ƒeƒ“ƒvƒŒ[ƒg–¼ˆê——‚ğ•Ô‚·B
 Public Function GetTemplateNames() As Collection
     Dim result As New Collection
     Dim tbl As ListObject
@@ -254,7 +254,7 @@ Public Function GetTemplateNames() As Collection
     Set GetTemplateNames = result
 End Function
 
-' ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’å‰Šé™¤ã™ã‚‹ï¼ˆã€Œè¨­å®šã€ç”»é¢ã®ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆç®¡ç†ã‹ã‚‰ä½¿ç”¨ï¼‰ã€‚
+' ƒeƒ“ƒvƒŒ[ƒg‚ğíœ‚·‚éiuİ’èv‰æ–Ê‚Ìƒeƒ“ƒvƒŒ[ƒgŠÇ—‚©‚çg—pjB
 Public Sub DeleteTemplate(ByVal templateName As String)
     Dim tbl As ListObject
     Set tbl = mod_Common.GetTableSafe(mod_Common.SH_D_TEMPLATES, mod_Common.TBL_TEMPLATES)
@@ -265,13 +265,13 @@ Public Sub DeleteTemplate(ByVal templateName As String)
     For i = tbl.ListRows.Count To 1 Step -1
         If CStr(tbl.ListRows(i).Range(1, tbl.ListColumns(mod_Common.COL_TPL_NAME).Index).Value) = templateName Then
             tbl.ListRows(i).Delete
-            mod_Logging.WriteLog "INFO", "mod_Settings", "DeleteTemplate", "ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’å‰Šé™¤ã—ã¾ã—ãŸ: " & templateName
+            mod_Logging.WriteLog "INFO", "mod_Settings", "DeleteTemplate", "ƒeƒ“ƒvƒŒ[ƒg‚ğíœ‚µ‚Ü‚µ‚½: " & templateName
             Exit Sub
         End If
     Next i
 End Sub
 
-' ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆåã‹ã‚‰ãƒãƒƒãƒ”ãƒ³ã‚°æ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹ã€‚å­˜åœ¨ã—ãªã‘ã‚Œã°ç©ºæ–‡å­—ã€‚
+' ƒeƒ“ƒvƒŒ[ƒg–¼‚©‚çƒ}ƒbƒsƒ“ƒO•¶š—ñ‚ğæ“¾‚·‚éB‘¶İ‚µ‚È‚¯‚ê‚Î‹ó•¶šB
 Public Function LoadTemplateMapping(ByVal templateName As String) As String
     Dim tbl As ListObject
     Set tbl = mod_Common.GetTableSafe(mod_Common.SH_D_TEMPLATES, mod_Common.TBL_TEMPLATES)
