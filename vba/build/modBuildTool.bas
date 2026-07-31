@@ -11,18 +11,36 @@ Option Explicit
 ' 保守用ユーティリティとして同梱する）。
 '
 ' 前提条件（詳細は同フォルダの BUILD_README.md を参照）:
-'   ・Windows版 Excel 2019 が必要（VBAのIDE操作を行うため）。
-'   ・[ファイル]-[オプション]-[トラストセンター]-[トラストセンターの設定]-
-'     [マクロの設定] で「VBA プロジェクト オブジェクト モデルへのアクセスを
-'     信頼する」にチェックを入れておくこと（VBComponents.Import 等の
-'     プログラムからのVBA操作に必要な設定）。
+'   ・Windows版 Excel 2019、または Mac版/Windows版 Microsoft 365 Excel。
+'     いずれもVBAのIDE操作を行うため、マクロ有効ブック(.xlsm)を扱える
+'     デスクトップ版Excelが必要（ブラウザ版・iPad版では実行不可）。
+'   ・Windows版: [ファイル]-[オプション]-[トラストセンター]-
+'     [トラストセンターの設定]-[マクロの設定] で「VBA プロジェクト
+'     オブジェクト モデルへのアクセスを信頼する」にチェックを入れておくこと
+'     （VBComponents.Import 等のプログラムからのVBA操作に必要な設定）。
+'   ・Mac版: 同等の設定はメニュー構成が異なる／バージョンによって
+'     見当たらない場合がある。本マクロがVBAプロジェクトへアクセスできず
+'     エラーになる場合は、BUILD_README.md の「手動ビルド手順」
+'     （VBEの[ファイル]-[ファイルのインポート]で.basを1つずつ読み込む方法）
+'     を使うこと。手動インポートはこの信頼設定に依存しない。
 '
-' 使い方:
+' 使い方（Windows）:
 '   1. 空の新規ブックを開く。
 '   2. Alt+F11 → 挿入 → 標準モジュール にこのファイルの内容を貼り付ける。
 '   3. イミディエイトウィンドウで BuildWorkbook を実行する。
-'   4. ダイアログで vba/modules フォルダを選択する。
+'   4. ダイアログで vba/modules フォルダを選択する
+'      （選択ダイアログが使えない場合はパスの直接入力を求められる）。
 '   5. 完成した .xlsm の保存先ファイル名を指定する。
+'
+' 使い方（Mac）:
+'   1. 空の新規ブックを開く。
+'   2. [ツール]メニュー → [マクロ] → [Visual Basic Editor] でVBEを開く
+'      （Alt+F11 はMacでは使えない）。
+'   3. [挿入] → [標準モジュール] にこのファイルの内容を貼り付ける。
+'   4. VBEのイミディエイトウィンドウ（表示 → イミディエイトウィンドウ）で
+'      BuildWorkbook を実行する。
+'   5. フォルダ選択ダイアログが機能しない場合は、vba/modules フォルダの
+'      フルパスをそのまま入力する（例: /Users/名前/.../sandbox/vba/modules）。
 '==============================================================================
 
 Public Sub BuildWorkbook()
@@ -66,13 +84,19 @@ Public Sub BuildWorkbook()
 ErrHandler:
     Application.DisplayAlerts = True
     MsgBox "ビルド中にエラーが発生しました。" & vbCrLf & _
-           "[トラストセンター]-[マクロの設定]-" & vbCrLf & _
-           "「VBA プロジェクト オブジェクト モデルへのアクセスを信頼する」が" & vbCrLf & _
-           "有効になっているかご確認ください。" & vbCrLf & vbCrLf & _
+           "[Windows] トラストセンターのマクロ設定で「VBA プロジェクト" & vbCrLf & _
+           "オブジェクト モデルへのアクセスを信頼する」が有効か確認してください。" & vbCrLf & _
+           "[Mac] 同設定が見つからない、または有効化してもこのエラーが続く場合は、" & vbCrLf & _
+           "BUILD_README.md の「手動ビルド手順」（.basを1つずつインポート）を" & vbCrLf & _
+           "使用してください。" & vbCrLf & vbCrLf & _
            "エラー内容: " & Err.Description, vbCritical, "ビルド失敗"
 End Sub
 
+' フォルダ選択ダイアログ（msoFileDialogFolderPicker）を試み、
+' 失敗した場合（Mac版Excelでフォルダ選択ダイアログが利用できない環境など）は
+' InputBoxによるパス直接入力へフォールバックする。
 Private Function PickFolder(ByVal title As String) As Variant
+    On Error GoTo Fallback
     Dim fd As FileDialog
     Set fd = Application.FileDialog(msoFileDialogFolderPicker)
     fd.Title = title
@@ -80,6 +104,21 @@ Private Function PickFolder(ByVal title As String) As Variant
         PickFolder = fd.SelectedItems(1)
     Else
         PickFolder = False
+    End If
+    Exit Function
+
+Fallback:
+    On Error GoTo 0
+    Dim typed As String
+    typed = InputBox(title & vbCrLf & vbCrLf & _
+        "フォルダ選択ダイアログを利用できなかったため、" & vbCrLf & _
+        "vba" & Application.PathSeparator & "modules フォルダのフルパスを直接入力してください。" & vbCrLf & _
+        "（例: Mac の場合 /Users/自分の名前/Downloads/sandbox/vba/modules）", _
+        "フォルダパスを入力")
+    If Len(Trim$(typed)) = 0 Then
+        PickFolder = False
+    Else
+        PickFolder = Trim$(typed)
     End If
 End Function
 
