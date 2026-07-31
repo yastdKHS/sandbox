@@ -598,7 +598,7 @@ Public Function AddButtonControl(ByVal ws As Worksheet, ByVal name As String, By
                                   ByVal caption As String, ByVal onAction As String) As Shape
     Dim shp As Shape
     Set shp = AddControlByRange(ws, xlButtonControl, name, rangeAddr)
-    shp.TextFrame2.TextRange.Text = caption
+    ws.Buttons(name).Caption = caption
     shp.OnAction = onAction
     Set AddButtonControl = shp
 End Function
@@ -615,7 +615,7 @@ Public Function AddCheckBoxControl(ByVal ws As Worksheet, ByVal name As String, 
                                     ByVal caption As String, Optional ByVal initialValue As Boolean = False) As Shape
     Dim shp As Shape
     Set shp = AddControlByRange(ws, xlCheckBox, name, rangeAddr)
-    shp.TextFrame2.TextRange.Text = caption
+    ws.CheckBoxes(name).Caption = caption
     shp.ControlFormat.Value = IIf(initialValue, xlOn, xlOff)
     Set AddCheckBoxControl = shp
 End Function
@@ -624,7 +624,7 @@ Public Function AddOptionButtonControl(ByVal ws As Worksheet, ByVal name As Stri
                                         ByVal caption As String, Optional ByVal initialValue As Boolean = False) As Shape
     Dim shp As Shape
     Set shp = AddControlByRange(ws, xlOptionButton, name, rangeAddr)
-    shp.TextFrame2.TextRange.Text = caption
+    ws.OptionButtons(name).Caption = caption
     shp.ControlFormat.Value = IIf(initialValue, xlOn, xlOff)
     Set AddOptionButtonControl = shp
 End Function
