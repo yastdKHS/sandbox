@@ -389,7 +389,7 @@ End Sub
 '==============================================================================
 
 Public Function GetDistinctYears() As Collection
-    GetDistinctYears = GetDistinctColumnValues(mod_Common.SH_D_SCORES, mod_Common.TBL_SCORES, mod_Common.COL_YEAR)
+    Set GetDistinctYears = GetDistinctColumnValues(mod_Common.SH_D_SCORES, mod_Common.TBL_SCORES, mod_Common.COL_YEAR)
 End Function
 
 Public Function GetDistinctClasses(Optional ByVal year As String = "") As Collection
