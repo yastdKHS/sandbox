@@ -2,56 +2,56 @@ Attribute VB_Name = "modBuildTool"
 Option Explicit
 '==============================================================================
 ' modBuildTool
-' ç›®çš„ : æœ¬ãƒ„ãƒ¼ãƒ«ã®VBAã‚½ãƒ¼ã‚¹ä¸€å¼ï¼ˆvba/modules é…ä¸‹ã® .bas ãƒ•ã‚¡ã‚¤ãƒ«ã€ãŠã‚ˆã³
-'        vba/ThisWorkbook.txtï¼‰ã‹ã‚‰ã€å®Ÿéš›ã«å‹•ä½œã™ã‚‹ .xlsm ãƒ–ãƒƒã‚¯ã‚’
-'        è‡ªå‹•çš„ã«çµ„ã¿ç«‹ã¦ã‚‹ã€‚
+' –Ú“I : –{ƒc[ƒ‹‚ÌVBAƒ\[ƒXˆêŽ®ivba/modules ”z‰º‚Ì .bas ƒtƒ@ƒCƒ‹A‚¨‚æ‚Ñ
+'        vba/ThisWorkbook.txtj‚©‚çAŽÀÛ‚É“®ì‚·‚é .xlsm ƒuƒbƒN‚ð
+'        Ž©“®“I‚É‘g‚Ý—§‚Ä‚éB
 '
-' ã“ã®ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¯ã€Œçµ„ã¿ç«‹ã¦å°‚ç”¨ã€ã§ã‚ã‚Šã€å®Œæˆå¾Œã®ãƒ–ãƒƒã‚¯ã«ã‚‚æ®‹ã—ã¦ãŠã„ã¦
-' å·®ã—æ”¯ãˆãªã„ï¼ˆå°†æ¥ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¢ãƒƒãƒ—æ™‚ã«åŒã˜æ‰‹é †ã§å†ãƒ“ãƒ«ãƒ‰ã§ãã‚‹ã‚ˆã†ã€
-' ä¿å®ˆç”¨ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã¨ã—ã¦åŒæ¢±ã™ã‚‹ï¼‰ã€‚
+' ‚±‚Ìƒ‚ƒWƒ…[ƒ‹‚Íu‘g‚Ý—§‚Äê—pv‚Å‚ ‚èAŠ®¬Œã‚ÌƒuƒbƒN‚É‚àŽc‚µ‚Ä‚¨‚¢‚Ä
+' ·‚µŽx‚¦‚È‚¢i«—ˆƒo[ƒWƒ‡ƒ“ƒAƒbƒvŽž‚É“¯‚¶Žè‡‚ÅÄƒrƒ‹ƒh‚Å‚«‚é‚æ‚¤A
+' •ÛŽç—pƒ†[ƒeƒBƒŠƒeƒB‚Æ‚µ‚Ä“¯«‚·‚éjB
 '
-' å‰ææ¡ä»¶ï¼ˆè©³ç´°ã¯åŒãƒ•ã‚©ãƒ«ãƒ€ã® BUILD_README.md ã‚’å‚ç…§ï¼‰:
-'   ãƒ»Windowsç‰ˆ Excel 2019ã€ã¾ãŸã¯ Macç‰ˆ/Windowsç‰ˆ Microsoft 365 Excelã€‚
-'     ã„ãšã‚Œã‚‚VBAã®IDEæ“ä½œã‚’è¡Œã†ãŸã‚ã€ãƒžã‚¯ãƒ­æœ‰åŠ¹ãƒ–ãƒƒã‚¯(.xlsm)ã‚’æ‰±ãˆã‚‹
-'     ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ç‰ˆExcelãŒå¿…è¦ï¼ˆãƒ–ãƒ©ã‚¦ã‚¶ç‰ˆãƒ»iPadç‰ˆã§ã¯å®Ÿè¡Œä¸å¯ï¼‰ã€‚
-'   ãƒ»Windowsç‰ˆ: [ãƒ•ã‚¡ã‚¤ãƒ«]-[ã‚ªãƒ—ã‚·ãƒ§ãƒ³]-[ãƒˆãƒ©ã‚¹ãƒˆã‚»ãƒ³ã‚¿ãƒ¼]-
-'     [ãƒˆãƒ©ã‚¹ãƒˆã‚»ãƒ³ã‚¿ãƒ¼ã®è¨­å®š]-[ãƒžã‚¯ãƒ­ã®è¨­å®š] ã§ã€ŒVBA ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆ
-'     ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ ãƒ¢ãƒ‡ãƒ«ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã‚’ä¿¡é ¼ã™ã‚‹ã€ã«ãƒã‚§ãƒƒã‚¯ã‚’å…¥ã‚Œã¦ãŠãã“ã¨
-'     ï¼ˆVBComponents.Import ç­‰ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‹ã‚‰ã®VBAæ“ä½œã«å¿…è¦ãªè¨­å®šï¼‰ã€‚
-'   ãƒ»Macç‰ˆ: åŒç­‰ã®è¨­å®šã¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ§‹æˆãŒç•°ãªã‚‹ï¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«ã‚ˆã£ã¦
-'     è¦‹å½“ãŸã‚‰ãªã„å ´åˆãŒã‚ã‚‹ã€‚æœ¬ãƒžã‚¯ãƒ­ãŒVBAãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã¸ã‚¢ã‚¯ã‚»ã‚¹ã§ããš
-'     ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹å ´åˆã¯ã€BUILD_README.md ã®ã€Œæ‰‹å‹•ãƒ“ãƒ«ãƒ‰æ‰‹é †ã€
-'     ï¼ˆVBEã®[ãƒ•ã‚¡ã‚¤ãƒ«]-[ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ãƒãƒ¼ãƒˆ]ã§.basã‚’1ã¤ãšã¤èª­ã¿è¾¼ã‚€æ–¹æ³•ï¼‰
-'     ã‚’ä½¿ã†ã“ã¨ã€‚æ‰‹å‹•ã‚¤ãƒ³ãƒãƒ¼ãƒˆã¯ã“ã®ä¿¡é ¼è¨­å®šã«ä¾å­˜ã—ãªã„ã€‚
+' ‘O’ñðŒiÚ×‚Í“¯ƒtƒHƒ‹ƒ_‚Ì BUILD_README.md ‚ðŽQÆj:
+'   EWindows”Å Excel 2019A‚Ü‚½‚Í Mac”Å/Windows”Å Microsoft 365 ExcelB
+'     ‚¢‚¸‚ê‚àVBA‚ÌIDE‘€ì‚ðs‚¤‚½‚ßAƒ}ƒNƒ—LŒøƒuƒbƒN(.xlsm)‚ðˆµ‚¦‚é
+'     ƒfƒXƒNƒgƒbƒv”ÅExcel‚ª•K—viƒuƒ‰ƒEƒU”ÅEiPad”Å‚Å‚ÍŽÀs•s‰ÂjB
+'   EWindows”Å: [ƒtƒ@ƒCƒ‹]-[ƒIƒvƒVƒ‡ƒ“]-[ƒgƒ‰ƒXƒgƒZƒ“ƒ^[]-
+'     [ƒgƒ‰ƒXƒgƒZƒ“ƒ^[‚ÌÝ’è]-[ƒ}ƒNƒ‚ÌÝ’è] ‚ÅuVBA ƒvƒƒWƒFƒNƒg
+'     ƒIƒuƒWƒFƒNƒg ƒ‚ƒfƒ‹‚Ö‚ÌƒAƒNƒZƒX‚ðM—Š‚·‚év‚Éƒ`ƒFƒbƒN‚ð“ü‚ê‚Ä‚¨‚­‚±‚Æ
+'     iVBComponents.Import “™‚ÌƒvƒƒOƒ‰ƒ€‚©‚ç‚ÌVBA‘€ì‚É•K—v‚ÈÝ’èjB
+'   EMac”Å: “¯“™‚ÌÝ’è‚Íƒƒjƒ…[\¬‚ªˆÙ‚È‚é^ƒo[ƒWƒ‡ƒ“‚É‚æ‚Á‚Ä
+'     Œ©“–‚½‚ç‚È‚¢ê‡‚ª‚ ‚éB–{ƒ}ƒNƒ‚ªVBAƒvƒƒWƒFƒNƒg‚ÖƒAƒNƒZƒX‚Å‚«‚¸
+'     ƒGƒ‰[‚É‚È‚éê‡‚ÍABUILD_README.md ‚ÌuŽè“®ƒrƒ‹ƒhŽè‡v
+'     iVBE‚Ì[ƒtƒ@ƒCƒ‹]-[ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒ|[ƒg]‚Å.bas‚ð1‚Â‚¸‚Â“Ç‚Ýž‚Þ•û–@j
+'     ‚ðŽg‚¤‚±‚ÆBŽè“®ƒCƒ“ƒ|[ƒg‚Í‚±‚ÌM—ŠÝ’è‚ÉˆË‘¶‚µ‚È‚¢B
 '
-' ä½¿ã„æ–¹ï¼ˆWindowsï¼‰:
-'   1. ç©ºã®æ–°è¦ãƒ–ãƒƒã‚¯ã‚’é–‹ãã€‚
-'   2. Alt+F11 â†’ æŒ¿å…¥ â†’ æ¨™æº–ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ« ã«ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®å†…å®¹ã‚’è²¼ã‚Šä»˜ã‘ã‚‹ã€‚
-'   3. ã‚¤ãƒŸãƒ‡ã‚£ã‚¨ã‚¤ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§ BuildWorkbook ã‚’å®Ÿè¡Œã™ã‚‹ã€‚
-'   4. ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã§ vba/modules ãƒ•ã‚©ãƒ«ãƒ€ã‚’é¸æŠžã™ã‚‹
-'      ï¼ˆé¸æŠžãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãŒä½¿ãˆãªã„å ´åˆã¯ãƒ‘ã‚¹ã®ç›´æŽ¥å…¥åŠ›ã‚’æ±‚ã‚ã‚‰ã‚Œã‚‹ï¼‰ã€‚
-'   5. å®Œæˆã—ãŸ .xlsm ã®ä¿å­˜å…ˆãƒ•ã‚¡ã‚¤ãƒ«åã‚’æŒ‡å®šã™ã‚‹ã€‚
+' Žg‚¢•ûiWindowsj:
+'   1. ‹ó‚ÌV‹KƒuƒbƒN‚ðŠJ‚­B
+'   2. Alt+F11 ¨ ‘}“ü ¨ •W€ƒ‚ƒWƒ…[ƒ‹ ‚É‚±‚Ìƒtƒ@ƒCƒ‹‚Ì“à—e‚ð“\‚è•t‚¯‚éB
+'   3. ƒCƒ~ƒfƒBƒGƒCƒgƒEƒBƒ“ƒhƒE‚Å BuildWorkbook ‚ðŽÀs‚·‚éB
+'   4. ƒ_ƒCƒAƒƒO‚Å vba/modules ƒtƒHƒ‹ƒ_‚ð‘I‘ð‚·‚é
+'      i‘I‘ðƒ_ƒCƒAƒƒO‚ªŽg‚¦‚È‚¢ê‡‚ÍƒpƒX‚Ì’¼Ú“ü—Í‚ð‹‚ß‚ç‚ê‚éjB
+'   5. Š®¬‚µ‚½ .xlsm ‚Ì•Û‘¶æƒtƒ@ƒCƒ‹–¼‚ðŽw’è‚·‚éB
 '
-' ä½¿ã„æ–¹ï¼ˆMacï¼‰:
-'   1. ç©ºã®æ–°è¦ãƒ–ãƒƒã‚¯ã‚’é–‹ãã€‚
-'   2. [ãƒ„ãƒ¼ãƒ«]ãƒ¡ãƒ‹ãƒ¥ãƒ¼ â†’ [ãƒžã‚¯ãƒ­] â†’ [Visual Basic Editor] ã§VBEã‚’é–‹ã
-'      ï¼ˆAlt+F11 ã¯Macã§ã¯ä½¿ãˆãªã„ï¼‰ã€‚
-'   3. [æŒ¿å…¥] â†’ [æ¨™æº–ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«] ã«ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®å†…å®¹ã‚’è²¼ã‚Šä»˜ã‘ã‚‹ã€‚
-'   4. VBEã®ã‚¤ãƒŸãƒ‡ã‚£ã‚¨ã‚¤ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆè¡¨ç¤º â†’ ã‚¤ãƒŸãƒ‡ã‚£ã‚¨ã‚¤ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼‰ã§
-'      BuildWorkbook ã‚’å®Ÿè¡Œã™ã‚‹ã€‚
-'   5. ãƒ•ã‚©ãƒ«ãƒ€é¸æŠžãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãŒæ©Ÿèƒ½ã—ãªã„å ´åˆã¯ã€vba/modules ãƒ•ã‚©ãƒ«ãƒ€ã®
-'      ãƒ•ãƒ«ãƒ‘ã‚¹ã‚’ãã®ã¾ã¾å…¥åŠ›ã™ã‚‹ï¼ˆä¾‹: /Users/åå‰/.../sandbox/vba/modulesï¼‰ã€‚
+' Žg‚¢•ûiMacj:
+'   1. ‹ó‚ÌV‹KƒuƒbƒN‚ðŠJ‚­B
+'   2. [ƒc[ƒ‹]ƒƒjƒ…[ ¨ [ƒ}ƒNƒ] ¨ [Visual Basic Editor] ‚ÅVBE‚ðŠJ‚­
+'      iAlt+F11 ‚ÍMac‚Å‚ÍŽg‚¦‚È‚¢jB
+'   3. [‘}“ü] ¨ [•W€ƒ‚ƒWƒ…[ƒ‹] ‚É‚±‚Ìƒtƒ@ƒCƒ‹‚Ì“à—e‚ð“\‚è•t‚¯‚éB
+'   4. VBE‚ÌƒCƒ~ƒfƒBƒGƒCƒgƒEƒBƒ“ƒhƒEi•\Ž¦ ¨ ƒCƒ~ƒfƒBƒGƒCƒgƒEƒBƒ“ƒhƒEj‚Å
+'      BuildWorkbook ‚ðŽÀs‚·‚éB
+'   5. ƒtƒHƒ‹ƒ_‘I‘ðƒ_ƒCƒAƒƒO‚ª‹@”\‚µ‚È‚¢ê‡‚ÍAvba/modules ƒtƒHƒ‹ƒ_‚Ì
+'      ƒtƒ‹ƒpƒX‚ð‚»‚Ì‚Ü‚Ü“ü—Í‚·‚éi—á: /Users/–¼‘O/.../sandbox/vba/modulesjB
 '==============================================================================
 
 Public Sub BuildWorkbook()
     On Error GoTo ErrHandler
 
-    ' ãƒˆãƒ©ã‚¹ãƒˆã‚¢ã‚¯ã‚»ã‚¹ã®äº‹å‰ç¢ºèªï¼ˆç„¡åŠ¹ãªå ´åˆã¯ã“ã“ã§ä¾‹å¤–ãŒç™ºç”Ÿã™ã‚‹ï¼‰
+    ' ƒgƒ‰ƒXƒgƒAƒNƒZƒX‚ÌŽ–‘OŠm”Fi–³Œø‚Èê‡‚Í‚±‚±‚Å—áŠO‚ª”­¶‚·‚éj
     Dim testCount As Long
     testCount = Application.VBE.VBProjects.Count
 
     Dim srcFolder As Variant
-    srcFolder = PickFolder("VBAã‚½ãƒ¼ã‚¹ãƒ•ã‚©ãƒ«ãƒ€ï¼ˆvbaÂ¥modulesï¼‰ã‚’é¸æŠžã—ã¦ãã ã•ã„")
+    srcFolder = PickFolder("VBAƒ\[ƒXƒtƒHƒ‹ƒ_ivba/modulesj‚ð‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢")
     If srcFolder = False Then Exit Sub
 
     Dim wbNew As Workbook
@@ -60,17 +60,17 @@ Public Sub BuildWorkbook()
     ImportAllModules wbNew, CStr(srcFolder)
     InjectThisWorkbookCode wbNew, CStr(srcFolder)
 
-    ' å–ã‚Šè¾¼ã‚“ã  mod_UI.SetupAllSheets ã‚’å®Ÿè¡Œã—ã€ç”»é¢ãƒ»ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’åˆæœŸæ§‹ç¯‰ã™ã‚‹ã€‚
+    ' Žæ‚èž‚ñ‚¾ mod_UI.SetupAllSheets ‚ðŽÀs‚µA‰æ–ÊEƒe[ƒuƒ‹‚ð‰Šú\’z‚·‚éB
     Application.Run "'" & wbNew.Name & "'!mod_UI.SetupAllSheets"
 
     Dim savePath As Variant
     savePath = Application.GetSaveAsFilename( _
-        InitialFileName:="è©•ä¾¡ãƒ‡ãƒ¼ã‚¿åˆ†æžãƒ„ãƒ¼ãƒ«.xlsm", _
-        FileFilter:="Excel ãƒžã‚¯ãƒ­æœ‰åŠ¹ãƒ–ãƒƒã‚¯ (*.xlsm), *.xlsm")
+        InitialFileName:="•]‰¿ƒf[ƒ^•ªÍƒc[ƒ‹.xlsm", _
+        FileFilter:="Excel ƒ}ƒNƒ—LŒøƒuƒbƒN (*.xlsm), *.xlsm")
     If savePath = False Then
-        MsgBox "ä¿å­˜å…ˆãŒæŒ‡å®šã•ã‚Œãªã‹ã£ãŸãŸã‚ã€ãƒ–ãƒƒã‚¯ã¯ä¿å­˜ã›ãšã«æ®‹ã—ã¦ã„ã¾ã™ã€‚" & vbCrLf & _
-               "å¿…è¦ãªå ´åˆã¯æ‰‹å‹•ã§ã€Œåå‰ã‚’ä»˜ã‘ã¦ä¿å­˜ã€ï¼ˆExcelãƒžã‚¯ãƒ­æœ‰åŠ¹ãƒ–ãƒƒã‚¯ï¼‰ã‚’å®Ÿè¡Œã—ã¦ãã ã•ã„ã€‚", _
-               vbExclamation, "ãƒ“ãƒ«ãƒ‰ä¸­æ–­"
+        MsgBox "•Û‘¶æ‚ªŽw’è‚³‚ê‚È‚©‚Á‚½‚½‚ßAƒuƒbƒN‚Í•Û‘¶‚¹‚¸‚ÉŽc‚µ‚Ä‚¢‚Ü‚·B" & vbCrLf & _
+               "•K—v‚Èê‡‚ÍŽè“®‚Åu–¼‘O‚ð•t‚¯‚Ä•Û‘¶viExcelƒ}ƒNƒ—LŒøƒuƒbƒNj‚ðŽÀs‚µ‚Ä‚­‚¾‚³‚¢B", _
+               vbExclamation, "ƒrƒ‹ƒh’†’f"
         Exit Sub
     End If
 
@@ -78,23 +78,23 @@ Public Sub BuildWorkbook()
     wbNew.SaveAs Filename:=savePath, FileFormat:=52   ' xlOpenXMLWorkbookMacroEnabled (.xlsm)
     Application.DisplayAlerts = True
 
-    MsgBox "ãƒ“ãƒ«ãƒ‰ãŒå®Œäº†ã—ã¾ã—ãŸã€‚" & vbCrLf & savePath, vbInformation, "ãƒ“ãƒ«ãƒ‰å®Œäº†"
+    MsgBox "ƒrƒ‹ƒh‚ªŠ®—¹‚µ‚Ü‚µ‚½B" & vbCrLf & savePath, vbInformation, "ƒrƒ‹ƒhŠ®—¹"
     Exit Sub
 
 ErrHandler:
     Application.DisplayAlerts = True
-    MsgBox "ãƒ“ãƒ«ãƒ‰ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚" & vbCrLf & _
-           "[Windows] ãƒˆãƒ©ã‚¹ãƒˆã‚»ãƒ³ã‚¿ãƒ¼ã®ãƒžã‚¯ãƒ­è¨­å®šã§ã€ŒVBA ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆ" & vbCrLf & _
-           "ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ ãƒ¢ãƒ‡ãƒ«ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã‚’ä¿¡é ¼ã™ã‚‹ã€ãŒæœ‰åŠ¹ã‹ç¢ºèªã—ã¦ãã ã•ã„ã€‚" & vbCrLf & _
-           "[Mac] åŒè¨­å®šãŒè¦‹ã¤ã‹ã‚‰ãªã„ã€ã¾ãŸã¯æœ‰åŠ¹åŒ–ã—ã¦ã‚‚ã“ã®ã‚¨ãƒ©ãƒ¼ãŒç¶šãå ´åˆã¯ã€" & vbCrLf & _
-           "BUILD_README.md ã®ã€Œæ‰‹å‹•ãƒ“ãƒ«ãƒ‰æ‰‹é †ã€ï¼ˆ.basã‚’1ã¤ãšã¤ã‚¤ãƒ³ãƒãƒ¼ãƒˆï¼‰ã‚’" & vbCrLf & _
-           "ä½¿ç”¨ã—ã¦ãã ã•ã„ã€‚" & vbCrLf & vbCrLf & _
-           "ã‚¨ãƒ©ãƒ¼å†…å®¹: " & Err.Description, vbCritical, "ãƒ“ãƒ«ãƒ‰å¤±æ•—"
+    MsgBox "ƒrƒ‹ƒh’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B" & vbCrLf & _
+           "[Windows] ƒgƒ‰ƒXƒgƒZƒ“ƒ^[‚Ìƒ}ƒNƒÝ’è‚ÅuVBA ƒvƒƒWƒFƒNƒg" & vbCrLf & _
+           "ƒIƒuƒWƒFƒNƒg ƒ‚ƒfƒ‹‚Ö‚ÌƒAƒNƒZƒX‚ðM—Š‚·‚év‚ª—LŒø‚©Šm”F‚µ‚Ä‚­‚¾‚³‚¢B" & vbCrLf & _
+           "[Mac] “¯Ý’è‚ªŒ©‚Â‚©‚ç‚È‚¢A‚Ü‚½‚Í—LŒø‰»‚µ‚Ä‚à‚±‚ÌƒGƒ‰[‚ª‘±‚­ê‡‚ÍA" & vbCrLf & _
+           "BUILD_README.md ‚ÌuŽè“®ƒrƒ‹ƒhŽè‡vi.bas‚ð1‚Â‚¸‚ÂƒCƒ“ƒ|[ƒgj‚ð" & vbCrLf & _
+           "Žg—p‚µ‚Ä‚­‚¾‚³‚¢B" & vbCrLf & vbCrLf & _
+           "ƒGƒ‰[“à—e: " & Err.Description, vbCritical, "ƒrƒ‹ƒhŽ¸”s"
 End Sub
 
-' ãƒ•ã‚©ãƒ«ãƒ€é¸æŠžãƒ€ã‚¤ã‚¢ãƒ­ã‚°ï¼ˆmsoFileDialogFolderPickerï¼‰ã‚’è©¦ã¿ã€
-' å¤±æ•—ã—ãŸå ´åˆï¼ˆMacç‰ˆExcelã§ãƒ•ã‚©ãƒ«ãƒ€é¸æŠžãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãŒåˆ©ç”¨ã§ããªã„ç’°å¢ƒãªã©ï¼‰ã¯
-' InputBoxã«ã‚ˆã‚‹ãƒ‘ã‚¹ç›´æŽ¥å…¥åŠ›ã¸ãƒ•ã‚©ãƒ¼ãƒ«ãƒãƒƒã‚¯ã™ã‚‹ã€‚
+' ƒtƒHƒ‹ƒ_‘I‘ðƒ_ƒCƒAƒƒOimsoFileDialogFolderPickerj‚ðŽŽ‚ÝA
+' Ž¸”s‚µ‚½ê‡iMac”ÅExcel‚ÅƒtƒHƒ‹ƒ_‘I‘ðƒ_ƒCƒAƒƒO‚ª—˜—p‚Å‚«‚È‚¢ŠÂ‹«‚È‚Çj‚Í
+' InputBox‚É‚æ‚éƒpƒX’¼Ú“ü—Í‚ÖƒtƒH[ƒ‹ƒoƒbƒN‚·‚éB
 Private Function PickFolder(ByVal title As String) As Variant
     On Error GoTo Fallback
     Dim fd As FileDialog
@@ -111,10 +111,10 @@ Fallback:
     On Error GoTo 0
     Dim typed As String
     typed = InputBox(title & vbCrLf & vbCrLf & _
-        "ãƒ•ã‚©ãƒ«ãƒ€é¸æŠžãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’åˆ©ç”¨ã§ããªã‹ã£ãŸãŸã‚ã€" & vbCrLf & _
-        "vba" & Application.PathSeparator & "modules ãƒ•ã‚©ãƒ«ãƒ€ã®ãƒ•ãƒ«ãƒ‘ã‚¹ã‚’ç›´æŽ¥å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚" & vbCrLf & _
-        "ï¼ˆä¾‹: Mac ã®å ´åˆ /Users/è‡ªåˆ†ã®åå‰/Downloads/sandbox/vba/modulesï¼‰", _
-        "ãƒ•ã‚©ãƒ«ãƒ€ãƒ‘ã‚¹ã‚’å…¥åŠ›")
+        "ƒtƒHƒ‹ƒ_‘I‘ðƒ_ƒCƒAƒƒO‚ð—˜—p‚Å‚«‚È‚©‚Á‚½‚½‚ßA" & vbCrLf & _
+        "vba" & Application.PathSeparator & "modules ƒtƒHƒ‹ƒ_‚Ìƒtƒ‹ƒpƒX‚ð’¼Ú“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B" & vbCrLf & _
+        "i—á: Mac ‚Ìê‡ /Users/Ž©•ª‚Ì–¼‘O/Downloads/sandbox/vba/modulesj", _
+        "ƒtƒHƒ‹ƒ_ƒpƒX‚ð“ü—Í")
     If Len(Trim$(typed)) = 0 Then
         PickFolder = False
     Else
@@ -122,9 +122,9 @@ Fallback:
     End If
 End Function
 
-' æŒ‡å®šãƒ•ã‚©ãƒ«ãƒ€å†…ã®ã™ã¹ã¦ã® .bas ãƒ•ã‚¡ã‚¤ãƒ«ï¼ˆæ¨™æº–ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼‰ã‚’ã‚¤ãƒ³ãƒãƒ¼ãƒˆã™ã‚‹ã€‚
-' è‡ªåˆ†è‡ªèº«ï¼ˆmodBuildTool.basï¼‰ãŒãã®ãƒ•ã‚©ãƒ«ãƒ€ã«ç½®ã‹ã‚Œã¦ã„ãŸå ´åˆã¯å¤šé‡ç™»éŒ²ã‚’é¿ã‘ã‚‹ãŸã‚
-' ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹ã€‚
+' Žw’èƒtƒHƒ‹ƒ_“à‚Ì‚·‚×‚Ä‚Ì .bas ƒtƒ@ƒCƒ‹i•W€ƒ‚ƒWƒ…[ƒ‹j‚ðƒCƒ“ƒ|[ƒg‚·‚éB
+' Ž©•ªŽ©gimodBuildTool.basj‚ª‚»‚ÌƒtƒHƒ‹ƒ_‚É’u‚©‚ê‚Ä‚¢‚½ê‡‚Í‘½d“o˜^‚ð”ð‚¯‚é‚½‚ß
+' ƒXƒLƒbƒv‚·‚éB
 Private Sub ImportAllModules(ByVal wb As Workbook, ByVal folderPath As String)
     Dim fPath As String
     fPath = Dir(folderPath & Application.PathSeparator & "*.bas")
@@ -136,15 +136,15 @@ Private Sub ImportAllModules(ByVal wb As Workbook, ByVal folderPath As String)
     Loop
 End Sub
 
-' vba/ThisWorkbook.txt ã®å†…å®¹ã‚’ã€æ–°è¦ãƒ–ãƒƒã‚¯ã®æ—¢å­˜ ThisWorkbook ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã¸è¿½è¨˜ã™ã‚‹ã€‚
-' ThisWorkbook ã¯æ¨™æº–ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¨ç•°ãªã‚Š Import ã§æ–°è¦ä½œæˆã§ããªã„ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®ãŸã‚ã€
-' ã‚³ãƒ¼ãƒ‰ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¸ç›´æŽ¥æ–‡å­—åˆ—ã¨ã—ã¦æ›¸ãè¾¼ã‚€ã€‚
+' vba/ThisWorkbook.txt ‚Ì“à—e‚ðAV‹KƒuƒbƒN‚ÌŠù‘¶ ThisWorkbook ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ö’Ç‹L‚·‚éB
+' ThisWorkbook ‚Í•W€ƒ‚ƒWƒ…[ƒ‹‚ÆˆÙ‚È‚è Import ‚ÅV‹Kì¬‚Å‚«‚È‚¢ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‚½‚ßA
+' ƒR[ƒhƒ‚ƒWƒ…[ƒ‹‚Ö’¼Ú•¶Žš—ñ‚Æ‚µ‚Ä‘‚«ž‚ÞB
 Private Sub InjectThisWorkbookCode(ByVal wb As Workbook, ByVal folderPath As String)
     Dim twPath As String
     twPath = folderPath & Application.PathSeparator & ".." & Application.PathSeparator & "ThisWorkbook.txt"
     If Dir(twPath) = "" Then
-        MsgBox "ThisWorkbook.txt ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸï¼ˆ" & twPath & "ï¼‰ã€‚" & vbCrLf & _
-               "æ‰‹å‹•ã§ ThisWorkbook ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¸è²¼ã‚Šä»˜ã‘ã¦ãã ã•ã„ã€‚", vbExclamation
+        MsgBox "ThisWorkbook.txt ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½i" & twPath & "jB" & vbCrLf & _
+               "Žè“®‚Å ThisWorkbook ƒ‚ƒWƒ…[ƒ‹‚Ö“\‚è•t‚¯‚Ä‚­‚¾‚³‚¢B", vbExclamation
         Exit Sub
     End If
 

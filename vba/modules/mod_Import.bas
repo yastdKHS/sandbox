@@ -2,24 +2,24 @@ Attribute VB_Name = "mod_Import"
 Option Explicit
 '==============================================================================
 ' mod_Import
-' 目的 : 「データ取込」画面のウィザード処理（①〜⑨）を担当する。
+' �ړI : �u�f�[�^�捞�v��ʂ̃E�B�U�[�h�����i�@�`�H�j��S������B
 '
-'   ① 外部Excelを選択        → StartImport
-'   ② シート一覧を取得        → StartImport 内
-'   ③ 総合成績シートを自動候補表示 → DetectSummarySheet
-'   ④ 認識できない場合のみ利用者が選択 → シート一覧リストボックス（常時表示）
-'   ⑤ 見出しを自動解析        → DetectHeaderRow / ParseHeaders
-'   ⑥ 評価項目を候補表示       → BuildMappingSuggestions / RenderMappingTable
-'   ⑦ 必要に応じて利用者が修正   → マッピング表のドロップダウンを直接編集
-'   ⑧ インポート内容確認       → ProceedToConfirm
-'   ⑨ 登録                  → CommitImport
+'   �@ �O��Excel��I��        �� StartImport
+'   �A �V�[�g�ꗗ���擾        �� StartImport ��
+'   �B �������уV�[�g���������\�� �� DetectSummarySheet
+'   �C �F���ł��Ȃ��ꍇ�̂ݗ��p�҂��I�� �� �V�[�g�ꗗ���X�g�{�b�N�X�i�펞�\���j
+'   �D ���o�����������        �� DetectHeaderRow / ParseHeaders
+'   �E �]�����ڂ����\��       �� BuildMappingSuggestions / RenderMappingTable
+'   �F �K�v�ɉ����ė��p�҂��C��   �� �}�b�s���O�\�̃h���b�v�_�E���𒼐ڕҏW
+'   �G �C���|�[�g���e�m�F       �� ProceedToConfirm
+'   �H �o�^                  �� CommitImport
 '
-' 元データ（外部ブック）はインポート完了後、保存せずに閉じる。
-' ワークシートの内容はセルへ直接コピーせず、必要な値のみを配列として
-' メモリ上に取り出してから内部テーブルへ書き込む（元データを保持しない）。
+' ���f�[�^�i�O���u�b�N�j�̓C���|�[�g������A�ۑ������ɕ���B
+' ���[�N�V�[�g�̓��e�̓Z���֒��ڃR�s�[�����A�K�v�Ȓl�݂̂�z��Ƃ���
+' ��������Ɏ��o���Ă�������e�[�u���֏������ށi���f�[�^��ێ����Ȃ��j�B
 '==============================================================================
 
-' --- ウィザード内部状態（Private：本モジュール内のみで完結させる） ---
+' --- �E�B�U�[�h������ԁiPrivate�F�{���W���[�����݂̂Ŋ���������j ---
 Private mSrcWorkbook As Workbook
 Private mSrcFilePath As String
 Private mSrcSheetName As String
@@ -28,10 +28,10 @@ Private mLastDataRow As Long
 Private mLastCol As Long
 Private mHeaders() As String
 Private mSamples() As String
-Private mColItemCode() As String   ' 列ごとに確定した項目コード（マッピング解決後にキャッシュ）
+Private mColItemCode() As String   ' �񂲂ƂɊm�肵�����ڃR�[�h�i�}�b�s���O������ɃL���b�V���j
 
 '==============================================================================
-' ① 外部Excelを選択 〜 ③ 総合成績シート候補表示
+' �@ �O��Excel��I�� �` �B �������уV�[�g���\��
 '==============================================================================
 Public Sub StartImport()
     On Error GoTo ErrHandler
@@ -41,11 +41,11 @@ Public Sub StartImport()
 
     Dim fPath As Variant
     fPath = Application.GetOpenFilename( _
-        "Excel ファイル (*.xlsx;*.xlsm;*.xls),*.xlsx;*.xlsm;*.xls", , _
-        "分析対象の外部Excelファイルを選択してください")
+        "Excel �t�@�C�� (*.xlsx;*.xlsm;*.xls),*.xlsx;*.xlsm;*.xls", , _
+        "���͑Ώۂ̊O��Excel�t�@�C����I�����Ă�������")
 
     If fPath = False Then
-        mod_Logging.WriteLog "INFO", "mod_Import", "StartImport", "ファイル選択がキャンセルされました。"
+        mod_Logging.WriteLog "INFO", "mod_Import", "StartImport", "�t�@�C���I�����L�����Z������܂����B"
         Exit Sub
     End If
     mSrcFilePath = CStr(fPath)
@@ -58,15 +58,15 @@ Public Sub StartImport()
 
     If mSrcWorkbook Is Nothing Then
         mod_Logging.WriteLog "ERROR", "mod_Import", "StartImport", _
-            "ファイルを開けませんでした（破損または非対応形式の可能性）。", mSrcFilePath
-        MsgBox "ファイルを開けませんでした。破損しているか、対応していない形式の可能性があります。", _
+            "�t�@�C�����J���܂���ł����i�j���܂��͔�Ή��`���̉\���j�B", mSrcFilePath
+        MsgBox "�t�@�C�����J���܂���ł����B�j�����Ă��邩�A�Ή����Ă��Ȃ��`���̉\��������܂��B", _
                vbExclamation, mod_Common.APP_NAME
         Exit Sub
     End If
 
     ThisWorkbook.Worksheets(mod_Common.SH_IMPORT).Range(mod_Common.IMP_CELL_FILEPATH).Value = mSrcFilePath
 
-    ' ② シート一覧を取得し、③ 総合成績シートの候補を自動選定する
+    ' �A �V�[�g�ꗗ���擾���A�B �������уV�[�g�̌��������I�肷��
     Dim sheetNames As New Collection
     Dim ws As Worksheet
     For Each ws In mSrcWorkbook.Worksheets
@@ -85,10 +85,10 @@ Public Sub StartImport()
 
     mod_UI.PopulateFormListBox ThisWorkbook.Worksheets(mod_Common.SH_IMPORT), mod_Common.IMP_LISTBOX_SHEETS, _
         sheetNames, bestIndex
-    mod_UI.SetImportStatus "シート一覧を取得しました。総合成績シートを確認し「シート決定」を押してください。"
+    mod_UI.SetImportStatus "�V�[�g�ꗗ���擾���܂����B�������уV�[�g���m�F���u�V�[�g����v�������Ă��������B"
     mod_UI.ShowImportStep 1
 
-    mod_Logging.WriteLog "INFO", "mod_Import", "StartImport", "ファイルを読み込みました: " & mSrcFilePath
+    mod_Logging.WriteLog "INFO", "mod_Import", "StartImport", "�t�@�C����ǂݍ��݂܂���: " & mSrcFilePath
     Exit Sub
 
 ErrHandler:
@@ -97,9 +97,9 @@ ErrHandler:
     mod_Common.HandleError "mod_Import", "StartImport"
 End Sub
 
-' シート名・見出し内容の両面から「総合成績」シートらしさを判定する。
-' シート名変更・レイアウト変更があっても、内容（学生番号・氏名等の見出し）から
-' 推定できるようにするための保険的ロジック。
+' �V�[�g���E���o�����e�̗��ʂ���u�������сv�V�[�g�炵���𔻒肷��B
+' �V�[�g���ύX�E���C�A�E�g�ύX�������Ă��A���e�i�w���ԍ��E�������̌��o���j����
+' ����ł���悤�ɂ��邽�߂̕ی��I���W�b�N�B
 Private Function DetectSummarySheet(ByVal wb As Workbook) As String
     Dim ws As Worksheet
     Dim bestName As String
@@ -112,11 +112,11 @@ Private Function DetectSummarySheet(ByVal wb As Workbook) As String
 
         Dim nm As String
         nm = mod_Common.NormalizeText(ws.Name)
-        If InStr(nm, mod_Common.NormalizeText("総合成績")) > 0 Then
+        If InStr(nm, mod_Common.NormalizeText("��������")) > 0 Then
             score = score + 100
-        ElseIf InStr(nm, mod_Common.NormalizeText("総合")) > 0 Then
+        ElseIf InStr(nm, mod_Common.NormalizeText("����")) > 0 Then
             score = score + 70
-        ElseIf InStr(nm, mod_Common.NormalizeText("成績")) > 0 Then
+        ElseIf InStr(nm, mod_Common.NormalizeText("����")) > 0 Then
             score = score + 40
         End If
 
@@ -131,7 +131,7 @@ Private Function DetectSummarySheet(ByVal wb As Workbook) As String
     DetectSummarySheet = bestName
 End Function
 
-' シート先頭付近を走査し、学生番号・氏名等の見出しがどれだけ含まれるかを採点する。
+' �V�[�g�擪�t�߂𑖍����A�w���ԍ��E�������̌��o�����ǂꂾ���܂܂�邩���̓_����B
 Private Function ContentHeaderScore(ByVal ws As Worksheet) As Long
     Dim r As Long, c As Long, score As Long
     Dim maxRow As Long, maxCol As Long
@@ -140,7 +140,7 @@ Private Function ContentHeaderScore(ByVal ws As Worksheet) As Long
     If maxRow < 1 Or maxCol < 1 Then Exit Function
 
     Dim keywords As Variant
-    keywords = Array("学生番号", "生徒番号", "氏名", "クラス", "組", "総合評価")
+    keywords = Array("�w���ԍ�", "���k�ԍ�", "����", "�N���X", "�g", "�����]��")
 
     For r = 1 To maxRow
         For c = 1 To maxCol
@@ -161,7 +161,7 @@ Private Function ContentHeaderScore(ByVal ws As Worksheet) As Long
 End Function
 
 '==============================================================================
-' ④〜⑤ シート確定・見出し解析
+' �C�`�D �V�[�g�m��E���o�����
 '==============================================================================
 Public Sub ConfirmSheetSelection()
     On Error GoTo ErrHandler
@@ -169,11 +169,11 @@ Public Sub ConfirmSheetSelection()
     Dim chosen As String
     chosen = mod_UI.GetFormListBoxSelection(ThisWorkbook.Worksheets(mod_Common.SH_IMPORT), mod_Common.IMP_LISTBOX_SHEETS)
     If Len(chosen) = 0 Then
-        MsgBox "シートを選択してください。", vbExclamation, mod_Common.APP_NAME
+        MsgBox "�V�[�g��I�����Ă��������B", vbExclamation, mod_Common.APP_NAME
         Exit Sub
     End If
     If mSrcWorkbook Is Nothing Then
-        MsgBox "先にファイルを選択してください。", vbExclamation, mod_Common.APP_NAME
+        MsgBox "��Ƀt�@�C����I�����Ă��������B", vbExclamation, mod_Common.APP_NAME
         Exit Sub
     End If
 
@@ -187,21 +187,21 @@ Public Sub ConfirmSheetSelection()
     BuildMappingSuggestions
     RenderMappingTable
 
-    mod_UI.SetImportStatus "見出しを解析しました。マッピング内容を確認し、必要に応じて修正してください。"
+    mod_UI.SetImportStatus "���o������͂��܂����B�}�b�s���O���e���m�F���A�K�v�ɉ����ďC�����Ă��������B"
     mod_UI.ShowImportStep 2
 
     mod_Logging.WriteLog "INFO", "mod_Import", "ConfirmSheetSelection", _
-        "シートを確定しました: " & mSrcSheetName & " (見出し行=" & mHeaderRow & ")"
+        "�V�[�g���m�肵�܂���: " & mSrcSheetName & " (���o���s=" & mHeaderRow & ")"
     Exit Sub
 
 ErrHandler:
     mod_Common.HandleError "mod_Import", "ConfirmSheetSelection"
 End Sub
 
-' 先頭15行を走査し、既知の見出しキーワードを最も多く含む行を見出し行と推定する。
+' �擪15�s�𑖍����A���m�̌��o���L�[���[�h���ł������܂ލs�����o���s�Ɛ��肷��B
 Private Function DetectHeaderRow(ByVal ws As Worksheet) As Long
     Dim keywords As Variant
-    keywords = Array("学生番号", "生徒番号", "氏名", "クラス", "組", "番号", "得点", "点数", "評価")
+    keywords = Array("�w���ԍ�", "���k�ԍ�", "����", "�N���X", "�g", "�ԍ�", "���_", "�_��", "�]��")
 
     Dim r As Long, bestRow As Long, bestScore As Long
     Dim maxRow As Long
@@ -235,13 +235,13 @@ Private Function DetectHeaderRow(ByVal ws As Worksheet) As Long
     DetectHeaderRow = bestRow
 End Function
 
-' 見出し行・データ範囲・サンプル値を取得する（元データはこの配列以外に保持しない）。
+' ���o���s�E�f�[�^�͈́E�T���v���l���擾����i���f�[�^�͂��̔z��ȊO�ɕێ����Ȃ��j�B
 Private Sub ParseHeaders(ByVal ws As Worksheet)
     mLastCol = ws.Cells(mHeaderRow, ws.Columns.Count).End(xlToLeft).Column
     If mLastCol > mod_Common.IMP_MAPPING_MAX_ROWS Then
         mod_Logging.WriteLog "WARN", "mod_Import", "ParseHeaders", _
-            "列数が上限(" & mod_Common.IMP_MAPPING_MAX_ROWS & ")を超えたため、超過分は取り込み対象外とします。", _
-            "検出列数=" & mLastCol
+            "�񐔂����(" & mod_Common.IMP_MAPPING_MAX_ROWS & ")�𒴂������߁A���ߕ��͎�荞�ݑΏۊO�Ƃ��܂��B", _
+            "���o��=" & mLastCol
         mLastCol = mod_Common.IMP_MAPPING_MAX_ROWS
     End If
 
@@ -276,10 +276,10 @@ Private Sub ResolveColumnItemCodesReset()
 End Sub
 
 '==============================================================================
-' ⑥ 評価項目候補表示
+' �E �]�����ڌ��\��
 '==============================================================================
-' 各列見出しから、学生属性（年度／クラス／学生番号／氏名）・既存評価項目・
-' 無視のいずれに割り当てるべきかを推定し、mod_UI 経由でマッピング表を描画する。
+' �e�񌩏o������A�w�������i�N�x�^�N���X�^�w���ԍ��^�����j�E�����]�����ځE
+' �����̂�����Ɋ��蓖�Ă�ׂ����𐄒肵�Amod_UI �o�R�Ń}�b�s���O�\��`�悷��B
 Private mSuggestions() As String
 
 Private Sub BuildMappingSuggestions()
@@ -294,30 +294,30 @@ Private Sub BuildMappingSuggestions()
 End Sub
 
 Private Function GuessTarget(ByVal header As String, ByVal sample As String, ByVal existingItems As Collection) As String
-    If mod_Common.HeaderSimilarity(header, "学生番号") >= 60 Or _
-       mod_Common.HeaderSimilarity(header, "生徒番号") >= 60 Or _
-       mod_Common.HeaderSimilarity(header, "出席番号") >= 60 Or _
-       mod_Common.HeaderSimilarity(header, "学籍番号") >= 60 Then
+    If mod_Common.HeaderSimilarity(header, "�w���ԍ�") >= 60 Or _
+       mod_Common.HeaderSimilarity(header, "���k�ԍ�") >= 60 Or _
+       mod_Common.HeaderSimilarity(header, "�o�Ȕԍ�") >= 60 Or _
+       mod_Common.HeaderSimilarity(header, "�w�Дԍ�") >= 60 Then
         GuessTarget = mod_Common.MAP_TARGET_STUDENTNO
         Exit Function
     End If
-    If mod_Common.HeaderSimilarity(header, "氏名") >= 60 Or mod_Common.HeaderSimilarity(header, "名前") >= 60 Then
+    If mod_Common.HeaderSimilarity(header, "����") >= 60 Or mod_Common.HeaderSimilarity(header, "���O") >= 60 Then
         GuessTarget = mod_Common.MAP_TARGET_NAME
         Exit Function
     End If
-    If mod_Common.HeaderSimilarity(header, "クラスコード") >= 60 Or _
-       mod_Common.HeaderSimilarity(header, "クラス") >= 60 Or _
-       mod_Common.HeaderSimilarity(header, "組") >= 60 Or _
-       mod_Common.HeaderSimilarity(header, "学級") >= 60 Then
+    If mod_Common.HeaderSimilarity(header, "�N���X�R�[�h") >= 60 Or _
+       mod_Common.HeaderSimilarity(header, "�N���X") >= 60 Or _
+       mod_Common.HeaderSimilarity(header, "�g") >= 60 Or _
+       mod_Common.HeaderSimilarity(header, "�w��") >= 60 Then
         GuessTarget = mod_Common.MAP_TARGET_CLASSCODE
         Exit Function
     End If
-    If mod_Common.HeaderSimilarity(header, "年度") >= 60 Then
+    If mod_Common.HeaderSimilarity(header, "�N�x") >= 60 Then
         GuessTarget = mod_Common.MAP_TARGET_YEAR
         Exit Function
     End If
 
-    ' 既存の評価項目名と一致すれば再利用を提案する
+    ' �����̕]�����ږ��ƈ�v����΍ė��p���Ă���
     Dim it As Variant
     For Each it In existingItems
         If mod_Common.HeaderSimilarity(header, CStr(it)) >= 90 Then
@@ -326,7 +326,7 @@ Private Function GuessTarget(ByVal header As String, ByVal sample As String, ByV
         End If
     Next it
 
-    ' 数値サンプルであれば新規評価項目として提案、それ以外は無視を提案
+    ' ���l�T���v���ł���ΐV�K�]�����ڂƂ��Ē�āA����ȊO�͖�������
     If IsNumeric(sample) Then
         GuessTarget = mod_Common.MAP_TARGET_NEWITEM_PREFIX & header
     Else
@@ -349,8 +349,8 @@ Private Function GetActiveItemDisplayNames() As Collection
     Set GetActiveItemDisplayNames = result
 End Function
 
-' マッピング表（見出し・サンプル・マッピング先ドロップダウン）を描画する。
-' 実際の描画（セル書き込み・データ入力規則の設定）は mod_UI に委譲する。
+' �}�b�s���O�\�i���o���E�T���v���E�}�b�s���O��h���b�v�_�E���j��`�悷��B
+' ���ۂ̕`��i�Z���������݁E�f�[�^���͋K���̐ݒ�j�� mod_UI �ɈϏ�����B
 Private Sub RenderMappingTable()
     Dim choices As New Collection
     choices.Add mod_Common.MAP_TARGET_IGNORE
@@ -367,18 +367,18 @@ Private Sub RenderMappingTable()
     mod_UI.RenderImportMappingTable mHeaders, mSamples, mSuggestions, choices
 End Sub
 
-' 現在のマッピング内容をテンプレートとして保存する（画面の「テンプレート保存」ボタンから使用）。
-' 同じレイアウトの外部ファイルを翌年度以降も取り込む際、見出しとマッピング先の対応を
-' 再利用できるようにする（自動適用は将来拡張。保守マニュアル参照）。
+' ���݂̃}�b�s���O���e���e���v���[�g�Ƃ��ĕۑ�����i��ʂ́u�e���v���[�g�ۑ��v�{�^������g�p�j�B
+' �������C�A�E�g�̊O���t�@�C���𗂔N�x�ȍ~����荞�ލہA���o���ƃ}�b�s���O��̑Ή���
+' �ė��p�ł���悤�ɂ���i�����K�p�͏����g���B�ێ�}�j���A���Q�Ɓj�B
 Public Sub SaveCurrentMappingAsTemplate()
     On Error GoTo ErrHandler
     If mLastCol = 0 Then
-        MsgBox "保存するマッピングがありません。マッピング表を表示した状態で実行してください。", vbExclamation, mod_Common.APP_NAME
+        MsgBox "�ۑ�����}�b�s���O������܂���B�}�b�s���O�\��\��������ԂŎ��s���Ă��������B", vbExclamation, mod_Common.APP_NAME
         Exit Sub
     End If
 
     Dim tplName As Variant
-    tplName = InputBox("テンプレート名を入力してください。", mod_Common.APP_NAME)
+    tplName = InputBox("�e���v���[�g������͂��Ă��������B", mod_Common.APP_NAME)
     If Len(Trim$(CStr(tplName))) = 0 Then Exit Sub
 
     Dim mapVals As Collection
@@ -391,17 +391,17 @@ Public Sub SaveCurrentMappingAsTemplate()
     Next c
 
     mod_Settings.SaveTemplate CStr(tplName), mSrcSheetName, parts
-    MsgBox "テンプレートを保存しました。", vbInformation, mod_Common.APP_NAME
+    MsgBox "�e���v���[�g��ۑ����܂����B", vbInformation, mod_Common.APP_NAME
     Exit Sub
 
 ErrHandler:
     mod_Common.HandleError "mod_Import", "SaveCurrentMappingAsTemplate"
 End Sub
 
-' 現在のマッピング表（画面上のドロップダウン値）を読み取り、列ごとの役割へ変換する。
+' ���݂̃}�b�s���O�\�i��ʏ�̃h���b�v�_�E���l�j��ǂݎ��A�񂲂Ƃ̖����֕ϊ�����B
 ' colRole(c)     : "IGNORE" / "YEAR" / "CLASSCODE" / "STUDENTNO" / "NAME" / "ITEM"
-' colItemName(c) : colRole(c)="ITEM" の場合のみ有効。既存項目コード、または "NEW:表示名"
-' ok = False の場合は、呼び出し元は処理を中断すること（エラーメッセージは本関数内で表示済み）。
+' colItemName(c) : colRole(c)="ITEM" �̏ꍇ�̂ݗL���B�������ڃR�[�h�A�܂��� "NEW:�\����"
+' ok = False �̏ꍇ�́A�Ăяo�����͏����𒆒f���邱�Ɓi�G���[���b�Z�[�W�͖{�֐����ŕ\���ς݁j�B
 Private Sub ResolveMapping(ByRef colRole() As String, ByRef colItemName() As String, _
                             ByRef yearColIdx As Long, ByRef classColIdx As Long, _
                             ByRef studentColIdx As Long, ByRef nameColIdx As Long, _
@@ -450,7 +450,7 @@ Private Sub ResolveMapping(ByRef colRole() As String, ByRef colItemName() As Str
     Next c
 
     If studentColIdx = 0 Or nameColIdx = 0 Then
-        MsgBox "「学生番号」と「氏名」は必ずマッピングしてください。", vbExclamation, mod_Common.APP_NAME
+        MsgBox "�u�w���ԍ��v�Ɓu�����v�͕K���}�b�s���O���Ă��������B", vbExclamation, mod_Common.APP_NAME
         Exit Sub
     End If
 
@@ -458,11 +458,11 @@ Private Sub ResolveMapping(ByRef colRole() As String, ByRef colItemName() As Str
     manualClass = Trim$(CStr(ThisWorkbook.Worksheets(mod_Common.SH_IMPORT).Range(mod_Common.IMP_CELL_CLASS_MANUAL).Value))
 
     If yearColIdx = 0 And Len(manualYear) = 0 Then
-        MsgBox "年度が元データの列に無い場合は、画面右上の「年度（手入力）」欄に入力してください。", vbExclamation, mod_Common.APP_NAME
+        MsgBox "�N�x�����f�[�^�̗�ɖ����ꍇ�́A��ʉE��́u�N�x�i����́j�v���ɓ��͂��Ă��������B", vbExclamation, mod_Common.APP_NAME
         Exit Sub
     End If
     If classColIdx = 0 And Len(manualClass) = 0 Then
-        MsgBox "クラスコードが元データの列に無い場合は、画面右上の「クラスコード（手入力）」欄に入力してください。", vbExclamation, mod_Common.APP_NAME
+        MsgBox "�N���X�R�[�h�����f�[�^�̗�ɖ����ꍇ�́A��ʉE��́u�N���X�R�[�h�i����́j�v���ɓ��͂��Ă��������B", vbExclamation, mod_Common.APP_NAME
         Exit Sub
     End If
 
@@ -471,7 +471,7 @@ Private Sub ResolveMapping(ByRef colRole() As String, ByRef colItemName() As Str
         If colRole(c) = "ITEM" Then hasItem = True
     Next c
     If Not hasItem Then
-        MsgBox "評価項目として取り込む列が1つもありません。マッピングを確認してください。", vbExclamation, mod_Common.APP_NAME
+        MsgBox "�]�����ڂƂ��Ď�荞�ޗ�1������܂���B�}�b�s���O���m�F���Ă��������B", vbExclamation, mod_Common.APP_NAME
         Exit Sub
     End If
 
@@ -479,7 +479,7 @@ Private Sub ResolveMapping(ByRef colRole() As String, ByRef colItemName() As Str
 End Sub
 
 '==============================================================================
-' ⑧ インポート内容確認
+' �G �C���|�[�g���e�m�F
 '==============================================================================
 Public Sub ProceedToConfirm()
     On Error GoTo ErrHandler
@@ -543,17 +543,17 @@ Public Sub ProceedToConfirm()
     Next r
 
     Dim summary As String
-    summary = "対象データ行数: " & totalRows & vbCrLf & _
-              "氏名/学生番号が空欄のためスキップ: " & blankSkip & " 行" & vbCrLf & _
-              "登録対象の得点セル数: " & validScoreCells & vbCrLf & _
-              "既存データと重複（既定では登録をスキップします）: " & dupCount & " 件" & vbCrLf & _
-              "新規に追加される評価項目数: " & newItemCols
+    summary = "�Ώۃf�[�^�s��: " & totalRows & vbCrLf & _
+              "����/�w���ԍ����󗓂̂��߃X�L�b�v: " & blankSkip & " �s" & vbCrLf & _
+              "�o�^�Ώۂ̓��_�Z����: " & validScoreCells & vbCrLf & _
+              "�����f�[�^�Əd���i����ł͓o�^���X�L�b�v���܂��j: " & dupCount & " ��" & vbCrLf & _
+              "�V�K�ɒǉ������]�����ڐ�: " & newItemCols
 
     mod_UI.SetImportConfirmSummary summary
     mod_UI.ShowImportStep 3
-    mod_UI.SetImportStatus "内容を確認し、問題なければ「登録」を押してください。"
+    mod_UI.SetImportStatus "���e���m�F���A���Ȃ���΁u�o�^�v�������Ă��������B"
 
-    mod_Logging.WriteLog "INFO", "mod_Import", "ProceedToConfirm", "取込内容を確認しました。" & summary
+    mod_Logging.WriteLog "INFO", "mod_Import", "ProceedToConfirm", "�捞���e���m�F���܂����B" & summary
     Exit Sub
 
 ErrHandler:
@@ -561,7 +561,7 @@ ErrHandler:
 End Sub
 
 '==============================================================================
-' ⑨ 登録
+' �H �o�^
 '==============================================================================
 Public Sub CommitImport()
     On Error GoTo ErrHandler
@@ -576,7 +576,7 @@ Public Sub CommitImport()
 
     mod_Common.BeginBusy
 
-    ' 新規評価項目は列単位で一度だけ作成する（行ループ内での重複作成を防止）
+    ' �V�K�]�����ڂ͗�P�ʂň�x�����쐬����i�s���[�v���ł̏d���쐬��h�~�j
     Dim c As Long
     For c = 1 To mLastCol
         If colRole(c) = "ITEM" Then
@@ -631,7 +631,7 @@ Public Sub CommitImport()
                 Dim sc As Variant
                 sc = ws.Cells(r, c).Value
                 If Len(Trim$(CStr(sc))) = 0 Then
-                    ' 未回答（空欄）は無視（エラーではない）
+                    ' ���񓚁i�󗓁j�͖����i�G���[�ł͂Ȃ��j
                 ElseIf Not IsNumeric(sc) Then
                     invalidScore = invalidScore + 1
                 Else
@@ -670,8 +670,8 @@ NextRow:
     mod_Common.EndBusy
 
     Dim msg As String
-    msg = "取込が完了しました。新規登録:" & importedCount & "件 / 上書き更新:" & updatedCount & "件 / " & _
-          "空欄スキップ:" & blankSkip & "行 / 重複スキップ:" & dupSkip & "件 / 数値変換不可:" & invalidScore & "件"
+    msg = "�捞���������܂����B�V�K�o�^:" & importedCount & "�� / �㏑���X�V:" & updatedCount & "�� / " & _
+          "�󗓃X�L�b�v:" & blankSkip & "�s / �d���X�L�b�v:" & dupSkip & "�� / ���l�ϊ��s��:" & invalidScore & "��"
     MsgBox msg, vbInformation, mod_Common.APP_NAME
     mod_Logging.WriteLog "INFO", "mod_Import", "CommitImport", msg
     Exit Sub
@@ -683,18 +683,18 @@ ErrHandler:
 End Sub
 
 '==============================================================================
-' キャンセル・後始末
+' �L�����Z���E��n��
 '==============================================================================
 
-' ウィザードの途中で「キャンセル」が押された場合に呼び出す。
-' 登録は一切行わず、開いていた外部ブックを保存せずに閉じるだけで安全に中断できる
-' （T_Scores への書き込みは CommitImport の最後で一括実行されるため、
-'   途中キャンセルでも中途半端なデータが残ることはない）。
+' �E�B�U�[�h�̓r���Łu�L�����Z���v�������ꂽ�ꍇ�ɌĂяo���B
+' �o�^�͈�؍s�킸�A�J���Ă����O���u�b�N��ۑ������ɕ��邾���ň��S�ɒ��f�ł���
+' �iT_Scores �ւ̏������݂� CommitImport �̍Ō�ňꊇ���s����邽�߁A
+'   �r���L�����Z���ł����r���[�ȃf�[�^���c�邱�Ƃ͂Ȃ��j�B
 Public Sub CancelImport()
     CleanupSourceWorkbook
     mod_UI.ResetImportSheet
-    mod_UI.SetImportStatus "取込をキャンセルしました。"
-    mod_Logging.WriteLog "INFO", "mod_Import", "CancelImport", "ユーザーにより取込がキャンセルされました。"
+    mod_UI.SetImportStatus "�捞���L�����Z�����܂����B"
+    mod_Logging.WriteLog "INFO", "mod_Import", "CancelImport", "���[�U�[�ɂ��捞���L�����Z������܂����B"
 End Sub
 
 Private Sub ResetWizardState()
@@ -709,7 +709,7 @@ Private Sub ResetWizardState()
     Erase mColItemCode
 End Sub
 
-' 外部ブックを保存せずに閉じる（元データは一切保存しない方針の徹底）。
+' �O���u�b�N��ۑ������ɕ���i���f�[�^�͈�ؕۑ����Ȃ����j�̓O��j�B
 Private Sub CleanupSourceWorkbook()
     On Error Resume Next
     If Not mSrcWorkbook Is Nothing Then

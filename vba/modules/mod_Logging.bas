@@ -2,18 +2,18 @@ Attribute VB_Name = "mod_Logging"
 Option Explicit
 '==============================================================================
 ' mod_Logging
-' ç›®çš„ : æ“ä½œãƒ­ã‚°ãƒ»ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ã‚’ T_Log ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆã€Œãƒ­ã‚°ã€ã‚·ãƒ¼ãƒˆï¼‰ã¸è¨˜éŒ²ã™ã‚‹ã€‚
-'        é•·æœŸé–“ã®é‹ç”¨ã§è‚¥å¤§åŒ–ã—ãªã„ã‚ˆã†ã€æ—¢å®šã®æœ€å¤§ä¿æŒä»¶æ•°ã‚’è¶…ãˆãŸå¤ã„è¡Œã‚’
-'        è‡ªå‹•çš„ã«é–“å¼•ãï¼ˆå®¹é‡å¯¾ç­–ï¼‰ã€‚
+' –Ú“I : ‘€ìƒƒOEƒGƒ‰[ƒƒO‚ğ T_Log ƒe[ƒuƒ‹iuƒƒOvƒV[ƒgj‚Ö‹L˜^‚·‚éB
+'        ’·ŠúŠÔ‚Ì‰^—p‚Å”ì‘å‰»‚µ‚È‚¢‚æ‚¤AŠù’è‚ÌÅ‘å•ÛŒ”‚ğ’´‚¦‚½ŒÃ‚¢s‚ğ
+'        ©“®“I‚ÉŠÔˆø‚­i—e—Ê‘ÎôjB
 '==============================================================================
 
 Private Const DEFAULT_LOG_MAX_ROWS As Long = 5000
 
-' ãƒ­ã‚°ã‚’1ä»¶è¿½è¨˜ã™ã‚‹ã€‚
+' ƒƒO‚ğ1Œ’Ç‹L‚·‚éB
 ' level    : "INFO" / "WARN" / "ERROR"
-' moduleName / procName : ç™ºç”Ÿå…ƒãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ»å‡¦ç†å
-' message  : åˆ©ç”¨è€…ã«ã‚‚åˆ†ã‹ã‚‹è¦ç´„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
-' detail   : æŠ€è¡“çš„ãªè©³ç´°ï¼ˆçœç•¥å¯ï¼‰
+' moduleName / procName : ”­¶Œ³ƒ‚ƒWƒ…[ƒ‹Eˆ—–¼
+' message  : —˜—pÒ‚É‚à•ª‚©‚é—v–ñƒƒbƒZ[ƒW
+' detail   : ‹Zp“I‚ÈÚ×iÈ—ª‰Âj
 Public Sub WriteLog(ByVal level As String, ByVal moduleName As String, _
                      ByVal procName As String, ByVal message As String, _
                      Optional ByVal detail As String = "")
@@ -21,7 +21,7 @@ Public Sub WriteLog(ByVal level As String, ByVal moduleName As String, _
 
     Dim tbl As ListObject
     Set tbl = mod_Common.GetTableSafe(mod_Common.SH_LOG, mod_Common.TBL_LOG)
-    If tbl Is Nothing Then Exit Sub   ' åˆæœŸåŒ–å‰ï¼ˆEnsureSchemaæœªå®Ÿè¡Œï¼‰ã¯è¨˜éŒ²ã—ãªã„
+    If tbl Is Nothing Then Exit Sub   ' ‰Šú‰»‘OiEnsureSchema–¢Àsj‚Í‹L˜^‚µ‚È‚¢
 
     Dim newRow As ListRow
     Set newRow = tbl.ListRows.Add
@@ -37,11 +37,11 @@ Public Sub WriteLog(ByVal level As String, ByVal moduleName As String, _
     Exit Sub
 
 ErrHandler:
-    ' ãƒ­ã‚°æ©Ÿæ§‹è‡ªä½“ã®ã‚¨ãƒ©ãƒ¼ã¯ç„¡é™ãƒ«ãƒ¼ãƒ—ã‚’é¿ã‘ã‚‹ãŸã‚ç”»é¢è¡¨ç¤ºã®ã¿ã«ç•™ã‚ã‚‹ã€‚
+    ' ƒƒO‹@\©‘Ì‚ÌƒGƒ‰[‚Í–³ŒÀƒ‹[ƒv‚ğ”ğ‚¯‚é‚½‚ß‰æ–Ê•\¦‚Ì‚İ‚É—¯‚ß‚éB
     Debug.Print "WriteLog failed: " & Err.Description
 End Sub
 
-' ä¿æŒä¸Šé™ï¼ˆT_Settings!LOG_MAX_ROWSã€æ—¢å®š5000ä»¶ï¼‰ã‚’è¶…ãˆãŸå ´åˆã€å¤ã„è¡Œã‹ã‚‰å‰Šé™¤ã™ã‚‹ã€‚
+' •ÛãŒÀiT_Settings!LOG_MAX_ROWSAŠù’è5000Œj‚ğ’´‚¦‚½ê‡AŒÃ‚¢s‚©‚çíœ‚·‚éB
 Public Sub TrimLogIfNeeded()
     Dim tbl As ListObject
     Set tbl = mod_Common.GetTableSafe(mod_Common.SH_LOG, mod_Common.TBL_LOG)
@@ -59,13 +59,13 @@ Public Sub TrimLogIfNeeded()
     Application.ScreenUpdating = False
     Dim i As Long
     For i = 1 To overflow
-        tbl.ListRows(1).Delete   ' å…ˆé ­ï¼ˆæœ€ã‚‚å¤ã„ï¼‰è¡Œã‚’å‰Šé™¤
+        tbl.ListRows(1).Delete   ' æ“ªiÅ‚àŒÃ‚¢js‚ğíœ
     Next i
     Application.ScreenUpdating = True
 End Sub
 
-' ãƒ­ã‚°ã‚’å…¨ä»¶ã‚¯ãƒªã‚¢ã™ã‚‹ï¼ˆã€Œãƒ­ã‚°ã€ç”»é¢ã®ã€Œãƒ­ã‚°ã‚¯ãƒªã‚¢ã€ãƒœã‚¿ãƒ³ã‹ã‚‰å‘¼ã³å‡ºã™ï¼‰ã€‚
-' å‘¼ã³å‡ºã—å…ƒï¼ˆmod_UIï¼‰ã§åˆ©ç”¨è€…ã¸ã®ç¢ºèªãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤ºã—ãŸå¾Œã«å®Ÿè¡Œã™ã‚‹ã“ã¨ã€‚
+' ƒƒO‚ğ‘SŒƒNƒŠƒA‚·‚éiuƒƒOv‰æ–Ê‚ÌuƒƒOƒNƒŠƒAvƒ{ƒ^ƒ“‚©‚çŒÄ‚Ño‚·jB
+' ŒÄ‚Ño‚µŒ³imod_UIj‚Å—˜—pÒ‚Ö‚ÌŠm”Fƒ_ƒCƒAƒƒO‚ğ•\¦‚µ‚½Œã‚ÉÀs‚·‚é‚±‚ÆB
 Public Sub ClearLog()
     Dim tbl As ListObject
     Set tbl = mod_Common.GetTableSafe(mod_Common.SH_LOG, mod_Common.TBL_LOG)
@@ -73,5 +73,5 @@ Public Sub ClearLog()
     If Not tbl.DataBodyRange Is Nothing Then
         tbl.DataBodyRange.Delete
     End If
-    WriteLog "INFO", "mod_Logging", "ClearLog", "ãƒ­ã‚°ã‚’å…¨ä»¶ã‚¯ãƒªã‚¢ã—ã¾ã—ãŸã€‚"
+    WriteLog "INFO", "mod_Logging", "ClearLog", "ƒƒO‚ğ‘SŒƒNƒŠƒA‚µ‚Ü‚µ‚½B"
 End Sub

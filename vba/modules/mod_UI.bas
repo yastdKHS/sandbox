@@ -2,26 +2,26 @@ Attribute VB_Name = "mod_UI"
 Option Explicit
 '==============================================================================
 ' mod_UI
-' ç›®çš„ : 6ç”»é¢ï¼ˆãƒ›ãƒ¼ãƒ ï¼ãƒ‡ãƒ¼ã‚¿å–è¾¼ï¼åˆ†æï¼è¨­å®šï¼ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ï¼ãƒ­ã‚°ï¼‰ã®
-'        ç”»é¢æ§‹ç¯‰ï¼ˆãƒ•ã‚©ãƒ¼ãƒ ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®ç”Ÿæˆï¼‰ã¨ã€ãƒœã‚¿ãƒ³ç­‰ã‹ã‚‰ã®
-'        ã‚¤ãƒ™ãƒ³ãƒˆæŒ¯ã‚Šåˆ†ã‘ã‚’æ‹…å½“ã™ã‚‹ã€‚
+' –Ú“I : 6‰æ–Êiƒz[ƒ€^ƒf[ƒ^æ^•ªÍ^İ’è^ƒf[ƒ^ƒx[ƒX^ƒƒOj‚Ì
+'        ‰æ–Ê\’ziƒtƒH[ƒ€ƒRƒ“ƒgƒ[ƒ‹‚Ì¶¬j‚ÆAƒ{ƒ^ƒ““™‚©‚ç‚Ì
+'        ƒCƒxƒ“ƒgU‚è•ª‚¯‚ğ’S“–‚·‚éB
 '
-' è¨­è¨ˆæ–¹é‡:
-'   ãƒ»ã™ã¹ã¦ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã¯ Excel æ¨™æº–ã®ã€Œãƒ•ã‚©ãƒ¼ãƒ ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã€
-'     ï¼ˆActiveXã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã§ã¯ãªã„ï¼‰ã‚’ä½¿ç”¨ã™ã‚‹ã€‚ActiveXã¯ç’°å¢ƒä¾å­˜ã®
-'     ä¸å…·åˆã‚„äº’æ›æ€§å•é¡ŒãŒç™ºç”Ÿã—ã‚„ã™ãã€10å¹´ä»¥ä¸Šã®é•·æœŸåˆ©ç”¨ã«é©ã•ãªã„ãŸã‚ã€‚
-'   ãƒ»ç”»é¢ã®ã‚»ãƒ«ä½ç½®ãƒ»ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«åã¯ mod_Common ã®å®šæ•°ã§ä¸€å…ƒç®¡ç†ã™ã‚‹ã€‚
-'   ãƒ»SetupAllSheets ã¯ãƒ–ãƒƒã‚¯æ§‹ç¯‰æ™‚ã ã‘ã§ãªãã€ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆãŒå´©ã‚ŒãŸå ´åˆã®
-'     ä¿®å¾©ç”¨ãƒã‚¯ãƒ­ã¨ã—ã¦ã‚‚å†å®Ÿè¡Œå¯èƒ½ï¼ˆã¹ãç­‰ï¼‰ã€‚
-'   ãƒ»æœ¬ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¯ã€Œè¡¨ç¤ºã€ã®ã¿ã‚’æ‹…å½“ã—ã€çµ±è¨ˆè¨ˆç®—ãƒ»ãƒ‡ãƒ¼ã‚¿åŠ å·¥ã¯è¡Œã‚ãªã„
-'     ï¼ˆmod_Statistics / mod_Analysis / mod_Database ç­‰ã«å§”è­²ã™ã‚‹ï¼‰ã€‚
+' İŒv•ûj:
+'   E‚·‚×‚Ä‚ÌƒRƒ“ƒgƒ[ƒ‹‚Í Excel •W€‚ÌuƒtƒH[ƒ€ƒRƒ“ƒgƒ[ƒ‹v
+'     iActiveXƒRƒ“ƒgƒ[ƒ‹‚Å‚Í‚È‚¢j‚ğg—p‚·‚éBActiveX‚ÍŠÂ‹«ˆË‘¶‚Ì
+'     •s‹ï‡‚âŒİŠ·«–â‘è‚ª”­¶‚µ‚â‚·‚­A10”NˆÈã‚Ì’·Šú—˜—p‚É“K‚³‚È‚¢‚½‚ßB
+'   E‰æ–Ê‚ÌƒZƒ‹ˆÊ’uEƒRƒ“ƒgƒ[ƒ‹–¼‚Í mod_Common ‚Ì’è”‚ÅˆêŒ³ŠÇ—‚·‚éB
+'   ESetupAllSheets ‚ÍƒuƒbƒN\’z‚¾‚¯‚Å‚È‚­AƒŒƒCƒAƒEƒg‚ª•ö‚ê‚½ê‡‚Ì
+'     C•œ—pƒ}ƒNƒ‚Æ‚µ‚Ä‚àÄÀs‰Â”\i‚×‚«“™jB
+'   E–{ƒ‚ƒWƒ…[ƒ‹‚Íu•\¦v‚Ì‚İ‚ğ’S“–‚µA“ŒvŒvZEƒf[ƒ^‰ÁH‚Ís‚í‚È‚¢
+'     imod_Statistics / mod_Analysis / mod_Database “™‚ÉˆÏ÷‚·‚éjB
 '==============================================================================
 
 '==============================================================================
-' ç”»é¢æ§‹ç¯‰ï¼ˆåˆæœŸã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãƒ»ä¿®å¾©ç”¨ï¼‰
+' ‰æ–Ê\’zi‰ŠúƒZƒbƒgƒAƒbƒvEC•œ—pj
 '==============================================================================
 
-' å…¨ç”»é¢ã‚’åˆæœŸæ§‹ç¯‰ã™ã‚‹ã€‚ãƒ“ãƒ«ãƒ‰æ™‚ã€ãŠã‚ˆã³ä¿å®ˆç›®çš„ã§ã®å†å®Ÿè¡Œï¼ˆä¿®å¾©ï¼‰ã«ä½¿ç”¨ã™ã‚‹ã€‚
+' ‘S‰æ–Ê‚ğ‰Šú\’z‚·‚éBƒrƒ‹ƒhA‚¨‚æ‚Ñ•Ûç–Ú“I‚Å‚ÌÄÀsiC•œj‚Ég—p‚·‚éB
 Public Sub SetupAllSheets()
     mod_Database.EnsureSchema
     SetupHomeSheet
@@ -40,18 +40,18 @@ Public Sub SetupHomeSheet()
     ws.Range("B2").Value = mod_Common.APP_NAME
     ws.Range("B2").Font.Bold = True
     ws.Range("B2").Font.Size = 16
-    ws.Range("B3").Value = "ãƒãƒ¼ã‚¸ãƒ§ãƒ³ " & mod_Common.APP_VERSION
+    ws.Range("B3").Value = "ƒo[ƒWƒ‡ƒ“ " & mod_Common.APP_VERSION
 
     AddButtonControl ws, mod_Common.HOME_BTN_IMPORT, mod_Common.HOME_RANGE_BTN_IMPORT, _
-        "â‘  ãƒ‡ãƒ¼ã‚¿å–è¾¼", "mod_UI.Btn_Home_GoImport"
+        "‡@ ƒf[ƒ^æ", "mod_UI.Btn_Home_GoImport"
     AddButtonControl ws, mod_Common.HOME_BTN_ANALYSIS, mod_Common.HOME_RANGE_BTN_ANALYSIS, _
-        "â‘¡ åˆ†æ", "mod_UI.Btn_Home_GoAnalysis"
+        "‡A •ªÍ", "mod_UI.Btn_Home_GoAnalysis"
     AddButtonControl ws, mod_Common.HOME_BTN_SETTINGS, mod_Common.HOME_RANGE_BTN_SETTINGS, _
-        "â‘¢ è¨­å®š", "mod_UI.Btn_Home_GoSettings"
+        "‡B İ’è", "mod_UI.Btn_Home_GoSettings"
     AddButtonControl ws, mod_Common.HOME_BTN_DATABASE, mod_Common.HOME_RANGE_BTN_DATABASE, _
-        "â‘£ ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹", "mod_UI.Btn_Home_GoDatabase"
+        "‡C ƒf[ƒ^ƒx[ƒX", "mod_UI.Btn_Home_GoDatabase"
     AddButtonControl ws, mod_Common.HOME_BTN_LOG, mod_Common.HOME_RANGE_BTN_LOG, _
-        "â‘¤ ãƒ­ã‚°", "mod_UI.Btn_Home_GoLog"
+        "‡D ƒƒO", "mod_UI.Btn_Home_GoLog"
 
     On Error Resume Next
     ws.Range(mod_Common.HOME_CELL_SUMMARY & ":J10").Merge
@@ -67,46 +67,46 @@ Public Sub SetupImportSheet()
     Dim ws As Worksheet
     Set ws = ThisWorkbook.Worksheets(mod_Common.SH_IMPORT)
 
-    ws.Range(mod_Common.IMP_CELL_TITLE).Value = "ãƒ‡ãƒ¼ã‚¿å–è¾¼"
+    ws.Range(mod_Common.IMP_CELL_TITLE).Value = "ƒf[ƒ^æ"
     ws.Range(mod_Common.IMP_CELL_TITLE).Font.Bold = True
     ws.Range(mod_Common.IMP_CELL_TITLE).Font.Size = 14
 
-    ws.Range("B4").Value = "â‘  ä¸‹ã®ãƒœã‚¿ãƒ³ã‹ã‚‰å¤–éƒ¨Excelãƒ•ã‚¡ã‚¤ãƒ«ã‚’é¸æŠã—ã¦ãã ã•ã„ã€‚"
+    ws.Range("B4").Value = "‡@ ‰º‚Ìƒ{ƒ^ƒ“‚©‚çŠO•”Excelƒtƒ@ƒCƒ‹‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B"
     AddButtonControl ws, mod_Common.IMP_BTN_SELECTFILE, mod_Common.IMP_RANGE_BTN_SELECTFILE, _
-        "ãƒ‡ãƒ¼ã‚¿å–è¾¼ã‚’é–‹å§‹", "mod_UI.Btn_Import_Start"
+        "ƒf[ƒ^æ‚ğŠJn", "mod_UI.Btn_Import_Start"
     On Error Resume Next
     ws.Range(mod_Common.IMP_CELL_FILEPATH & ":H5").Merge
     On Error GoTo 0
 
-    ws.Range("B7").Value = "â‘¡ ç·åˆæˆç¸¾ã‚·ãƒ¼ãƒˆã‚’ç¢ºèªã—ã¦ãã ã•ã„ï¼ˆå€™è£œãŒè‡ªå‹•é¸æŠã•ã‚Œã¾ã™ï¼‰ã€‚"
+    ws.Range("B7").Value = "‡A ‘‡¬ÑƒV[ƒg‚ğŠm”F‚µ‚Ä‚­‚¾‚³‚¢iŒó•â‚ª©“®‘I‘ğ‚³‚ê‚Ü‚·jB"
     AddListBoxControl ws, mod_Common.IMP_LISTBOX_SHEETS, mod_Common.IMP_RANGE_LISTBOX_SHEETS, False
-    ws.Range("G8").Value = "å¹´åº¦ï¼ˆå…ƒãƒ‡ãƒ¼ã‚¿ã«åˆ—ãŒç„¡ã„å ´åˆã®ã¿å…¥åŠ›ï¼‰"
+    ws.Range("G8").Value = "”N“xiŒ³ƒf[ƒ^‚É—ñ‚ª–³‚¢ê‡‚Ì‚İ“ü—Íj"
     On Error Resume Next
     ws.Range(mod_Common.IMP_CELL_YEAR_MANUAL & ":H9").Merge
     On Error GoTo 0
-    ws.Range("G10").Value = "ã‚¯ãƒ©ã‚¹ã‚³ãƒ¼ãƒ‰ï¼ˆå…ƒãƒ‡ãƒ¼ã‚¿ã«åˆ—ãŒç„¡ã„å ´åˆã®ã¿å…¥åŠ›ï¼‰"
+    ws.Range("G10").Value = "ƒNƒ‰ƒXƒR[ƒhiŒ³ƒf[ƒ^‚É—ñ‚ª–³‚¢ê‡‚Ì‚İ“ü—Íj"
     On Error Resume Next
     ws.Range(mod_Common.IMP_CELL_CLASS_MANUAL & ":H11").Merge
     On Error GoTo 0
     AddButtonControl ws, mod_Common.IMP_BTN_CONFIRMSHEET, mod_Common.IMP_RANGE_BTN_CONFIRMSHEET, _
-        "ã‚·ãƒ¼ãƒˆæ±ºå®š", "mod_UI.Btn_Import_ConfirmSheet"
+        "ƒV[ƒgŒˆ’è", "mod_UI.Btn_Import_ConfirmSheet"
 
-    ws.Range(mod_Common.IMP_CELL_MAPPING_HINT).Value = "â‘¢ è©•ä¾¡é …ç›®ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’ç¢ºèªãƒ»ä¿®æ­£ã—ã¦ãã ã•ã„ï¼ˆãƒ—ãƒ«ãƒ€ã‚¦ãƒ³ã§å¤‰æ›´ã§ãã¾ã™ï¼‰ã€‚"
+    ws.Range(mod_Common.IMP_CELL_MAPPING_HINT).Value = "‡B •]‰¿€–Ú‚Ìƒ}ƒbƒsƒ“ƒO‚ğŠm”FEC³‚µ‚Ä‚­‚¾‚³‚¢iƒvƒ‹ƒ_ƒEƒ“‚Å•ÏX‚Å‚«‚Ü‚·jB"
     ws.Columns("B").ColumnWidth = 22
     ws.Columns("C").ColumnWidth = 14
     ws.Columns("D").ColumnWidth = 22
     AddButtonControl ws, mod_Common.IMP_BTN_PROCEED_CONFIRM, mod_Common.IMP_RANGE_BTN_PROCEED_CONFIRM, _
-        "å†…å®¹ç¢ºèªã¸", "mod_UI.Btn_Import_ProceedConfirm"
+        "“à—eŠm”F‚Ö", "mod_UI.Btn_Import_ProceedConfirm"
     AddButtonControl ws, mod_Common.IMP_BTN_SAVETEMPLATE, mod_Common.IMP_RANGE_BTN_SAVETEMPLATE, _
-        "ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆä¿å­˜", "mod_UI.Btn_Import_SaveTemplate"
+        "ƒeƒ“ƒvƒŒ[ƒg•Û‘¶", "mod_UI.Btn_Import_SaveTemplate"
 
-    ws.Range("B52").Value = "â‘£ ç™»éŒ²å†…å®¹ã‚’ç¢ºèªã—ã€å•é¡Œãªã‘ã‚Œã°ã€Œç™»éŒ²ã€ã‚’æŠ¼ã—ã¦ãã ã•ã„ã€‚"
+    ws.Range("B52").Value = "‡C “o˜^“à—e‚ğŠm”F‚µA–â‘è‚È‚¯‚ê‚Îu“o˜^v‚ğ‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢B"
     AddCheckBoxControl ws, mod_Common.IMP_CHK_OVERWRITE, mod_Common.IMP_RANGE_CHK_OVERWRITE, _
-        "æ—¢å­˜ãƒ‡ãƒ¼ã‚¿ï¼ˆåŒä¸€å¹´åº¦ãƒ»ã‚¯ãƒ©ã‚¹ãƒ»å­¦ç”Ÿç•ªå·ãƒ»é …ç›®ï¼‰ã‚’ä¸Šæ›¸ãã™ã‚‹"
+        "Šù‘¶ƒf[ƒ^i“¯ˆê”N“xEƒNƒ‰ƒXEŠw¶”Ô†E€–Új‚ğã‘‚«‚·‚é"
     AddButtonControl ws, mod_Common.IMP_BTN_COMMIT, mod_Common.IMP_RANGE_BTN_COMMIT, _
-        "ç™»éŒ²", "mod_UI.Btn_Import_Commit"
+        "“o˜^", "mod_UI.Btn_Import_Commit"
     AddButtonControl ws, mod_Common.IMP_BTN_CANCEL, mod_Common.IMP_RANGE_BTN_CANCEL, _
-        "ã‚­ãƒ£ãƒ³ã‚»ãƒ«", "mod_UI.Btn_Import_Cancel"
+        "ƒLƒƒƒ“ƒZƒ‹", "mod_UI.Btn_Import_Cancel"
 
     ws.Columns(mod_Common.IMP_MAPPING_HELPER_COL).Hidden = True
 
@@ -118,46 +118,46 @@ Public Sub SetupAnalysisSheet()
     Dim ws As Worksheet
     Set ws = ThisWorkbook.Worksheets(mod_Common.SH_ANALYSIS)
 
-    ws.Range(mod_Common.ANL_CELL_TITLE).Value = "åˆ†æ"
+    ws.Range(mod_Common.ANL_CELL_TITLE).Value = "•ªÍ"
     ws.Range(mod_Common.ANL_CELL_TITLE).Font.Bold = True
     ws.Range(mod_Common.ANL_CELL_TITLE).Font.Size = 14
 
-    ws.Range("B4").Value = "å¹´åº¦ï¼ˆè¤‡æ•°é¸æŠå¯ï¼‰"
-    ws.Range("D4").Value = "ã‚¯ãƒ©ã‚¹ã‚³ãƒ¼ãƒ‰ï¼ˆè¤‡æ•°é¸æŠå¯ï¼‰"
-    ws.Range("F4").Value = "è©•ä¾¡é …ç›®ï¼ˆ1ã¤é¸æŠï¼‰"
+    ws.Range("B4").Value = "”N“xi•¡”‘I‘ğ‰Âj"
+    ws.Range("D4").Value = "ƒNƒ‰ƒXƒR[ƒhi•¡”‘I‘ğ‰Âj"
+    ws.Range("F4").Value = "•]‰¿€–Úi1‚Â‘I‘ğj"
     AddListBoxControl ws, mod_Common.ANL_LISTBOX_YEARS, mod_Common.ANL_RANGE_LISTBOX_YEARS, True
     AddListBoxControl ws, mod_Common.ANL_LISTBOX_CLASSES, mod_Common.ANL_RANGE_LISTBOX_CLASSES, True
     AddListBoxControl ws, mod_Common.ANL_LISTBOX_ITEM, mod_Common.ANL_RANGE_LISTBOX_ITEM, False
 
     AddCheckBoxControl ws, mod_Common.ANL_CHK_NORMAL, mod_Common.ANL_RANGE_CHK_NORMAL, _
-        "æ­£è¦åˆ†å¸ƒã‚’é‡ç•³è¡¨ç¤º", True
+        "³‹K•ª•z‚ğdô•\¦", True
     AddCheckBoxControl ws, mod_Common.ANL_CHK_OVERLAY, mod_Common.ANL_RANGE_CHK_OVERLAY, _
-        "è¤‡æ•°å¹´åº¦ã‚’é‡ç•³è¡¨ç¤º", True
+        "•¡””N“x‚ğdô•\¦", True
     AddOptionButtonControl ws, mod_Common.ANL_OPT_BINCOUNT, mod_Common.ANL_RANGE_OPT_BINCOUNT, _
-        "ãƒ“ãƒ³æ•°æŒ‡å®š", True
+        "ƒrƒ“”w’è", True
     AddOptionButtonControl ws, mod_Common.ANL_OPT_BINWIDTH, mod_Common.ANL_RANGE_OPT_BINWIDTH, _
-        "ãƒ“ãƒ³å¹…æŒ‡å®š", False
+        "ƒrƒ“•w’è", False
     ws.Range(mod_Common.ANL_CELL_BINCOUNT).Value = 10
     ws.Range(mod_Common.ANL_CELL_BINWIDTH).Value = 10
 
     AddButtonControl ws, mod_Common.ANL_BTN_RUN, mod_Common.ANL_RANGE_BTN_RUN, _
-        "åˆ†æå®Ÿè¡Œ", "mod_UI.Btn_Analysis_Run"
+        "•ªÍÀs", "mod_UI.Btn_Analysis_Run"
 
     EnsureChartObject ws, mod_Common.ANL_CHART_HIST, mod_Common.ANL_RANGE_CHART_HIST
     EnsureChartObject ws, mod_Common.ANL_CHART_CUM, mod_Common.ANL_RANGE_CHART_CUM
     EnsureChartObject ws, mod_Common.ANL_CHART_BOX, mod_Common.ANL_RANGE_CHART_BOX
 
-    ws.Range(mod_Common.ANL_STUDENTLIST_TITLE).Value = "å€‹äººåˆ¥ä¸€è¦§ï¼ˆåå·®å€¤ï¼‰"
+    ws.Range(mod_Common.ANL_STUDENTLIST_TITLE).Value = "ŒÂl•Êˆê——i•Î·’lj"
     Dim hdrRow As Long, colBase As Long
     hdrRow = mod_Common.ANL_STUDENTLIST_HEADER_ROW
     colBase = mod_Common.ANL_STUDENTLIST_COL
-    ws.Cells(hdrRow, colBase).Value = "å­¦ç”Ÿç•ªå·"
-    ws.Cells(hdrRow, colBase + 1).Value = "æ°å"
-    ws.Cells(hdrRow, colBase + 2).Value = "ç‚¹æ•°"
-    ws.Cells(hdrRow, colBase + 3).Value = "åå·®å€¤"
+    ws.Cells(hdrRow, colBase).Value = "Šw¶”Ô†"
+    ws.Cells(hdrRow, colBase + 1).Value = "–¼"
+    ws.Cells(hdrRow, colBase + 2).Value = "“_”"
+    ws.Cells(hdrRow, colBase + 3).Value = "•Î·’l"
     ws.Range(ws.Cells(hdrRow, colBase), ws.Cells(hdrRow, colBase + 3)).Font.Bold = True
 
-    ws.Range(mod_Common.ANL_STATS_START).Offset(-1, 0).Value = "åŸºæœ¬çµ±è¨ˆé‡"
+    ws.Range(mod_Common.ANL_STATS_START).Offset(-1, 0).Value = "Šî–{“Œv—Ê"
     ws.Range(mod_Common.ANL_STATS_START).Offset(-1, 0).Font.Bold = True
 
     RefreshAnalysisSelectionLists ws
@@ -168,19 +168,19 @@ Public Sub SetupSettingsSheet()
     Dim ws As Worksheet
     Set ws = ThisWorkbook.Worksheets(mod_Common.SH_SETTINGS)
 
-    ws.Range("B2").Value = "è¨­å®š"
+    ws.Range("B2").Value = "İ’è"
     ws.Range("B2").Font.Bold = True
     ws.Range("B2").Font.Size = 14
-    ws.Range("B3").Value = "è©•ä¾¡é …ç›®ã®è¡¨ç¤ºåãƒ»é‡ã¿(%)ã¯ä¸‹è¡¨ã®ã‚»ãƒ«ã‚’ç›´æ¥ç·¨é›†ã§ãã¾ã™ã€‚ç·¨é›†å¾Œã¯ã€Œåæ˜ ã€ã‚’æŠ¼ã—ã¦ãã ã•ã„ã€‚"
-    ws.Range("I3").Value = "è©³ç´°è¨­å®šï¼ˆã‚­ãƒ¼ã¨å€¤ã€‚é€šå¸¸ã¯å¤‰æ›´ä¸è¦ã§ã™ï¼‰"
+    ws.Range("B3").Value = "•]‰¿€–Ú‚Ì•\¦–¼Ed‚İ(%)‚Í‰º•\‚ÌƒZƒ‹‚ğ’¼Ú•ÒW‚Å‚«‚Ü‚·B•ÒWŒã‚Íu”½‰fv‚ğ‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢B"
+    ws.Range("I3").Value = "Ú×İ’èiƒL[‚Æ’lB’Êí‚Í•ÏX•s—v‚Å‚·j"
 
     AddButtonControl ws, mod_Common.SET_BTN_APPLY, mod_Common.SET_RANGE_BTN_APPLY, _
-        "åæ˜ ï¼ˆç·åˆè©•ä¾¡ã‚’å†è¨ˆç®—ï¼‰", "mod_UI.Btn_Settings_Apply"
+        "”½‰fi‘‡•]‰¿‚ğÄŒvZj", "mod_UI.Btn_Settings_Apply"
 
-    ws.Range("I12").Value = "ä¿å­˜æ¸ˆã¿ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ"
+    ws.Range("I12").Value = "•Û‘¶Ï‚İƒeƒ“ƒvƒŒ[ƒg"
     AddListBoxControl ws, mod_Common.SET_LISTBOX_TEMPLATES, mod_Common.SET_RANGE_LISTBOX_TEMPLATES, False
     AddButtonControl ws, mod_Common.SET_BTN_DELETETEMPLATE, mod_Common.SET_RANGE_BTN_DELETETEMPLATE, _
-        "é¸æŠã—ãŸãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’å‰Šé™¤", "mod_UI.Btn_Settings_DeleteTemplate"
+        "‘I‘ğ‚µ‚½ƒeƒ“ƒvƒŒ[ƒg‚ğíœ", "mod_UI.Btn_Settings_DeleteTemplate"
 
     CreateNavBar ws
     RefreshTemplateList ws
@@ -190,17 +190,17 @@ Public Sub SetupDatabaseSheet()
     Dim ws As Worksheet
     Set ws = ThisWorkbook.Worksheets(mod_Common.SH_DATABASE)
 
-    ws.Range("B2").Value = "ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹"
+    ws.Range("B2").Value = "ƒf[ƒ^ƒx[ƒX"
     ws.Range("B2").Font.Bold = True
     ws.Range("B2").Font.Size = 14
-    ws.Range("B3").Value = "å­¦ç”Ÿã”ã¨ã®ç·åˆè©•ä¾¡ä¸€è¦§ã§ã™ã€‚è¡¨ã®ã‚ªãƒ¼ãƒˆãƒ•ã‚£ãƒ«ã‚¿ã§å¹´åº¦ãƒ»ã‚¯ãƒ©ã‚¹ã‚’çµã‚Šè¾¼ã‚ã¾ã™ã€‚"
+    ws.Range("B3").Value = "Šw¶‚²‚Æ‚Ì‘‡•]‰¿ˆê——‚Å‚·B•\‚ÌƒI[ƒgƒtƒBƒ‹ƒ^‚Å”N“xEƒNƒ‰ƒX‚ği‚è‚ß‚Ü‚·B"
 
-    ws.Range(mod_Common.DB_CELL_DELETE_YEAR_LABEL).Value = "å¹´åº¦æŒ‡å®šï¼ˆå‰Šé™¤ç”¨ï¼‰"
-    ws.Range(mod_Common.DB_CELL_DELETE_CLASS_LABEL).Value = "ã‚¯ãƒ©ã‚¹ã‚³ãƒ¼ãƒ‰æŒ‡å®šï¼ˆå‰Šé™¤ç”¨ï¼‰"
+    ws.Range(mod_Common.DB_CELL_DELETE_YEAR_LABEL).Value = "”N“xw’èiíœ—pj"
+    ws.Range(mod_Common.DB_CELL_DELETE_CLASS_LABEL).Value = "ƒNƒ‰ƒXƒR[ƒhw’èiíœ—pj"
     AddButtonControl ws, mod_Common.DB_BTN_DELETE, mod_Common.DB_RANGE_BTN_DELETE, _
-        "æŒ‡å®šãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤", "mod_UI.Btn_Database_Delete"
+        "w’èƒf[ƒ^‚ğíœ", "mod_UI.Btn_Database_Delete"
     AddButtonControl ws, mod_Common.DB_BTN_REFRESH, mod_Common.DB_RANGE_BTN_REFRESH, _
-        "å†é›†è¨ˆãƒ»æ›´æ–°", "mod_UI.Btn_Database_Refresh"
+        "ÄWŒvEXV", "mod_UI.Btn_Database_Refresh"
 
     CreateNavBar ws
 End Sub
@@ -209,27 +209,27 @@ Public Sub SetupLogSheet()
     Dim ws As Worksheet
     Set ws = ThisWorkbook.Worksheets(mod_Common.SH_LOG)
 
-    ws.Range("B2").Value = "ãƒ­ã‚°"
+    ws.Range("B2").Value = "ƒƒO"
     ws.Range("B2").Font.Bold = True
     ws.Range("B2").Font.Size = 14
-    ws.Range("B3").Value = "æ“ä½œãƒ»ã‚¨ãƒ©ãƒ¼ã®å±¥æ­´ã§ã™ã€‚ä¿æŒä»¶æ•°ã®ä¸Šé™ã‚’è¶…ãˆã‚‹ã¨å¤ã„è¨˜éŒ²ã‹ã‚‰è‡ªå‹•çš„ã«å‰Šé™¤ã•ã‚Œã¾ã™ã€‚"
+    ws.Range("B3").Value = "‘€ìEƒGƒ‰[‚Ì—š—ğ‚Å‚·B•ÛŒ”‚ÌãŒÀ‚ğ’´‚¦‚é‚ÆŒÃ‚¢‹L˜^‚©‚ç©“®“I‚Éíœ‚³‚ê‚Ü‚·B"
 
     AddButtonControl ws, mod_Common.LOG_BTN_CLEAR, mod_Common.LOG_RANGE_BTN_CLEAR, _
-        "ãƒ­ã‚°ã‚’å…¨ä»¶ã‚¯ãƒªã‚¢", "mod_UI.Btn_Log_Clear"
+        "ƒƒO‚ğ‘SŒƒNƒŠƒA", "mod_UI.Btn_Log_Clear"
 
     CreateNavBar ws
 End Sub
 
 '==============================================================================
-' ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒ¼ï¼ˆå…¨ç”»é¢å…±é€šï¼‰
+' ƒiƒrƒQ[ƒVƒ‡ƒ“ƒo[i‘S‰æ–Ê‹¤’Êj
 '==============================================================================
 Public Sub CreateNavBar(ByVal ws As Worksheet)
-    AddButtonControl ws, mod_Common.NAV_BTN_HOME, mod_Common.NAV_RANGE_HOME, "ãƒ›ãƒ¼ãƒ ", "mod_UI.Nav_Home"
-    AddButtonControl ws, mod_Common.NAV_BTN_IMPORT, mod_Common.NAV_RANGE_IMPORT, "ãƒ‡ãƒ¼ã‚¿å–è¾¼", "mod_UI.Nav_Import"
-    AddButtonControl ws, mod_Common.NAV_BTN_ANALYSIS, mod_Common.NAV_RANGE_ANALYSIS, "åˆ†æ", "mod_UI.Nav_Analysis"
-    AddButtonControl ws, mod_Common.NAV_BTN_SETTINGS, mod_Common.NAV_RANGE_SETTINGS, "è¨­å®š", "mod_UI.Nav_Settings"
-    AddButtonControl ws, mod_Common.NAV_BTN_DATABASE, mod_Common.NAV_RANGE_DATABASE, "ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹", "mod_UI.Nav_Database"
-    AddButtonControl ws, mod_Common.NAV_BTN_LOG, mod_Common.NAV_RANGE_LOG, "ãƒ­ã‚°", "mod_UI.Nav_Log"
+    AddButtonControl ws, mod_Common.NAV_BTN_HOME, mod_Common.NAV_RANGE_HOME, "ƒz[ƒ€", "mod_UI.Nav_Home"
+    AddButtonControl ws, mod_Common.NAV_BTN_IMPORT, mod_Common.NAV_RANGE_IMPORT, "ƒf[ƒ^æ", "mod_UI.Nav_Import"
+    AddButtonControl ws, mod_Common.NAV_BTN_ANALYSIS, mod_Common.NAV_RANGE_ANALYSIS, "•ªÍ", "mod_UI.Nav_Analysis"
+    AddButtonControl ws, mod_Common.NAV_BTN_SETTINGS, mod_Common.NAV_RANGE_SETTINGS, "İ’è", "mod_UI.Nav_Settings"
+    AddButtonControl ws, mod_Common.NAV_BTN_DATABASE, mod_Common.NAV_RANGE_DATABASE, "ƒf[ƒ^ƒx[ƒX", "mod_UI.Nav_Database"
+    AddButtonControl ws, mod_Common.NAV_BTN_LOG, mod_Common.NAV_RANGE_LOG, "ƒƒO", "mod_UI.Nav_Log"
 End Sub
 
 Public Sub NavigateTo(ByVal sheetName As String)
@@ -255,7 +255,7 @@ Public Sub Nav_Database(): NavigateTo mod_Common.SH_DATABASE: End Sub
 Public Sub Nav_Log(): NavigateTo mod_Common.SH_LOG: End Sub
 
 '==============================================================================
-' ãƒ›ãƒ¼ãƒ ç”»é¢
+' ƒz[ƒ€‰æ–Ê
 '==============================================================================
 Public Sub Btn_Home_GoImport()
     NavigateTo mod_Common.SH_IMPORT
@@ -278,15 +278,15 @@ Public Sub RefreshHomeSummary()
     Set sumTbl = mod_Common.GetTableSafe(mod_Common.SH_DATABASE, mod_Common.TBL_SUMMARY)
 
     Dim msg As String
-    msg = "ç™»éŒ²å¹´åº¦æ•°: " & years.Count & vbCrLf & _
-          "ç™»éŒ²å­¦ç”Ÿï¼ˆå»¶ã¹ï¼‰ä»¶æ•°: " & mod_Common.TableRowCount(sumTbl) & vbCrLf & _
-          "è©•ä¾¡ç‚¹æ•°ãƒ¬ã‚³ãƒ¼ãƒ‰æ•°: " & mod_Common.TableRowCount(scoresTbl) & vbCrLf & vbCrLf & _
-          "ã€Œâ‘  ãƒ‡ãƒ¼ã‚¿å–è¾¼ã€ã‹ã‚‰å¤–éƒ¨Excelã‚’å–ã‚Šè¾¼ã¿ã€ã€Œâ‘¡ åˆ†æã€ã§å¹´åº¦ãƒ»ã‚¯ãƒ©ã‚¹ãƒ»è©•ä¾¡é …ç›®ã‚’é¸ã‚“ã§æ¯”è¼ƒã§ãã¾ã™ã€‚"
+    msg = "“o˜^”N“x”: " & years.Count & vbCrLf & _
+          "“o˜^Šw¶i‰„‚×jŒ”: " & mod_Common.TableRowCount(sumTbl) & vbCrLf & _
+          "•]‰¿“_”ƒŒƒR[ƒh”: " & mod_Common.TableRowCount(scoresTbl) & vbCrLf & vbCrLf & _
+          "u‡@ ƒf[ƒ^æv‚©‚çŠO•”Excel‚ğæ‚è‚İAu‡A •ªÍv‚Å”N“xEƒNƒ‰ƒXE•]‰¿€–Ú‚ğ‘I‚ñ‚Å”äŠr‚Å‚«‚Ü‚·B"
     ws.Range(mod_Common.HOME_CELL_SUMMARY).Value = msg
 End Sub
 
 '==============================================================================
-' ãƒ‡ãƒ¼ã‚¿å–è¾¼ç”»é¢ã®ãƒœã‚¿ãƒ³
+' ƒf[ƒ^æ‰æ–Ê‚Ìƒ{ƒ^ƒ“
 '==============================================================================
 Public Sub Btn_Import_Start(): mod_Import.StartImport: End Sub
 Public Sub Btn_Import_ConfirmSheet(): mod_Import.ConfirmSheetSelection: End Sub
@@ -295,7 +295,7 @@ Public Sub Btn_Import_Commit(): mod_Import.CommitImport: End Sub
 Public Sub Btn_Import_Cancel(): mod_Import.CancelImport: End Sub
 Public Sub Btn_Import_SaveTemplate(): mod_Import.SaveCurrentMappingAsTemplate: End Sub
 
-' ã‚¦ã‚£ã‚¶ãƒ¼ãƒ‰ã®è¡¨ç¤ºæ®µéšã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ã€‚0=æœªé–‹å§‹ 1=ã‚·ãƒ¼ãƒˆé¸æŠ 2=ãƒãƒƒãƒ”ãƒ³ã‚° 3=ç¢ºèªãƒ»ç™»éŒ²
+' ƒEƒBƒU[ƒh‚Ì•\¦’iŠK‚ğØ‚è‘Ö‚¦‚éB0=–¢ŠJn 1=ƒV[ƒg‘I‘ğ 2=ƒ}ƒbƒsƒ“ƒO 3=Šm”FE“o˜^
 Public Sub ShowImportStep(ByVal stepNo As Long)
     Dim ws As Worksheet
     Set ws = ThisWorkbook.Worksheets(mod_Common.SH_IMPORT)
@@ -346,17 +346,17 @@ Public Sub ResetImportSheet()
 
     ws.Range(mod_Common.IMP_CELL_CONFIRM_SUMMARY).ClearContents
     ShowImportStep 0
-    SetImportStatus "ã€Œãƒ‡ãƒ¼ã‚¿å–è¾¼ã‚’é–‹å§‹ã€ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ãã ã•ã„ã€‚"
+    SetImportStatus "uƒf[ƒ^æ‚ğŠJnvƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢B"
 End Sub
 
-' ãƒãƒƒãƒ”ãƒ³ã‚°è¡¨ï¼ˆè¦‹å‡ºã—ãƒ»ã‚µãƒ³ãƒ—ãƒ«å€¤ãƒ»ãƒãƒƒãƒ”ãƒ³ã‚°å…ˆãƒ‰ãƒ­ãƒƒãƒ—ãƒ€ã‚¦ãƒ³ï¼‰ã‚’æç”»ã™ã‚‹ã€‚
+' ƒ}ƒbƒsƒ“ƒO•\iŒ©o‚µEƒTƒ“ƒvƒ‹’lEƒ}ƒbƒsƒ“ƒOæƒhƒƒbƒvƒ_ƒEƒ“j‚ğ•`‰æ‚·‚éB
 Public Sub RenderImportMappingTable(ByRef headers() As String, ByRef samples() As String, _
                                      ByRef suggestions() As String, ByVal choices As Collection)
     Dim ws As Worksheet
     Set ws = ThisWorkbook.Worksheets(mod_Common.SH_IMPORT)
 
-    ' é¸æŠè‚¢ã¯ãƒ˜ãƒ«ãƒ‘ãƒ¼åˆ—ï¼ˆéè¡¨ç¤ºï¼‰ã¸æ›¸ãå‡ºã—ã€Data Validation ã®å‚ç…§ç¯„å›²ã¨ã™ã‚‹
-    ' ï¼ˆãƒªãƒ†ãƒ©ãƒ«æ–‡å­—åˆ—æŒ‡å®šã¯255æ–‡å­—åˆ¶é™ãŒã‚ã‚‹ãŸã‚ç¯„å›²å‚ç…§æ–¹å¼ã«ã—ã¦ã„ã‚‹ï¼‰ã€‚
+    ' ‘I‘ğˆ‚Íƒwƒ‹ƒp[—ñi”ñ•\¦j‚Ö‘‚«o‚µAData Validation ‚ÌQÆ”ÍˆÍ‚Æ‚·‚é
+    ' iƒŠƒeƒ‰ƒ‹•¶š—ñw’è‚Í255•¶š§ŒÀ‚ª‚ ‚é‚½‚ß”ÍˆÍQÆ•û®‚É‚µ‚Ä‚¢‚éjB
     Dim helperCol As Long
     helperCol = mod_Common.IMP_MAPPING_HELPER_COL
     ws.Columns(helperCol).ClearContents
@@ -367,9 +367,9 @@ Public Sub RenderImportMappingTable(ByRef headers() As String, ByRef samples() A
     Dim listFormula As String
     listFormula = "=$" & ColLetter(helperCol) & "$1:$" & ColLetter(helperCol) & "$" & Application.Max(choices.Count, 1)
 
-    ws.Cells(mod_Common.IMP_MAPPING_HEADER_ROW, mod_Common.IMP_MAPPING_COL_HEADER).Value = "å…ƒã®è¦‹å‡ºã—"
-    ws.Cells(mod_Common.IMP_MAPPING_HEADER_ROW, mod_Common.IMP_MAPPING_COL_SAMPLE).Value = "ã‚µãƒ³ãƒ—ãƒ«å€¤"
-    ws.Cells(mod_Common.IMP_MAPPING_HEADER_ROW, mod_Common.IMP_MAPPING_COL_TARGET).Value = "ãƒãƒƒãƒ”ãƒ³ã‚°å…ˆ"
+    ws.Cells(mod_Common.IMP_MAPPING_HEADER_ROW, mod_Common.IMP_MAPPING_COL_HEADER).Value = "Œ³‚ÌŒ©o‚µ"
+    ws.Cells(mod_Common.IMP_MAPPING_HEADER_ROW, mod_Common.IMP_MAPPING_COL_SAMPLE).Value = "ƒTƒ“ƒvƒ‹’l"
+    ws.Cells(mod_Common.IMP_MAPPING_HEADER_ROW, mod_Common.IMP_MAPPING_COL_TARGET).Value = "ƒ}ƒbƒsƒ“ƒOæ"
     ws.Range(ws.Cells(mod_Common.IMP_MAPPING_HEADER_ROW, mod_Common.IMP_MAPPING_COL_HEADER), _
              ws.Cells(mod_Common.IMP_MAPPING_HEADER_ROW, mod_Common.IMP_MAPPING_COL_TARGET)).Font.Bold = True
 
@@ -420,7 +420,7 @@ Public Function GetImportMappingSelections(ByVal colCount As Long) As Collection
 End Function
 
 '==============================================================================
-' åˆ†æç”»é¢
+' •ªÍ‰æ–Ê
 '==============================================================================
 Public Sub Btn_Analysis_Run(): mod_Analysis.RunAnalysis: End Sub
 
@@ -486,7 +486,7 @@ Public Sub RenderStudentDetailList(ByRef studentNos() As String, ByRef studentNa
     n = UBound(studentNos) - LBound(studentNos) + 1
     On Error GoTo 0
     If n = 0 Then Exit Sub
-    If n > maxRows Then n = maxRows   ' å¤§è¦æ¨¡ãƒ‡ãƒ¼ã‚¿ã§ã‚‚ç”»é¢ãŒè‚¥å¤§åŒ–ã—ãªã„ã‚ˆã†è¡¨ç¤ºä»¶æ•°ã‚’åˆ¶é™
+    If n > maxRows Then n = maxRows   ' ‘å‹K–Íƒf[ƒ^‚Å‚à‰æ–Ê‚ª”ì‘å‰»‚µ‚È‚¢‚æ‚¤•\¦Œ”‚ğ§ŒÀ
 
     Dim i As Long
     For i = 1 To n
@@ -498,11 +498,11 @@ Public Sub RenderStudentDetailList(ByRef studentNos() As String, ByRef studentNa
 End Sub
 
 '==============================================================================
-' è¨­å®šç”»é¢
+' İ’è‰æ–Ê
 '==============================================================================
 Public Sub Btn_Settings_Apply()
     mod_Settings.ApplyItemSettingsChanged
-    MsgBox "ç·åˆè©•ä¾¡ã‚’å†è¨ˆç®—ã—ã¾ã—ãŸã€‚", vbInformation, mod_Common.APP_NAME
+    MsgBox "‘‡•]‰¿‚ğÄŒvZ‚µ‚Ü‚µ‚½B", vbInformation, mod_Common.APP_NAME
 End Sub
 
 Public Sub Btn_Settings_DeleteTemplate()
@@ -511,10 +511,10 @@ Public Sub Btn_Settings_DeleteTemplate()
     Dim tplName As String
     tplName = GetFormListBoxSelection(ws, mod_Common.SET_LISTBOX_TEMPLATES)
     If Len(tplName) = 0 Then
-        MsgBox "å‰Šé™¤ã™ã‚‹ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’é¸æŠã—ã¦ãã ã•ã„ã€‚", vbExclamation, mod_Common.APP_NAME
+        MsgBox "íœ‚·‚éƒeƒ“ƒvƒŒ[ƒg‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, mod_Common.APP_NAME
         Exit Sub
     End If
-    If MsgBox("ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã€Œ" & tplName & "ã€ã‚’å‰Šé™¤ã—ã¾ã™ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbYesNo + vbExclamation, mod_Common.APP_NAME) = vbYes Then
+    If MsgBox("ƒeƒ“ƒvƒŒ[ƒgu" & tplName & "v‚ğíœ‚µ‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbYesNo + vbExclamation, mod_Common.APP_NAME) = vbYes Then
         mod_Settings.DeleteTemplate tplName
         RefreshTemplateList ws
     End If
@@ -525,13 +525,13 @@ Public Sub RefreshTemplateList(ByVal ws As Worksheet)
 End Sub
 
 '==============================================================================
-' ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ç”»é¢
+' ƒf[ƒ^ƒx[ƒX‰æ–Ê
 '==============================================================================
 Public Sub Btn_Database_Refresh()
     mod_Common.BeginBusy
     mod_Database.RecalcSummary
     mod_Common.EndBusy
-    MsgBox "ç·åˆè©•ä¾¡ã‚’å†é›†è¨ˆã—ã¾ã—ãŸã€‚", vbInformation, mod_Common.APP_NAME
+    MsgBox "‘‡•]‰¿‚ğÄWŒv‚µ‚Ü‚µ‚½B", vbInformation, mod_Common.APP_NAME
 End Sub
 
 Public Sub Btn_Database_Delete()
@@ -542,31 +542,31 @@ Public Sub Btn_Database_Delete()
     c = mod_Common.FormatClassCode(ws.Range(mod_Common.DB_CELL_DELETE_CLASS).Value)
 
     If Len(y) = 0 Or Len(c) = 0 Then
-        MsgBox "å‰Šé™¤ã™ã‚‹å¹´åº¦ã¨ã‚¯ãƒ©ã‚¹ã‚³ãƒ¼ãƒ‰ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation, mod_Common.APP_NAME
+        MsgBox "íœ‚·‚é”N“x‚ÆƒNƒ‰ƒXƒR[ƒh‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, mod_Common.APP_NAME
         Exit Sub
     End If
 
-    If MsgBox("å¹´åº¦=" & y & " ã‚¯ãƒ©ã‚¹=" & c & " ã®ãƒ‡ãƒ¼ã‚¿ã‚’å®Œå…¨ã«å‰Šé™¤ã—ã¾ã™ã€‚" & vbCrLf & _
-              "ã“ã®æ“ä½œã¯å…ƒã«æˆ»ã›ã¾ã›ã‚“ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbYesNo + vbExclamation, mod_Common.APP_NAME) = vbYes Then
+    If MsgBox("”N“x=" & y & " ƒNƒ‰ƒX=" & c & " ‚Ìƒf[ƒ^‚ğŠ®‘S‚Éíœ‚µ‚Ü‚·B" & vbCrLf & _
+              "‚±‚Ì‘€ì‚ÍŒ³‚É–ß‚¹‚Ü‚¹‚ñB‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbYesNo + vbExclamation, mod_Common.APP_NAME) = vbYes Then
         mod_Common.BeginBusy
         mod_Database.DeleteByYearClass y, c
         mod_Common.EndBusy
-        MsgBox "å‰Šé™¤ã—ã¾ã—ãŸã€‚", vbInformation, mod_Common.APP_NAME
+        MsgBox "íœ‚µ‚Ü‚µ‚½B", vbInformation, mod_Common.APP_NAME
     End If
 End Sub
 
 '==============================================================================
-' ãƒ­ã‚°ç”»é¢
+' ƒƒO‰æ–Ê
 '==============================================================================
 Public Sub Btn_Log_Clear()
-    If MsgBox("ãƒ­ã‚°ã‚’å…¨ä»¶å‰Šé™¤ã—ã¾ã™ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbYesNo + vbExclamation, mod_Common.APP_NAME) = vbYes Then
+    If MsgBox("ƒƒO‚ğ‘SŒíœ‚µ‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbYesNo + vbExclamation, mod_Common.APP_NAME) = vbYes Then
         mod_Logging.ClearLog
-        MsgBox "ãƒ­ã‚°ã‚’ã‚¯ãƒªã‚¢ã—ã¾ã—ãŸã€‚", vbInformation, mod_Common.APP_NAME
+        MsgBox "ƒƒO‚ğƒNƒŠƒA‚µ‚Ü‚µ‚½B", vbInformation, mod_Common.APP_NAME
     End If
 End Sub
 
 '==============================================================================
-' ãƒ•ã‚©ãƒ¼ãƒ ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«å…±é€šãƒ˜ãƒ«ãƒ‘ãƒ¼
+' ƒtƒH[ƒ€ƒRƒ“ƒgƒ[ƒ‹‹¤’Êƒwƒ‹ƒp[
 '==============================================================================
 
 Private Sub RemoveShapeIfExists(ByVal ws As Worksheet, ByVal name As String)
@@ -671,7 +671,7 @@ Public Function GetSelectedListItems(ByVal ws As Worksheet, ByVal name As String
     Set GetSelectedListItems = result
 End Function
 
-' ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã¸é¸æŠè‚¢ã‚’å†è¨­å®šã™ã‚‹ï¼ˆæ—¢å­˜é …ç›®ã¯ä¸€æ—¦ã™ã¹ã¦å‰Šé™¤ã—ã¦ã‹ã‚‰ç™»éŒ²ã—ç›´ã™ï¼‰ã€‚
+' ƒŠƒXƒgƒ{ƒbƒNƒX‚Ö‘I‘ğˆ‚ğÄİ’è‚·‚éiŠù‘¶€–Ú‚Íˆê’U‚·‚×‚Äíœ‚µ‚Ä‚©‚ç“o˜^‚µ’¼‚·jB
 Public Sub PopulateFormListBox(ByVal ws As Worksheet, ByVal name As String, ByVal items As Collection, _
                                 Optional ByVal selectedIndex As Long = 0)
     On Error Resume Next
@@ -703,7 +703,7 @@ Public Function GetOptionButtonValue(ByVal ws As Worksheet, ByVal name As String
 End Function
 
 '==============================================================================
-' è£œåŠ©
+' •â•
 '==============================================================================
 
 Private Function ColLetter(ByVal colIndex As Long) As String
@@ -718,7 +718,7 @@ Private Function NzNum(ByVal v As Variant, ByVal defaultVal As Double) As Double
     End If
 End Function
 
-' æ–‡å­—åˆ— Collection ã‚’æ˜‡é †ã‚½ãƒ¼ãƒˆã—ã¦è¿”ã™ï¼ˆå¹´åº¦ãƒ»ã‚¯ãƒ©ã‚¹ã‚³ãƒ¼ãƒ‰ã®é¸æŠè‚¢ã‚’è¦‹ã‚„ã™ãã™ã‚‹ãŸã‚ï¼‰ã€‚
+' •¶š—ñ Collection ‚ğ¸‡ƒ\[ƒg‚µ‚Ä•Ô‚·i”N“xEƒNƒ‰ƒXƒR[ƒh‚Ì‘I‘ğˆ‚ğŒ©‚â‚·‚­‚·‚é‚½‚ßjB
 Private Function SortStrings(ByVal src As Collection) As Collection
     Dim n As Long
     n = src.Count

@@ -2,30 +2,30 @@ Attribute VB_Name = "mod_Database"
 Option Explicit
 '==============================================================================
 ' mod_Database
-' ç›®çš„ : ãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯å†…éƒ¨ãƒ‡ãƒ¼ã‚¿ï¼ˆè©•ä¾¡ç‚¹æ•°ãƒ»é›†è¨ˆãƒ»ãƒã‚¹ã‚¿ï¼‰ã«å¯¾ã™ã‚‹
-'        ã‚¹ã‚­ãƒ¼ãƒåˆæœŸåŒ–ï¼ˆEnsureSchemaï¼‰ã¨ CRUD å‡¦ç†ã‚’æä¾›ã™ã‚‹ã€‚
+' –Ú“I : ƒ[ƒNƒuƒbƒN“à•”ƒf[ƒ^i•]‰¿“_”EWŒvEƒ}ƒXƒ^j‚É‘Î‚·‚é
+'        ƒXƒL[ƒ}‰Šú‰»iEnsureSchemaj‚Æ CRUD ˆ—‚ğ’ñ‹Ÿ‚·‚éB
 '
-' è¨˜æ†¶é ˜åŸŸã®è¨­è¨ˆæ–¹é‡:
-'   ãƒ»T_Scores    â€¦ ç¸¦æŒã¡ï¼ˆ1è¡Œ=1å­¦ç”ŸÃ—1è©•ä¾¡é …ç›®ï¼‰ã€‚éè¡¨ç¤ºã‚·ãƒ¼ãƒˆ D_Scoresã€‚
-'                    é …ç›®æ•°ãŒå¢—æ¸›ã—ã¦ã‚‚ãƒ†ãƒ¼ãƒ–ãƒ«æ§‹é€ ã®å¤‰æ›´ã¯ä¸è¦ã€‚
-'   ãƒ»T_Items     â€¦ è©•ä¾¡é …ç›®ãƒã‚¹ã‚¿ï¼ˆå†…éƒ¨åãƒ»è¡¨ç¤ºåãƒ»é‡ã¿ç­‰ï¼‰ã€‚ã€Œè¨­å®šã€ã‚·ãƒ¼ãƒˆã€‚
-'   ãƒ»T_Summary   â€¦ å­¦ç”Ÿã”ã¨ã®ç·åˆè©•ä¾¡ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã€‚ã€Œãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã€ã‚·ãƒ¼ãƒˆã€‚
-'                    T_Scores ã‹ã‚‰é‡ã¿ä»˜ãå¹³å‡ã‚’éƒ½åº¦å†è¨ˆç®—ã—ã¦æ›´æ–°ã™ã‚‹ã€‚
-'   ãƒ»T_Log       â€¦ æ“ä½œãƒ»ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ã€‚ã€Œãƒ­ã‚°ã€ã‚·ãƒ¼ãƒˆã€‚
-'   ãƒ»T_Settings  â€¦ ã‚­ãƒ¼ãƒ»ãƒãƒªãƒ¥ãƒ¼å½¢å¼ã®å„ç¨®è¨­å®šå€¤ã€‚ã€Œè¨­å®šã€ã‚·ãƒ¼ãƒˆã€‚
-'   ãƒ»T_Templates â€¦ åˆ—ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã€‚éè¡¨ç¤ºã‚·ãƒ¼ãƒˆ D_Templatesã€‚
+' ‹L‰¯—Ìˆæ‚ÌİŒv•ûj:
+'   ET_Scores    c c‚¿i1s=1Šw¶~1•]‰¿€–ÚjB”ñ•\¦ƒV[ƒg D_ScoresB
+'                    €–Ú”‚ª‘Œ¸‚µ‚Ä‚àƒe[ƒuƒ‹\‘¢‚Ì•ÏX‚Í•s—vB
+'   ET_Items     c •]‰¿€–Úƒ}ƒXƒ^i“à•”–¼E•\¦–¼Ed‚İ“™jBuİ’èvƒV[ƒgB
+'   ET_Summary   c Šw¶‚²‚Æ‚Ì‘‡•]‰¿ƒLƒƒƒbƒVƒ…Buƒf[ƒ^ƒx[ƒXvƒV[ƒgB
+'                    T_Scores ‚©‚çd‚İ•t‚«•½‹Ï‚ğ“s“xÄŒvZ‚µ‚ÄXV‚·‚éB
+'   ET_Log       c ‘€ìEƒGƒ‰[ƒƒOBuƒƒOvƒV[ƒgB
+'   ET_Settings  c ƒL[EƒoƒŠƒ…[Œ`®‚ÌŠeíİ’è’lBuİ’èvƒV[ƒgB
+'   ET_Templates c —ñƒ}ƒbƒsƒ“ƒOƒeƒ“ƒvƒŒ[ƒgB”ñ•\¦ƒV[ƒg D_TemplatesB
 '
-' ç·åˆè©•ä¾¡ã®ç®—å‡ºå¼:
-'   ç·åˆè©•ä¾¡ = Î£(ç‚¹æ•°i Ã— é‡ã¿i) / Î£(é‡ã¿i)   ï¼ˆãã®å­¦ç”ŸãŒä¿æœ‰ã™ã‚‹é …ç›®ã®ã¿å¯¾è±¡ï¼‰
-'   é‡ã¿ã¯ 0ã€œ100 ã®ç›¸å¯¾å€¤ã¨ã—ã¦æ‰±ã„ã€å¿…ãšã—ã‚‚åˆè¨ˆ100%ã§ã‚ã‚‹å¿…è¦ã¯ãªã„ã€‚
+' ‘‡•]‰¿‚ÌZo®:
+'   ‘‡•]‰¿ = ƒ°(“_”i ~ d‚İi) / ƒ°(d‚İi)   i‚»‚ÌŠw¶‚ª•Û—L‚·‚é€–Ú‚Ì‚İ‘ÎÛj
+'   d‚İ‚Í 0`100 ‚Ì‘Š‘Î’l‚Æ‚µ‚Äˆµ‚¢A•K‚¸‚µ‚à‡Œv100%‚Å‚ ‚é•K—v‚Í‚È‚¢B
 '==============================================================================
 
 '==============================================================================
-' ã‚¹ã‚­ãƒ¼ãƒåˆæœŸåŒ–
+' ƒXƒL[ƒ}‰Šú‰»
 '==============================================================================
 
-' å…¨ã‚·ãƒ¼ãƒˆãƒ»å…¨ãƒ†ãƒ¼ãƒ–ãƒ«ã®å­˜åœ¨ã‚’ç¢ºèªã—ã€ä¸è¶³ã—ã¦ã„ã‚Œã°ä½œæˆã™ã‚‹ï¼ˆã¹ãç­‰ï¼‰ã€‚
-' ãƒ–ãƒƒã‚¯èµ·å‹•æ™‚ï¼ˆWorkbook_Openï¼‰ãŠã‚ˆã³ä¿å®ˆç”¨ãƒã‚¯ãƒ­ã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã‚‹ã€‚
+' ‘SƒV[ƒgE‘Sƒe[ƒuƒ‹‚Ì‘¶İ‚ğŠm”F‚µA•s‘«‚µ‚Ä‚¢‚ê‚Îì¬‚·‚éi‚×‚«“™jB
+' ƒuƒbƒN‹N“®iWorkbook_Openj‚¨‚æ‚Ñ•Ûç—pƒ}ƒNƒ‚©‚çŒÄ‚Ño‚³‚ê‚éB
 Public Sub EnsureSchema()
     EnsureVisibleSheets
     EnsureHiddenSheets
@@ -63,7 +63,7 @@ Private Sub EnsureSheetExists(ByVal sheetName As String, ByVal visibility As XlS
     ws.Visible = visibility
 End Sub
 
-' æŒ‡å®šã‚·ãƒ¼ãƒˆä¸Šã«ãƒ†ãƒ¼ãƒ–ãƒ«ãŒç„¡ã‘ã‚Œã°ãƒ˜ãƒƒãƒ€ãƒ¼è¡Œä»˜ãã§æ–°è¦ä½œæˆã™ã‚‹ã€‚
+' w’èƒV[ƒgã‚Éƒe[ƒuƒ‹‚ª–³‚¯‚ê‚Îƒwƒbƒ_[s•t‚«‚ÅV‹Kì¬‚·‚éB
 Private Function EnsureTable(ByVal sheetName As String, ByVal tableName As String, _
                               ByVal headers As Variant, ByVal startCellAddr As String) As ListObject
     Dim ws As Worksheet
@@ -128,7 +128,7 @@ Private Sub EnsureTableTemplates()
               mod_Common.COL_TPL_MAPPING, mod_Common.COL_TPL_SAVEDAT), "A1"
 End Sub
 
-' åˆå›èµ·å‹•æ™‚ã®ã¿æ—¢å®šå€¤ã‚’æŠ•å…¥ã™ã‚‹ï¼ˆæ—¢ã«å€¤ãŒã‚ã‚Œã°ä¸Šæ›¸ãã—ãªã„ï¼‰ã€‚
+' ‰‰ñ‹N“®‚Ì‚İŠù’è’l‚ğ“Š“ü‚·‚éiŠù‚É’l‚ª‚ ‚ê‚Îã‘‚«‚µ‚È‚¢jB
 Private Sub EnsureDefaultSettings()
     SetIfMissing mod_Common.SETKEY_HIST_BIN_MODE, "COUNT"
     SetIfMissing mod_Common.SETKEY_HIST_BIN_COUNT, "10"
@@ -152,12 +152,12 @@ Private Sub SetIfMissing(ByVal key As String, ByVal value As String)
 End Sub
 
 '==============================================================================
-' T_Scores æ“ä½œ
+' T_Scores ‘€ì
 '==============================================================================
 
-' é‡è¤‡åˆ¤å®šç”¨ã®ã‚­ãƒ¼é›†åˆï¼ˆå¹´åº¦|ã‚¯ãƒ©ã‚¹|å­¦ç”Ÿç•ªå·|é …ç›®ã‚³ãƒ¼ãƒ‰ï¼‰ã‚’æ§‹ç¯‰ã™ã‚‹ã€‚
-' ã‚¤ãƒ³ãƒãƒ¼ãƒˆæ™‚ã«1è¡Œãšã¤ãƒ†ãƒ¼ãƒ–ãƒ«å…¨ä½“ã‚’èµ°æŸ»ã™ã‚‹ã¨ä»¶æ•°å¢—åŠ ã§ä½é€ŸåŒ–ã™ã‚‹ãŸã‚ã€
-' äº‹å‰ã« Collection ã¸ã‚­ãƒ¼ã‚’èª­ã¿è¾¼ã¿ O(1) åˆ¤å®šã«ã™ã‚‹ã€‚
+' d•¡”»’è—p‚ÌƒL[W‡i”N“x|ƒNƒ‰ƒX|Šw¶”Ô†|€–ÚƒR[ƒhj‚ğ\’z‚·‚éB
+' ƒCƒ“ƒ|[ƒg‚É1s‚¸‚Âƒe[ƒuƒ‹‘S‘Ì‚ğ‘–¸‚·‚é‚ÆŒ”‘‰Á‚Å’á‘¬‰»‚·‚é‚½‚ßA
+' –‘O‚É Collection ‚ÖƒL[‚ğ“Ç‚İ‚İ O(1) ”»’è‚É‚·‚éB
 Public Function BuildScoreKeyIndex() As Collection
     Dim idx As New Collection
     Dim tbl As ListObject
@@ -166,7 +166,7 @@ Public Function BuildScoreKeyIndex() As Collection
     If tbl.DataBodyRange Is Nothing Then GoTo Done
 
     Dim data As Variant
-    data = tbl.DataBodyRange.Value  ' 1å›ã®èª­ã¿è¾¼ã¿ã§é…åˆ—åŒ–ï¼ˆé«˜é€ŸåŒ–ï¼‰
+    data = tbl.DataBodyRange.Value  ' 1‰ñ‚Ì“Ç‚İ‚İ‚Å”z—ñ‰»i‚‘¬‰»j
     Dim cYear As Long, cClass As Long, cStudent As Long, cItem As Long
     cYear = tbl.ListColumns(mod_Common.COL_YEAR).Index
     cClass = tbl.ListColumns(mod_Common.COL_CLASSCODE).Index
@@ -186,8 +186,8 @@ Done:
     Set BuildScoreKeyIndex = idx
 End Function
 
-' BuildScoreKeyIndex ã¨åŒæ§˜ã ãŒã€å€¤ã®ä»£ã‚ã‚Šã« ListRow å‚ç…§ã‚’ä¿æŒã™ã‚‹ã€‚
-' ä¸Šæ›¸ãå–è¾¼ï¼ˆæ—¢å­˜ãƒ‡ãƒ¼ã‚¿ã®ç‚¹æ•°ã‚’ç›´æ¥æ›´æ–°ã™ã‚‹ãƒ¢ãƒ¼ãƒ‰ï¼‰ã§ä½¿ç”¨ã™ã‚‹ã€‚
+' BuildScoreKeyIndex ‚Æ“¯—l‚¾‚ªA’l‚Ì‘ã‚í‚è‚É ListRow QÆ‚ğ•Û‚·‚éB
+' ã‘‚«æiŠù‘¶ƒf[ƒ^‚Ì“_”‚ğ’¼ÚXV‚·‚éƒ‚[ƒhj‚Åg—p‚·‚éB
 Public Function BuildScoreRowIndex() As Collection
     Dim idx As New Collection
     Dim tbl As ListObject
@@ -216,16 +216,16 @@ Done:
     Set BuildScoreRowIndex = idx
 End Function
 
-' æ—¢å­˜ã®1è¡Œï¼ˆListRowï¼‰ã®ç‚¹æ•°ã‚’æ›´æ–°ã™ã‚‹ï¼ˆä¸Šæ›¸ãå–è¾¼ã§ä½¿ç”¨ï¼‰ã€‚
+' Šù‘¶‚Ì1siListRowj‚Ì“_”‚ğXV‚·‚éiã‘‚«æ‚Åg—pjB
 Public Sub UpdateScoreValue(ByVal row As ListRow, ByVal newScore As Double)
     Dim tbl As ListObject
     Set tbl = row.Parent
     row.Range(1, tbl.ListColumns(mod_Common.COL_SCORE).Index).Value = newScore
 End Sub
 
-' è©•ä¾¡ç‚¹æ•°ãƒ‡ãƒ¼ã‚¿ã‚’ä¸€æ‹¬è¿½åŠ ã™ã‚‹ã€‚rows ã¯ 1è¡Œã‚ãŸã‚Š
-' (å¹´åº¦, ã‚¯ãƒ©ã‚¹ã‚³ãƒ¼ãƒ‰, å­¦ç”Ÿç•ªå·, æ°å, é …ç›®ã‚³ãƒ¼ãƒ‰, ç‚¹æ•°) ã®é…åˆ—ã€‚
-' äº‹å‰ã«ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã‚’ä½¿ã‚ãšé…åˆ—æ“ä½œã§æ›¸ãè¾¼ã‚€ã“ã¨ã§å¤§é‡ãƒ‡ãƒ¼ã‚¿ã§ã‚‚é«˜é€Ÿã€‚
+' •]‰¿“_”ƒf[ƒ^‚ğˆêŠ‡’Ç‰Á‚·‚éBrows ‚Í 1s‚ ‚½‚è
+' (”N“x, ƒNƒ‰ƒXƒR[ƒh, Šw¶”Ô†, –¼, €–ÚƒR[ƒh, “_”) ‚Ì”z—ñB
+' –‘O‚Éƒ[ƒNƒV[ƒgŠÖ”‚ğg‚í‚¸”z—ñ‘€ì‚Å‘‚«‚Ş‚±‚Æ‚Å‘å—Êƒf[ƒ^‚Å‚à‚‘¬B
 Public Sub AppendScoreRows(ByVal rows As Collection)
     If rows.Count = 0 Then Exit Sub
 
@@ -261,11 +261,11 @@ Public Sub AppendScoreRows(ByVal rows As Collection)
 End Sub
 
 '==============================================================================
-' T_Summary æ“ä½œï¼ˆç·åˆè©•ä¾¡ã®å†è¨ˆç®—ï¼‰
+' T_Summary ‘€ìi‘‡•]‰¿‚ÌÄŒvZj
 '==============================================================================
 
-' T_Scores Ã— T_Items(é‡ã¿) ã‹ã‚‰ç·åˆè©•ä¾¡ã‚’å†è¨ˆç®—ã—ã€T_Summary ã‚’æ›´æ–°ã™ã‚‹ã€‚
-' year / classCode ã‚’æŒ‡å®šã™ã‚‹ã¨å¯¾è±¡ã‚’çµã‚Šè¾¼ã¿ã€çœç•¥æ™‚ã¯å…¨ä»¶å†è¨ˆç®—ã™ã‚‹ã€‚
+' T_Scores ~ T_Items(d‚İ) ‚©‚ç‘‡•]‰¿‚ğÄŒvZ‚µAT_Summary ‚ğXV‚·‚éB
+' year / classCode ‚ğw’è‚·‚é‚Æ‘ÎÛ‚ği‚è‚İAÈ—ª‚Í‘SŒÄŒvZ‚·‚éB
 Public Sub RecalcSummary(Optional ByVal year As Variant, Optional ByVal classCode As Variant)
     Dim scoresTbl As ListObject, itemsTbl As ListObject, sumTbl As ListObject
     Set scoresTbl = mod_Common.GetTableSafe(mod_Common.SH_D_SCORES, mod_Common.TBL_SCORES)
@@ -274,7 +274,7 @@ Public Sub RecalcSummary(Optional ByVal year As Variant, Optional ByVal classCod
     If scoresTbl Is Nothing Or sumTbl Is Nothing Then Exit Sub
     If scoresTbl.DataBodyRange Is Nothing Then Exit Sub
 
-    ' é …ç›®ã‚³ãƒ¼ãƒ‰â†’é‡ã¿ ã®å¯¾å¿œè¡¨ã‚’ Collection ã§æ§‹ç¯‰
+    ' €–ÚƒR[ƒh¨d‚İ ‚Ì‘Î‰•\‚ğ Collection ‚Å\’z
     Dim weightIdx As New Collection
     If Not itemsTbl Is Nothing Then
         If Not itemsTbl.DataBodyRange Is Nothing Then
@@ -298,7 +298,7 @@ Public Sub RecalcSummary(Optional ByVal year As Variant, Optional ByVal classCod
     cItem = scoresTbl.ListColumns(mod_Common.COL_ITEMCODE).Index
     cScore = scoresTbl.ListColumns(mod_Common.COL_SCORE).Index
 
-    ' å­¦ç”Ÿã‚­ãƒ¼ â†’ (æ°å, åŠ é‡åˆè¨ˆ, é‡ã¿åˆè¨ˆ) ã‚’é›†è¨ˆ
+    ' Šw¶ƒL[ ¨ (–¼, ‰Ád‡Œv, d‚İ‡Œv) ‚ğWŒv
     Dim names As New Collection, wsum As New Collection, ssum As New Collection, keys As New Collection
     Dim i As Long, key As String, w As Double
     For i = 1 To UBound(data, 1)
@@ -330,7 +330,7 @@ Public Sub RecalcSummary(Optional ByVal year As Variant, Optional ByVal classCod
 ContinueLoop:
     Next i
 
-    ' T_Summary ã¸ Upsert
+    ' T_Summary ‚Ö Upsert
     Dim k As Variant
     For Each k In keys
         Dim parts() As String
@@ -345,7 +345,7 @@ ContinueLoop:
     Next k
 End Sub
 
-' Collection ã¯å€¤ã®ç›´æ¥æ›´æ–°ãŒã§ããªã„ãŸã‚ã€å‰Šé™¤â†’å†è¿½åŠ ã§ç´¯ç©åŠ ç®—ã‚’æ¨¡å€£ã™ã‚‹ã€‚
+' Collection ‚Í’l‚Ì’¼ÚXV‚ª‚Å‚«‚È‚¢‚½‚ßAíœ¨Ä’Ç‰Á‚Å—İÏ‰ÁZ‚ğ–Í•í‚·‚éB
 Private Sub ReplaceAccum(ByRef col As Collection, ByVal key As String, ByVal addValue As Double)
     Dim cur As Double
     cur = col.Item(key)
@@ -353,7 +353,7 @@ Private Sub ReplaceAccum(ByRef col As Collection, ByVal key As String, ByVal add
     col.Add cur + addValue, key
 End Sub
 
-' T_Summary ã«1ä»¶ Upsert ã™ã‚‹ã€‚
+' T_Summary ‚É1Œ Upsert ‚·‚éB
 Private Sub UpsertSummaryRow(ByVal year As String, ByVal classCode As String, ByVal studentNo As String, _
                               ByVal studentName As String, ByVal total As Double)
     Dim tbl As ListObject
@@ -385,7 +385,7 @@ Private Sub UpsertSummaryRow(ByVal year As String, ByVal classCode As String, By
 End Sub
 
 '==============================================================================
-' å‚ç…§ç³»ï¼ˆåˆ†æç”»é¢ã®é¸æŠè‚¢ç”Ÿæˆã«ä½¿ç”¨ï¼‰
+' QÆŒni•ªÍ‰æ–Ê‚Ì‘I‘ğˆ¶¬‚Ég—pj
 '==============================================================================
 
 Public Function GetDistinctYears() As Collection
@@ -455,11 +455,11 @@ Done:
 End Function
 
 '==============================================================================
-' å®¹é‡å¯¾ç­–ï¼ˆç®¡ç†è€…å‘ã‘ï¼‰
+' —e—Ê‘ÎôiŠÇ—ÒŒü‚¯j
 '==============================================================================
 
-' æŒ‡å®šã—ãŸå¹´åº¦ãƒ»ã‚¯ãƒ©ã‚¹ã‚³ãƒ¼ãƒ‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’å®Œå…¨ã«å‰Šé™¤ã™ã‚‹ï¼ˆç®¡ç†è€…æ©Ÿèƒ½ï¼‰ã€‚
-' èª¤æ“ä½œé˜²æ­¢ã®ãŸã‚å‘¼ã³å‡ºã—å…ƒï¼ˆmod_UIï¼‰ã§ç¢ºèªãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤ºã™ã‚‹ã“ã¨ã€‚
+' w’è‚µ‚½”N“xEƒNƒ‰ƒXƒR[ƒh‚Ìƒf[ƒ^‚ğŠ®‘S‚Éíœ‚·‚éiŠÇ—Ò‹@”\jB
+' Œë‘€ì–h~‚Ì‚½‚ßŒÄ‚Ño‚µŒ³imod_UIj‚ÅŠm”Fƒ_ƒCƒAƒƒO‚ğ•\¦‚·‚é‚±‚ÆB
 Public Sub DeleteByYearClass(ByVal year As String, ByVal classCode As String)
     Dim tbl As ListObject
     Set tbl = mod_Common.GetTableSafe(mod_Common.SH_D_SCORES, mod_Common.TBL_SCORES)
@@ -482,7 +482,7 @@ Public Sub DeleteByYearClass(ByVal year As String, ByVal classCode As String)
 
     DeleteSummaryByYearClass year, classCode
     mod_Logging.WriteLog "INFO", "mod_Database", "DeleteByYearClass", _
-        "ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ã—ã¾ã—ãŸã€‚å¹´åº¦=" & year & " ã‚¯ãƒ©ã‚¹=" & classCode & " ä»¶æ•°=" & deletedCount
+        "ƒf[ƒ^‚ğíœ‚µ‚Ü‚µ‚½B”N“x=" & year & " ƒNƒ‰ƒX=" & classCode & " Œ”=" & deletedCount
 End Sub
 
 Private Sub DeleteSummaryByYearClass(ByVal year As String, ByVal classCode As String)
