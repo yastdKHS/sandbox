@@ -23,6 +23,7 @@ Option Explicit
 
 ' 全画面を初期構築する。ビルド時、および保守目的での再実行（修復）に使用する。
 Public Sub SetupAllSheets()
+    mod_Common.BeginBusy
     mod_Database.EnsureSchema
     SetupHomeSheet
     SetupImportSheet
@@ -31,11 +32,13 @@ Public Sub SetupAllSheets()
     SetupDatabaseSheet
     SetupLogSheet
     ThisWorkbook.Worksheets(mod_Common.SH_HOME).Activate
+    mod_Common.EndBusy
 End Sub
 
 Public Sub SetupHomeSheet()
     Dim ws As Worksheet
     Set ws = ThisWorkbook.Worksheets(mod_Common.SH_HOME)
+    ws.Activate
 
     ws.Range("B2").Value = mod_Common.APP_NAME
     ws.Range("B2").Font.Bold = True
@@ -66,6 +69,7 @@ End Sub
 Public Sub SetupImportSheet()
     Dim ws As Worksheet
     Set ws = ThisWorkbook.Worksheets(mod_Common.SH_IMPORT)
+    ws.Activate
 
     ws.Range(mod_Common.IMP_CELL_TITLE).Value = "データ取込"
     ws.Range(mod_Common.IMP_CELL_TITLE).Font.Bold = True
@@ -117,6 +121,7 @@ End Sub
 Public Sub SetupAnalysisSheet()
     Dim ws As Worksheet
     Set ws = ThisWorkbook.Worksheets(mod_Common.SH_ANALYSIS)
+    ws.Activate
 
     ws.Range(mod_Common.ANL_CELL_TITLE).Value = "分析"
     ws.Range(mod_Common.ANL_CELL_TITLE).Font.Bold = True
@@ -167,6 +172,7 @@ End Sub
 Public Sub SetupSettingsSheet()
     Dim ws As Worksheet
     Set ws = ThisWorkbook.Worksheets(mod_Common.SH_SETTINGS)
+    ws.Activate
 
     ws.Range("B2").Value = "設定"
     ws.Range("B2").Font.Bold = True
@@ -189,6 +195,7 @@ End Sub
 Public Sub SetupDatabaseSheet()
     Dim ws As Worksheet
     Set ws = ThisWorkbook.Worksheets(mod_Common.SH_DATABASE)
+    ws.Activate
 
     ws.Range("B2").Value = "データベース"
     ws.Range("B2").Font.Bold = True
@@ -208,6 +215,7 @@ End Sub
 Public Sub SetupLogSheet()
     Dim ws As Worksheet
     Set ws = ThisWorkbook.Worksheets(mod_Common.SH_LOG)
+    ws.Activate
 
     ws.Range("B2").Value = "ログ"
     ws.Range("B2").Font.Bold = True
@@ -590,7 +598,7 @@ Public Function AddButtonControl(ByVal ws As Worksheet, ByVal name As String, By
                                   ByVal caption As String, ByVal onAction As String) As Shape
     Dim shp As Shape
     Set shp = AddControlByRange(ws, xlButtonControl, name, rangeAddr)
-    shp.TextFrame.Characters.Text = caption
+    shp.TextFrame2.TextRange.Text = caption
     shp.OnAction = onAction
     Set AddButtonControl = shp
 End Function
@@ -607,7 +615,7 @@ Public Function AddCheckBoxControl(ByVal ws As Worksheet, ByVal name As String, 
                                     ByVal caption As String, Optional ByVal initialValue As Boolean = False) As Shape
     Dim shp As Shape
     Set shp = AddControlByRange(ws, xlCheckBox, name, rangeAddr)
-    shp.TextFrame.Characters.Text = caption
+    shp.TextFrame2.TextRange.Text = caption
     shp.ControlFormat.Value = IIf(initialValue, xlOn, xlOff)
     Set AddCheckBoxControl = shp
 End Function
@@ -616,7 +624,7 @@ Public Function AddOptionButtonControl(ByVal ws As Worksheet, ByVal name As Stri
                                         ByVal caption As String, Optional ByVal initialValue As Boolean = False) As Shape
     Dim shp As Shape
     Set shp = AddControlByRange(ws, xlOptionButton, name, rangeAddr)
-    shp.TextFrame.Characters.Text = caption
+    shp.TextFrame2.TextRange.Text = caption
     shp.ControlFormat.Value = IIf(initialValue, xlOn, xlOff)
     Set AddOptionButtonControl = shp
 End Function
