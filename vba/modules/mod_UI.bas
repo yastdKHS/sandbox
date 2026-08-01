@@ -24,10 +24,12 @@ Option Explicit
 ' 全画面を初期構築する。ビルド時、および保守目的での再実行（修復）に使用する。
 Public Sub SetupAllSheets()
     ' 画面構築中は Application.ScreenUpdating を False にしない。
-    ' Range.Merge 直後に同じセルへ ClearContents 等を行う処理が
-    ' SetupImportSheet/SetupHomeSheet にあり、ScreenUpdating=False の
-    ' 状態ではこの組み合わせが実行時エラー1004を起こすことがある
-    ' （実機で確認済みの既知の相性問題）。
+    ' セル結合（Range.Merge）は本モジュールでは一切使用しない方針とした。
+    ' プログラムからのセル結合は、直後に同じセルへ ClearContents や
+    ' Value代入などの操作を行うと実行時エラー1004を起こすことがあり
+    ' （実機で複数回確認済み）、ScreenUpdatingの状態にも左右されず
+    ' 不安定であるため、複数セルにまたがる表示が必要な箇所は
+    ' 列幅を広げ、空白の隣接セルへ自然にはみ出させる方式に統一している。
     On Error GoTo ErrHandler
     Application.DisplayAlerts = False
     Application.EnableEvents = False
@@ -72,9 +74,7 @@ Public Sub SetupHomeSheet()
     AddButtonControl ws, mod_Common.HOME_BTN_LOG, mod_Common.HOME_RANGE_BTN_LOG, _
         "⑤ ログ", "mod_UI.Btn_Home_GoLog"
 
-    On Error Resume Next
-    ws.Range(mod_Common.HOME_CELL_SUMMARY & ":J10").Merge
-    On Error GoTo 0
+    ws.Columns("F").ColumnWidth = 60
     ws.Range(mod_Common.HOME_CELL_SUMMARY).WrapText = True
     ws.Range(mod_Common.HOME_CELL_SUMMARY).VerticalAlignment = xlTop
 
@@ -94,20 +94,10 @@ Public Sub SetupImportSheet()
     ws.Range("B4").Value = "① 下のボタンから外部Excelファイルを選択してください。"
     AddButtonControl ws, mod_Common.IMP_BTN_SELECTFILE, mod_Common.IMP_RANGE_BTN_SELECTFILE, _
         "データ取込を開始", "mod_UI.Btn_Import_Start"
-    On Error Resume Next
-    ws.Range(mod_Common.IMP_CELL_FILEPATH & ":H5").Merge
-    On Error GoTo 0
-
     ws.Range("B7").Value = "② 総合成績シートを確認してください（候補が自動選択されます）。"
     AddListBoxControl ws, mod_Common.IMP_LISTBOX_SHEETS, mod_Common.IMP_RANGE_LISTBOX_SHEETS, False
     ws.Range("G8").Value = "年度（元データに列が無い場合のみ入力）"
-    On Error Resume Next
-    ws.Range(mod_Common.IMP_CELL_YEAR_MANUAL & ":H9").Merge
-    On Error GoTo 0
     ws.Range("G10").Value = "クラスコード（元データに列が無い場合のみ入力）"
-    On Error Resume Next
-    ws.Range(mod_Common.IMP_CELL_CLASS_MANUAL & ":H11").Merge
-    On Error GoTo 0
     AddButtonControl ws, mod_Common.IMP_BTN_CONFIRMSHEET, mod_Common.IMP_RANGE_BTN_CONFIRMSHEET, _
         "シート決定", "mod_UI.Btn_Import_ConfirmSheet"
 
