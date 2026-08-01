@@ -2,17 +2,17 @@ Attribute VB_Name = "mod_Import"
 Option Explicit
 '==============================================================================
 ' mod_Import
-' 目的 : 「データ取込」画面のウィザード処理（①～⑨）を担当する。
+' 目的 : 「データ取込」画面のウィザード処理（(1)～(9)）を担当する。
 '
-'   ① 外部Excelを選択        → StartImport
-'   ② シート一覧を取得        → StartImport 内
-'   ③ 総合成績シートを自動候補表示 → DetectSummarySheet
-'   ④ 認識できない場合のみ利用者が選択 → シート一覧リストボックス（常時表示）
-'   ⑤ 見出しを自動解析        → DetectHeaderRow / ParseHeaders
-'   ⑥ 評価項目を候補表示       → BuildMappingSuggestions / RenderMappingTable
-'   ⑦ 必要に応じて利用者が修正   → マッピング表のドロップダウンを直接編集
-'   ⑧ インポート内容確認       → ProceedToConfirm
-'   ⑨ 登録                  → CommitImport
+'   (1) 外部Excelを選択        → StartImport
+'   (2) シート一覧を取得        → StartImport 内
+'   (3) 総合成績シートを自動候補表示 → DetectSummarySheet
+'   (4) 認識できない場合のみ利用者が選択 → シート一覧リストボックス（常時表示）
+'   (5) 見出しを自動解析        → DetectHeaderRow / ParseHeaders
+'   (6) 評価項目を候補表示       → BuildMappingSuggestions / RenderMappingTable
+'   (7) 必要に応じて利用者が修正   → マッピング表のドロップダウンを直接編集
+'   (8) インポート内容確認       → ProceedToConfirm
+'   (9) 登録                  → CommitImport
 '
 ' 元データ（外部ブック）はインポート完了後、保存せずに閉じる。
 ' ワークシートの内容はセルへ直接コピーせず、必要な値のみを配列として
@@ -31,7 +31,7 @@ Private mSamples() As String
 Private mColItemCode() As String   ' 列ごとに確定した項目コード（マッピング解決後にキャッシュ）
 
 '==============================================================================
-' ① 外部Excelを選択 ～ ③ 総合成績シート候補表示
+' (1) 外部Excelを選択 ～ (3) 総合成績シート候補表示
 '==============================================================================
 Public Sub StartImport()
     On Error GoTo ErrHandler
@@ -66,7 +66,7 @@ Public Sub StartImport()
 
     ThisWorkbook.Worksheets(mod_Common.SH_IMPORT).Range(mod_Common.IMP_CELL_FILEPATH).Value = mSrcFilePath
 
-    ' ② シート一覧を取得し、③ 総合成績シートの候補を自動選定する
+    ' (2) シート一覧を取得し、(3) 総合成績シートの候補を自動選定する
     Dim sheetNames As New Collection
     Dim ws As Worksheet
     For Each ws In mSrcWorkbook.Worksheets
@@ -140,7 +140,7 @@ Private Function ContentHeaderScore(ByVal ws As Worksheet) As Long
     If maxRow < 1 Or maxCol < 1 Then Exit Function
 
     Dim keywords As Variant
-    keywords = Array("学生番号", "生徒番号", "氏名", "クラス", "組", "総合評価")
+    keywords = Array("学生番号", "生徒番号", "氏名", "期別", "期", "クラス", "組", "総合評価")
 
     For r = 1 To maxRow
         For c = 1 To maxCol
@@ -161,7 +161,7 @@ Private Function ContentHeaderScore(ByVal ws As Worksheet) As Long
 End Function
 
 '==============================================================================
-' ④～⑤ シート確定・見出し解析
+' (4)～(5) シート確定・見出し解析
 '==============================================================================
 Public Sub ConfirmSheetSelection()
     On Error GoTo ErrHandler
@@ -201,7 +201,7 @@ End Sub
 ' 先頭15行を走査し、既知の見出しキーワードを最も多く含む行を見出し行と推定する。
 Private Function DetectHeaderRow(ByVal ws As Worksheet) As Long
     Dim keywords As Variant
-    keywords = Array("学生番号", "生徒番号", "氏名", "クラス", "組", "番号", "得点", "点数", "評価")
+    keywords = Array("学生番号", "生徒番号", "氏名", "期別", "期", "クラス", "組", "番号", "得点", "点数", "評価")
 
     Dim r As Long, bestRow As Long, bestScore As Long
     Dim maxRow As Long
@@ -276,9 +276,9 @@ Private Sub ResolveColumnItemCodesReset()
 End Sub
 
 '==============================================================================
-' ⑥ 評価項目候補表示
+' (6) 評価項目候補表示
 '==============================================================================
-' 各列見出しから、学生属性（年度／クラス／学生番号／氏名）・既存評価項目・
+' 各列見出しから、学生属性（年度／期別／学生番号／氏名）・既存評価項目・
 ' 無視のいずれに割り当てるべきかを推定し、mod_UI 経由でマッピング表を描画する。
 Private mSuggestions() As String
 
@@ -305,7 +305,9 @@ Private Function GuessTarget(ByVal header As String, ByVal sample As String, ByV
         GuessTarget = mod_Common.MAP_TARGET_NAME
         Exit Function
     End If
-    If mod_Common.HeaderSimilarity(header, "クラスコード") >= 60 Or _
+    If mod_Common.HeaderSimilarity(header, "期別") >= 60 Or _
+       mod_Common.HeaderSimilarity(header, "期") >= 60 Or _
+       mod_Common.HeaderSimilarity(header, "クラスコード") >= 60 Or _
        mod_Common.HeaderSimilarity(header, "クラス") >= 60 Or _
        mod_Common.HeaderSimilarity(header, "組") >= 60 Or _
        mod_Common.HeaderSimilarity(header, "学級") >= 60 Then
@@ -462,7 +464,7 @@ Private Sub ResolveMapping(ByRef colRole() As String, ByRef colItemName() As Str
         Exit Sub
     End If
     If classColIdx = 0 And Len(manualClass) = 0 Then
-        MsgBox "クラスコードが元データの列に無い場合は、画面右上の「クラスコード（手入力）」欄に入力してください。", vbExclamation, mod_Common.APP_NAME
+        MsgBox "期別が元データの列に無い場合は、画面右上の「期別（手入力）」欄に入力してください。", vbExclamation, mod_Common.APP_NAME
         Exit Sub
     End If
 
@@ -479,7 +481,7 @@ Private Sub ResolveMapping(ByRef colRole() As String, ByRef colItemName() As Str
 End Sub
 
 '==============================================================================
-' ⑧ インポート内容確認
+' (8) インポート内容確認
 '==============================================================================
 Public Sub ProceedToConfirm()
     On Error GoTo ErrHandler
@@ -561,7 +563,7 @@ ErrHandler:
 End Sub
 
 '==============================================================================
-' ⑨ 登録
+' (9) 登録
 '==============================================================================
 Public Sub CommitImport()
     On Error GoTo ErrHandler

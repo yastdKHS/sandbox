@@ -3,7 +3,7 @@ Option Explicit
 '==============================================================================
 ' mod_Analysis
 ' 目的 : 「分析」画面の中心的な処理を担当する。
-'        利用者が選択した年度・クラスコード・評価項目に基づき T_Scores から
+'        利用者が選択した年度・期別・評価項目に基づき T_Scores から
 '        該当データを抽出し、mod_Statistics で統計量を計算、mod_Graph で
 '        グラフを更新し、mod_UI へ表示用データを渡す（司令塔の役割）。
 '==============================================================================
@@ -21,7 +21,7 @@ Public Sub RunAnalysis()
     itemDisp = mod_UI.GetFormListBoxSelection(ws, mod_Common.ANL_LISTBOX_ITEM)
 
     If years.Count = 0 Or classes.Count = 0 Or Len(itemDisp) = 0 Then
-        MsgBox "年度・クラスコード・評価項目をそれぞれ1つ以上選択してください。", vbExclamation, mod_Common.APP_NAME
+        MsgBox "年度・期別・評価項目をそれぞれ1つ以上選択してください。", vbExclamation, mod_Common.APP_NAME
         Exit Sub
     End If
 
@@ -64,7 +64,7 @@ Public Sub RunAnalysis()
     mod_Common.EndBusy
 
     mod_Logging.WriteLog "INFO", "mod_Analysis", "RunAnalysis", _
-        "分析を実行しました。項目=" & itemDisp & " 年度数=" & years.Count & " クラス数=" & classes.Count & _
+        "分析を実行しました。項目=" & itemDisp & " 年度数=" & years.Count & " 期別数=" & classes.Count & _
         " データ件数=" & mod_Statistics.ArrLen(flat)
     Exit Sub
 
@@ -77,7 +77,7 @@ End Sub
 ' データ抽出
 '==============================================================================
 
-' 選択条件（複数年度・複数クラス・単一評価項目）に一致する点数を1本の配列として返す。
+' 選択条件（複数年度・複数期別・単一評価項目）に一致する点数を1本の配列として返す。
 Public Function BuildScoresFlat(ByVal years As Collection, ByVal classes As Collection, ByVal itemCode As String) As Double()
     Dim result() As Double
     Dim tbl As ListObject

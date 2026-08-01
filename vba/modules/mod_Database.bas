@@ -155,7 +155,7 @@ End Sub
 ' T_Scores 操作
 '==============================================================================
 
-' 重複判定用のキー集合（年度|クラス|学生番号|項目コード）を構築する。
+' 重複判定用のキー集合（年度|期別|学生番号|項目コード）を構築する。
 ' インポート時に1行ずつテーブル全体を走査すると件数増加で低速化するため、
 ' 事前に Collection へキーを読み込み O(1) 判定にする。
 Public Function BuildScoreKeyIndex() As Collection
@@ -224,7 +224,7 @@ Public Sub UpdateScoreValue(ByVal row As ListRow, ByVal newScore As Double)
 End Sub
 
 ' 評価点数データを一括追加する。rows は 1行あたり
-' (年度, クラスコード, 学生番号, 氏名, 項目コード, 点数) の配列。
+' (年度, 期別, 学生番号, 氏名, 項目コード, 点数) の配列。
 ' 事前にワークシート関数を使わず配列操作で書き込むことで大量データでも高速。
 Public Sub AppendScoreRows(ByVal rows As Collection)
     If rows.Count = 0 Then Exit Sub
@@ -458,7 +458,7 @@ End Function
 ' 容量対策（管理者向け）
 '==============================================================================
 
-' 指定した年度・クラスコードのデータを完全に削除する（管理者機能）。
+' 指定した年度・期別のデータを完全に削除する（管理者機能）。
 ' 誤操作防止のため呼び出し元（mod_UI）で確認ダイアログを表示すること。
 Public Sub DeleteByYearClass(ByVal year As String, ByVal classCode As String)
     Dim tbl As ListObject
@@ -482,7 +482,7 @@ Public Sub DeleteByYearClass(ByVal year As String, ByVal classCode As String)
 
     DeleteSummaryByYearClass year, classCode
     mod_Logging.WriteLog "INFO", "mod_Database", "DeleteByYearClass", _
-        "データを削除しました。年度=" & year & " クラス=" & classCode & " 件数=" & deletedCount
+        "データを削除しました。年度=" & year & " 期別=" & classCode & " 件数=" & deletedCount
 End Sub
 
 Private Sub DeleteSummaryByYearClass(ByVal year As String, ByVal classCode As String)
