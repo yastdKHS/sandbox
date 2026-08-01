@@ -14,7 +14,7 @@ Option Explicit
 Private Const NORMAL_CURVE_POINTS As Long = 60   ' 正規分布曲線の描画点数
 
 '==============================================================================
-' ① ヒストグラム
+' (1) ヒストグラム
 '==============================================================================
 ' yearLabels(i) / yearArrays(i) は対になった年度ラベルと点数配列（BuildScoresGroupedByYearの出力）。
 ' overlayYears = True の場合、共通のビン境界を用いて年度別に複数系列で重畳表示する。
@@ -103,7 +103,7 @@ Private Sub AddNormalCurveOverlay(ByVal cht As Chart, ByRef arr() As Double, ByR
 End Sub
 
 '==============================================================================
-' ② 累積分布曲線
+' (2) 累積分布曲線
 '==============================================================================
 Public Sub UpdateCumulativeChart(ByVal yearLabels As Collection, ByVal yearArrays As Collection, _
                                   ByVal overlayYears As Boolean, ByVal itemLabel As String)
@@ -143,7 +143,7 @@ Private Sub AddCumulativeSeries(ByVal cht As Chart, ByVal seriesName As String, 
 End Sub
 
 '==============================================================================
-' ③ 箱ひげ図（Excel 2016以降の標準チャート種類 xlBoxwhisker を使用）
+' (3) 箱ひげ図（Excel 2016以降の標準チャート種類 xlBoxwhisker を使用）
 '==============================================================================
 Public Sub UpdateBoxPlotChart(ByVal yearLabels As Collection, ByVal yearArrays As Collection, _
                                ByVal overlayYears As Boolean, ByVal itemLabel As String)

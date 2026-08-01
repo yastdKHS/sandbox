@@ -64,15 +64,15 @@ Public Sub SetupHomeSheet()
     ws.Range("B3").Value = "バージョン " & mod_Common.APP_VERSION
 
     AddButtonControl ws, mod_Common.HOME_BTN_IMPORT, mod_Common.HOME_RANGE_BTN_IMPORT, _
-        "① データ取込", "mod_UI.Btn_Home_GoImport"
+        "(1) データ取込", "mod_UI.Btn_Home_GoImport"
     AddButtonControl ws, mod_Common.HOME_BTN_ANALYSIS, mod_Common.HOME_RANGE_BTN_ANALYSIS, _
-        "② 分析", "mod_UI.Btn_Home_GoAnalysis"
+        "(2) 分析", "mod_UI.Btn_Home_GoAnalysis"
     AddButtonControl ws, mod_Common.HOME_BTN_SETTINGS, mod_Common.HOME_RANGE_BTN_SETTINGS, _
-        "③ 設定", "mod_UI.Btn_Home_GoSettings"
+        "(3) 設定", "mod_UI.Btn_Home_GoSettings"
     AddButtonControl ws, mod_Common.HOME_BTN_DATABASE, mod_Common.HOME_RANGE_BTN_DATABASE, _
-        "④ データベース", "mod_UI.Btn_Home_GoDatabase"
+        "(4) データベース", "mod_UI.Btn_Home_GoDatabase"
     AddButtonControl ws, mod_Common.HOME_BTN_LOG, mod_Common.HOME_RANGE_BTN_LOG, _
-        "⑤ ログ", "mod_UI.Btn_Home_GoLog"
+        "(5) ログ", "mod_UI.Btn_Home_GoLog"
 
     ws.Columns("F").ColumnWidth = 60
     ws.Range(mod_Common.HOME_CELL_SUMMARY).WrapText = True
@@ -91,28 +91,35 @@ Public Sub SetupImportSheet()
     ws.Range(mod_Common.IMP_CELL_TITLE).Font.Bold = True
     ws.Range(mod_Common.IMP_CELL_TITLE).Font.Size = 14
 
-    ws.Range("B4").Value = "① 下のボタンから外部Excelファイルを選択してください。"
+    ws.Range("B4").Value = "(1) 下のボタンから外部Excelファイルを選択してください。"
     AddButtonControl ws, mod_Common.IMP_BTN_SELECTFILE, mod_Common.IMP_RANGE_BTN_SELECTFILE, _
         "データ取込を開始", "mod_UI.Btn_Import_Start"
-    ws.Range("B7").Value = "② 総合成績シートを確認してください（候補が自動選択されます）。"
+    ws.Range("B7").Value = "(2) 総合成績シートを確認してください（候補が自動選択されます）。"
     AddListBoxControl ws, mod_Common.IMP_LISTBOX_SHEETS, mod_Common.IMP_RANGE_LISTBOX_SHEETS, False
     ws.Range("G8").Value = "年度（元データに列が無い場合のみ入力）"
-    ws.Range("G10").Value = "クラスコード（元データに列が無い場合のみ入力）"
+    ws.Range("G10").Value = "期別（元データに列が無い場合のみ入力）"
+    StyleAsInputArea ws.Range(mod_Common.IMP_CELL_YEAR_MANUAL)
+    StyleAsInputArea ws.Range(mod_Common.IMP_CELL_CLASS_MANUAL)
     AddButtonControl ws, mod_Common.IMP_BTN_CONFIRMSHEET, mod_Common.IMP_RANGE_BTN_CONFIRMSHEET, _
         "シート決定", "mod_UI.Btn_Import_ConfirmSheet"
 
-    ws.Range(mod_Common.IMP_CELL_MAPPING_HINT).Value = "③ 評価項目のマッピングを確認・修正してください（プルダウンで変更できます）。"
+    ws.Range(mod_Common.IMP_CELL_MAPPING_HINT).Value = "(3) 評価項目のマッピングを確認・修正してください（プルダウンで変更できます）。"
     ws.Columns("B").ColumnWidth = 22
     ws.Columns("C").ColumnWidth = 14
     ws.Columns("D").ColumnWidth = 22
+    ' マッピング先（ドロップダウン）列は入力欄として色付けしておく
+    ' （実際の値・入力規則は RenderImportMappingTable が都度設定する）。
+    StyleAsInputArea ws.Range( _
+        ws.Cells(mod_Common.IMP_MAPPING_START_ROW, mod_Common.IMP_MAPPING_COL_TARGET), _
+        ws.Cells(mod_Common.IMP_MAPPING_START_ROW + mod_Common.IMP_MAPPING_MAX_ROWS - 1, mod_Common.IMP_MAPPING_COL_TARGET))
     AddButtonControl ws, mod_Common.IMP_BTN_PROCEED_CONFIRM, mod_Common.IMP_RANGE_BTN_PROCEED_CONFIRM, _
         "内容確認へ", "mod_UI.Btn_Import_ProceedConfirm"
     AddButtonControl ws, mod_Common.IMP_BTN_SAVETEMPLATE, mod_Common.IMP_RANGE_BTN_SAVETEMPLATE, _
         "テンプレート保存", "mod_UI.Btn_Import_SaveTemplate"
 
-    ws.Range("B52").Value = "④ 登録内容を確認し、問題なければ「登録」を押してください。"
+    ws.Range("B52").Value = "(4) 登録内容を確認し、問題なければ「登録」を押してください。"
     AddCheckBoxControl ws, mod_Common.IMP_CHK_OVERWRITE, mod_Common.IMP_RANGE_CHK_OVERWRITE, _
-        "既存データ（同一年度・クラス・学生番号・項目）を上書きする"
+        "既存データ（同一年度・期別・学生番号・項目）を上書きする"
     AddButtonControl ws, mod_Common.IMP_BTN_COMMIT, mod_Common.IMP_RANGE_BTN_COMMIT, _
         "登録", "mod_UI.Btn_Import_Commit"
     AddButtonControl ws, mod_Common.IMP_BTN_CANCEL, mod_Common.IMP_RANGE_BTN_CANCEL, _
@@ -134,7 +141,7 @@ Public Sub SetupAnalysisSheet()
     ws.Range(mod_Common.ANL_CELL_TITLE).Font.Size = 14
 
     ws.Range("B4").Value = "年度（複数選択可）"
-    ws.Range("D4").Value = "クラスコード（複数選択可）"
+    ws.Range("D4").Value = "期別（複数選択可）"
     ws.Range("F4").Value = "評価項目（1つ選択）"
     AddListBoxControl ws, mod_Common.ANL_LISTBOX_YEARS, mod_Common.ANL_RANGE_LISTBOX_YEARS, True
     AddListBoxControl ws, mod_Common.ANL_LISTBOX_CLASSES, mod_Common.ANL_RANGE_LISTBOX_CLASSES, True
@@ -150,6 +157,8 @@ Public Sub SetupAnalysisSheet()
         "ビン幅指定", False
     ws.Range(mod_Common.ANL_CELL_BINCOUNT).Value = 10
     ws.Range(mod_Common.ANL_CELL_BINWIDTH).Value = 10
+    StyleAsInputArea ws.Range(mod_Common.ANL_CELL_BINCOUNT)
+    StyleAsInputArea ws.Range(mod_Common.ANL_CELL_BINWIDTH)
 
     AddButtonControl ws, mod_Common.ANL_BTN_RUN, mod_Common.ANL_RANGE_BTN_RUN, _
         "分析実行", "mod_UI.Btn_Analysis_Run"
@@ -186,6 +195,13 @@ Public Sub SetupSettingsSheet()
     ws.Range("B3").Value = "評価項目の表示名・重み(%)は下表のセルを直接編集できます。編集後は「反映」を押してください。"
     ws.Range("I3").Value = "詳細設定（キーと値。通常は変更不要です）"
 
+    ' 編集可能な列（表示名・重み(%)・表示順・有効）に入力欄の色を付ける。
+    ' 項目コード列（B列）はキーのため色付けしない。将来の項目追加分も
+    ' 見込んで50行分をあらかじめ着色しておく。
+    StyleAsInputArea ws.Range("C5:F54")
+    ' T_Settings の設定値列（J列）も同様に入力欄として色付けする。
+    StyleAsInputArea ws.Range("J5:J34")
+
     AddButtonControl ws, mod_Common.SET_BTN_APPLY, mod_Common.SET_RANGE_BTN_APPLY, _
         "反映（総合評価を再計算）", "mod_UI.Btn_Settings_Apply"
 
@@ -206,10 +222,12 @@ Public Sub SetupDatabaseSheet()
     ws.Range("B2").Value = "データベース"
     ws.Range("B2").Font.Bold = True
     ws.Range("B2").Font.Size = 14
-    ws.Range("B3").Value = "学生ごとの総合評価一覧です。表のオートフィルタで年度・クラスを絞り込めます。"
+    ws.Range("B3").Value = "学生ごとの総合評価一覧です。表のオートフィルタで年度・期別を絞り込めます。"
 
     ws.Range(mod_Common.DB_CELL_DELETE_YEAR_LABEL).Value = "年度指定（削除用）"
-    ws.Range(mod_Common.DB_CELL_DELETE_CLASS_LABEL).Value = "クラスコード指定（削除用）"
+    ws.Range(mod_Common.DB_CELL_DELETE_CLASS_LABEL).Value = "期別指定（削除用）"
+    StyleAsInputArea ws.Range(mod_Common.DB_CELL_DELETE_YEAR)
+    StyleAsInputArea ws.Range(mod_Common.DB_CELL_DELETE_CLASS)
     AddButtonControl ws, mod_Common.DB_BTN_DELETE, mod_Common.DB_RANGE_BTN_DELETE, _
         "指定データを削除", "mod_UI.Btn_Database_Delete"
     AddButtonControl ws, mod_Common.DB_BTN_REFRESH, mod_Common.DB_RANGE_BTN_REFRESH, _
@@ -295,7 +313,7 @@ Public Sub RefreshHomeSummary()
     msg = "登録年度数: " & years.Count & vbCrLf & _
           "登録学生（延べ）件数: " & mod_Common.TableRowCount(sumTbl) & vbCrLf & _
           "評価点数レコード数: " & mod_Common.TableRowCount(scoresTbl) & vbCrLf & vbCrLf & _
-          "「① データ取込」から外部Excelを取り込み、「② 分析」で年度・クラス・評価項目を選んで比較できます。"
+          "「(1) データ取込」から外部Excelを取り込み、「(2) 分析」で年度・期別・評価項目を選んで比較できます。"
     ws.Range(mod_Common.HOME_CELL_SUMMARY).Value = msg
 End Sub
 
@@ -556,11 +574,11 @@ Public Sub Btn_Database_Delete()
     c = mod_Common.FormatClassCode(ws.Range(mod_Common.DB_CELL_DELETE_CLASS).Value)
 
     If Len(y) = 0 Or Len(c) = 0 Then
-        MsgBox "削除する年度とクラスコードを入力してください。", vbExclamation, mod_Common.APP_NAME
+        MsgBox "削除する年度と期別を入力してください。", vbExclamation, mod_Common.APP_NAME
         Exit Sub
     End If
 
-    If MsgBox("年度=" & y & " クラス=" & c & " のデータを完全に削除します。" & vbCrLf & _
+    If MsgBox("年度=" & y & " 期別=" & c & " のデータを完全に削除します。" & vbCrLf & _
               "この操作は元に戻せません。よろしいですか？", vbYesNo + vbExclamation, mod_Common.APP_NAME) = vbYes Then
         mod_Common.BeginBusy
         mod_Database.DeleteByYearClass y, c
@@ -656,6 +674,15 @@ Private Sub SetRowsHidden(ByVal ws As Worksheet, ByVal rowFrom As Long, ByVal ro
     ws.Rows(rowFrom & ":" & rowTo).Hidden = isHidden
 End Sub
 
+' 利用者が直接入力・選択する範囲であることが一目で分かるよう、
+' 背景色（淡黄色）と細い罫線を付ける。読み取り専用の表示セルには使用しない。
+Private Sub StyleAsInputArea(ByVal rng As Range)
+    rng.Interior.Color = RGB(255, 255, 204)
+    rng.Borders.LineStyle = xlContinuous
+    rng.Borders.Weight = xlThin
+    rng.Borders.Color = RGB(191, 191, 191)
+End Sub
+
 Public Function GetFormListBoxSelection(ByVal ws As Worksheet, ByVal name As String) As String
     On Error Resume Next
     Dim shp As Shape
@@ -732,7 +759,7 @@ Private Function NzNum(ByVal v As Variant, ByVal defaultVal As Double) As Double
     End If
 End Function
 
-' 文字列 Collection を昇順ソートして返す（年度・クラスコードの選択肢を見やすくするため）。
+' 文字列 Collection を昇順ソートして返す（年度・期別の選択肢を見やすくするため）。
 Private Function SortStrings(ByVal src As Collection) As Collection
     Dim n As Long
     n = src.Count

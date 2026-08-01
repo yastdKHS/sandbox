@@ -48,7 +48,7 @@ Public Const TBL_TEMPLATES As String = "T_Templates"
 ' T_Scores 列名（縦持ち：1行 = 1学生 × 1評価項目）
 '------------------------------------------------------------------
 Public Const COL_YEAR As String = "年度"
-Public Const COL_CLASSCODE As String = "クラスコード"
+Public Const COL_CLASSCODE As String = "期別"
 Public Const COL_STUDENTNO As String = "学生番号"
 Public Const COL_NAME As String = "氏名"
 Public Const COL_ITEMCODE As String = "項目コード"
@@ -67,7 +67,7 @@ Public Const COL_ITEM_ACTIVE As String = "有効"
 ' T_Summary 列名（学生ごとの総合評価キャッシュ）
 '------------------------------------------------------------------
 Public Const COL_SUM_YEAR As String = "年度"
-Public Const COL_SUM_CLASSCODE As String = "クラスコード"
+Public Const COL_SUM_CLASSCODE As String = "期別"
 Public Const COL_SUM_STUDENTNO As String = "学生番号"
 Public Const COL_SUM_NAME As String = "氏名"
 Public Const COL_SUM_TOTAL As String = "総合評価"
@@ -145,7 +145,7 @@ Public Const IMP_MAPPING_HELPER_COL As Long = 20     ' T列：マッピング選択肢のヘ
 ' マッピング先の固定選択肢（学生属性）。評価項目はここに動的追加される。
 Public Const MAP_TARGET_IGNORE As String = "（取り込まない）"
 Public Const MAP_TARGET_YEAR As String = "年度"
-Public Const MAP_TARGET_CLASSCODE As String = "クラスコード"
+Public Const MAP_TARGET_CLASSCODE As String = "期別"
 Public Const MAP_TARGET_STUDENTNO As String = "学生番号"
 Public Const MAP_TARGET_NAME As String = "氏名"
 Public Const MAP_TARGET_NEWITEM_PREFIX As String = "新規評価項目："
@@ -183,7 +183,7 @@ Public Const ANL_STUDENTLIST_TITLE As String = "E49"
 Public Const ANL_STUDENTLIST_HEADER_ROW As Long = 50
 Public Const ANL_STUDENTLIST_START_ROW As Long = 51
 Public Const ANL_STUDENTLIST_COL As Long = 5   ' E列
-Public Const ANL_STUDENTLIST_MAX_ROWS As Long = 260  ' 約200名クラスを想定した表示上限
+Public Const ANL_STUDENTLIST_MAX_ROWS As Long = 260  ' 約200名規模を想定した表示上限
 
 '------------------------------------------------------------------
 ' 画面レイアウト定数 - 「設定」シート
@@ -318,7 +318,7 @@ Public Function LastRowInColumn(ByVal ws As Worksheet, ByVal col As Long) As Lon
     LastRowInColumn = ws.Cells(ws.Rows.Count, col).End(xlUp).Row
 End Function
 
-' クラスコードを4桁ゼロ埋めの文字列として整形する。
+' 期別を4桁ゼロ埋めの文字列として整形する。
 Public Function FormatClassCode(ByVal v As Variant) As String
     Dim s As String
     s = Trim$(CStr(v))
@@ -338,7 +338,7 @@ Public Function NowText() As String
     NowText = Format$(Now, "yyyy/mm/dd hh:nn:ss")
 End Function
 
-' 集計キー（年度+クラスコード+学生番号+項目コード等）を生成する。
+' 集計キー（年度+期別+学生番号+項目コード等）を生成する。
 ' Collection のキーとして使用し、重複判定を高速化するために用いる。
 Public Function MakeKey(ParamArray parts() As Variant) As String
     Dim i As Long
