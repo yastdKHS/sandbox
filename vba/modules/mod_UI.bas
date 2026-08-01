@@ -23,7 +23,15 @@ Option Explicit
 
 ' 全画面を初期構築する。ビルド時、および保守目的での再実行（修復）に使用する。
 Public Sub SetupAllSheets()
-    mod_Common.BeginBusy
+    ' 画面構築中は Application.ScreenUpdating を False にしない。
+    ' Range.Merge 直後に同じセルへ ClearContents 等を行う処理が
+    ' SetupImportSheet/SetupHomeSheet にあり、ScreenUpdating=False の
+    ' 状態ではこの組み合わせが実行時エラー1004を起こすことがある
+    ' （実機で確認済みの既知の相性問題）。
+    On Error GoTo ErrHandler
+    Application.DisplayAlerts = False
+    Application.EnableEvents = False
+
     mod_Database.EnsureSchema
     SetupHomeSheet
     SetupImportSheet
@@ -32,7 +40,15 @@ Public Sub SetupAllSheets()
     SetupDatabaseSheet
     SetupLogSheet
     ThisWorkbook.Worksheets(mod_Common.SH_HOME).Activate
-    mod_Common.EndBusy
+
+    Application.DisplayAlerts = True
+    Application.EnableEvents = True
+    Exit Sub
+
+ErrHandler:
+    Application.DisplayAlerts = True
+    Application.EnableEvents = True
+    mod_Common.HandleError "mod_UI", "SetupAllSheets"
 End Sub
 
 Public Sub SetupHomeSheet()
